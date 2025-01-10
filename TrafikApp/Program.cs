@@ -16,7 +16,7 @@ namespace TrafikApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GestionarIncidencias());
+            Application.Run(new Login());
         }
     }
 }

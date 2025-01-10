@@ -1,48 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa con OpenStreetMap y Leaflet</title>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mapa con OpenStreetMap y Leaflet</title>
 
-  <!-- Estilos de Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <!-- Estilos de Leaflet -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-  <style>
-    #map {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-
-  
-
-  <!-- Contenedor del mapa -->
-  <div id="map"></div>
-
-  <!-- Script de Leaflet -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <script>
-    // Inicializar el mapa en el contenedor con ID 'map'
-    var map = L.map('map').setView([51.505, -0.09], 13); // Coordenadas de Londres y zoom de nivel 13
-
-    // Agregar el tile layer de OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+      <style>
+        /* Establecemos el tamaño del mapa */
+          #map {
+              width: 100%;
+              height: 225px;
+          }
+      </style>
+    </head>
+    <body>
 
 
-    // Agregar un evento de clic en el mapa para mostrar las coordenadas del clic
-    map.on('click', function(e) {
-      var latlng = e.latlng;
-      L.marker(latlng).addTo(map)
-        .bindPopup('You clicked the map at ' + latlng.toString())
-        .openPopup();
-    });
-  </script>
 
-</body>
+        <!-- Contenedor del mapa -->
+        <div id="map"></div>
+
+        <!-- Script de Leaflet -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-geojson.js"></script>
+
+        <script>
+            // Inicializar el mapa en el contenedor con ID 'map'
+            var map = L.map('map').setView([43.011130, -2.62576], 8); //Coords de euskadi con 8 de zoom
+
+            // Agregar el tile layer de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Cargar el archivo GeoJSON descargado (ajusta la ruta al archivo real)
+            fetch('https://raw.githubusercontent.com/codeforgermany/click_that_hood/refs/heads/main/public/data/spain-communities.geojson')
+                .then(response => response.json())
+                .then(data => {
+                    // Filtrar solo las características que corresponden al País Vasco
+                    var filteredData = {
+                        type: 'FeatureCollection',
+                        features: data.features.filter(function (feature) {
+                            return feature.properties.name === 'Pais Vasco';
+                        })
+                    };
+
+                    // Agregar el GeoJSON filtrado al mapa
+                    L.geoJSON(filteredData, {
+                        style: function (feature) {
+                            return {
+                                color: '#FF5733',     
+                                weight: 2,
+                                opacity: 1,
+                                fillColor: '#FF5733', 
+                                fillOpacity: 0
+                            };
+                        }
+                    }).addTo(map);
+                })
+                .catch(error => {
+                    console.error('Error cargando el archivo GeoJSON:', error);
+                });
+            
+
+            // Agregar un marcador en la ubicación de Londres
+            /* L.marker([43.011130, -2.62576]).addTo(map)
+             .bindPopup('<b>Hello world!</b><br />I am a popup.')
+             .openPopup();*/
+
+            // Agregar un evento de clic en el mapa para mostrar las coordenadas del clic
+            /*map.on('click', function(e) {
+              var latlng = e.latlng;
+              L.marker(latlng).addTo(map)
+                .bindPopup('You clicked the map at ' + latlng.toString())
+                .openPopup();
+            });*/
+        </script>
+
+    </body>
 </html>
