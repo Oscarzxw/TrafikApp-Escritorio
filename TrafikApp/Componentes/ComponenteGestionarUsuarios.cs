@@ -19,7 +19,27 @@ namespace TrafikApp.Componentes
 
         private void ComponenteGestionarUsuarios_Load(object sender, EventArgs e)
         {
+            rol_comboBox.SelectedIndex = 0;
+            rol_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
 
+        private void anadirUsuario_button_Click(object sender, EventArgs e)
+        {
+            reiniciarCampos();
+        }
+
+        private void eliminarUsuario_button_Click(object sender, EventArgs e)
+        {
+            reiniciarCampos();
+        }
+
+        private void reiniciarCampos()
+        {
+            nombreUsuario_textbox.Clear();
+            apellidoUsuario_textbox.Clear();
+            emailUsuario_textbox.Clear();
+            contrasenaUsuario_textbox.Clear();
+            rol_comboBox.SelectedIndex = 0;
         }
     }
 }

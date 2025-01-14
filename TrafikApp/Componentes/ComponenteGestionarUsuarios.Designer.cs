@@ -29,10 +29,18 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.nombreUsuario_textbox = new System.Windows.Forms.TextBox();
+            this.apellidoUsuario_textbox = new System.Windows.Forms.TextBox();
+            this.emailUsuario_textbox = new System.Windows.Forms.TextBox();
+            this.contrasenaUsuario_textbox = new System.Windows.Forms.TextBox();
+            this.rol_comboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.anadirUsuario_button = new System.Windows.Forms.Button();
+            this.eliminarUsuario_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,50 +56,158 @@
             this.dataGridView1.Size = new System.Drawing.Size(642, 611);
             this.dataGridView1.TabIndex = 21;
             // 
-            // textBox1
+            // nombreUsuario_textbox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(682, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 29);
-            this.textBox1.TabIndex = 22;
+            this.nombreUsuario_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nombreUsuario_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombreUsuario_textbox.Location = new System.Drawing.Point(682, 62);
+            this.nombreUsuario_textbox.Name = "nombreUsuario_textbox";
+            this.nombreUsuario_textbox.Size = new System.Drawing.Size(278, 29);
+            this.nombreUsuario_textbox.TabIndex = 22;
             // 
-            // textBox2
+            // apellidoUsuario_textbox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(824, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 29);
-            this.textBox2.TabIndex = 23;
+            this.apellidoUsuario_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.apellidoUsuario_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apellidoUsuario_textbox.Location = new System.Drawing.Point(682, 130);
+            this.apellidoUsuario_textbox.Name = "apellidoUsuario_textbox";
+            this.apellidoUsuario_textbox.Size = new System.Drawing.Size(278, 29);
+            this.apellidoUsuario_textbox.TabIndex = 23;
             // 
-            // textBox3
+            // emailUsuario_textbox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(682, 89);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(278, 29);
-            this.textBox3.TabIndex = 24;
+            this.emailUsuario_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.emailUsuario_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailUsuario_textbox.Location = new System.Drawing.Point(682, 204);
+            this.emailUsuario_textbox.Name = "emailUsuario_textbox";
+            this.emailUsuario_textbox.Size = new System.Drawing.Size(278, 29);
+            this.emailUsuario_textbox.TabIndex = 24;
             // 
-            // textBox4
+            // contrasenaUsuario_textbox
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(682, 143);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(278, 29);
-            this.textBox4.TabIndex = 25;
+            this.contrasenaUsuario_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.contrasenaUsuario_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contrasenaUsuario_textbox.Location = new System.Drawing.Point(682, 273);
+            this.contrasenaUsuario_textbox.Name = "contrasenaUsuario_textbox";
+            this.contrasenaUsuario_textbox.Size = new System.Drawing.Size(278, 29);
+            this.contrasenaUsuario_textbox.TabIndex = 25;
+            this.contrasenaUsuario_textbox.UseSystemPasswordChar = true;
+            // 
+            // rol_comboBox
+            // 
+            this.rol_comboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rol_comboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rol_comboBox.FormattingEnabled = true;
+            this.rol_comboBox.Items.AddRange(new object[] {
+            "Usuario",
+            "Administrador"});
+            this.rol_comboBox.Location = new System.Drawing.Point(682, 348);
+            this.rol_comboBox.Name = "rol_comboBox";
+            this.rol_comboBox.Size = new System.Drawing.Size(278, 32);
+            this.rol_comboBox.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(678, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 24);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Nombre";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(678, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 24);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Apellido";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(678, 177);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 24);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Email";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(678, 246);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 24);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Contraseña";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(678, 321);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 24);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Rol";
+            // 
+            // anadirUsuario_button
+            // 
+            this.anadirUsuario_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.anadirUsuario_button.BackColor = System.Drawing.Color.Black;
+            this.anadirUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.anadirUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.anadirUsuario_button.ForeColor = System.Drawing.Color.White;
+            this.anadirUsuario_button.Location = new System.Drawing.Point(682, 528);
+            this.anadirUsuario_button.Name = "anadirUsuario_button";
+            this.anadirUsuario_button.Size = new System.Drawing.Size(278, 39);
+            this.anadirUsuario_button.TabIndex = 32;
+            this.anadirUsuario_button.Text = "Añadir";
+            this.anadirUsuario_button.UseVisualStyleBackColor = false;
+            this.anadirUsuario_button.Click += new System.EventHandler(this.anadirUsuario_button_Click);
+            // 
+            // eliminarUsuario_button
+            // 
+            this.eliminarUsuario_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.eliminarUsuario_button.BackColor = System.Drawing.Color.Red;
+            this.eliminarUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eliminarUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eliminarUsuario_button.ForeColor = System.Drawing.Color.White;
+            this.eliminarUsuario_button.Location = new System.Drawing.Point(682, 586);
+            this.eliminarUsuario_button.Name = "eliminarUsuario_button";
+            this.eliminarUsuario_button.Size = new System.Drawing.Size(278, 39);
+            this.eliminarUsuario_button.TabIndex = 33;
+            this.eliminarUsuario_button.Text = "Eliminar";
+            this.eliminarUsuario_button.UseVisualStyleBackColor = false;
+            this.eliminarUsuario_button.Click += new System.EventHandler(this.eliminarUsuario_button_Click);
             // 
             // ComponenteGestionarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.eliminarUsuario_button);
+            this.Controls.Add(this.anadirUsuario_button);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.rol_comboBox);
+            this.Controls.Add(this.contrasenaUsuario_textbox);
+            this.Controls.Add(this.emailUsuario_textbox);
+            this.Controls.Add(this.apellidoUsuario_textbox);
+            this.Controls.Add(this.nombreUsuario_textbox);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ComponenteGestionarUsuarios";
             this.Size = new System.Drawing.Size(984, 650);
@@ -105,9 +221,17 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox nombreUsuario_textbox;
+        private System.Windows.Forms.TextBox apellidoUsuario_textbox;
+        private System.Windows.Forms.TextBox emailUsuario_textbox;
+        private System.Windows.Forms.TextBox contrasenaUsuario_textbox;
+        private System.Windows.Forms.ComboBox rol_comboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button anadirUsuario_button;
+        private System.Windows.Forms.Button eliminarUsuario_button;
     }
 }

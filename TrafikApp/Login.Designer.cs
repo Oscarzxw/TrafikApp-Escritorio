@@ -28,29 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button_salir = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            this.salirApp_button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.correo_textbox = new System.Windows.Forms.TextBox();
-            this.button_inicioSesion = new System.Windows.Forms.Button();
+            this.inicioSesion_button = new System.Windows.Forms.Button();
             this.contrasena_textbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button_salir
+            // salirApp_button
             // 
-            this.button_salir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_salir.BackColor = System.Drawing.Color.Red;
-            this.button_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_salir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button_salir.Location = new System.Drawing.Point(632, 12);
-            this.button_salir.Name = "button_salir";
-            this.button_salir.Size = new System.Drawing.Size(34, 29);
-            this.button_salir.TabIndex = 9;
-            this.button_salir.TabStop = false;
-            this.button_salir.Text = "X";
-            this.button_salir.UseVisualStyleBackColor = false;
-            this.button_salir.Click += new System.EventHandler(this.button_salir_Click);
+            this.salirApp_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.salirApp_button.BackColor = System.Drawing.Color.Transparent;
+            this.salirApp_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("salirApp_button.BackgroundImage")));
+            this.salirApp_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.salirApp_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.salirApp_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.salirApp_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salirApp_button.ForeColor = System.Drawing.Color.Black;
+            this.salirApp_button.Location = new System.Drawing.Point(629, 12);
+            this.salirApp_button.Name = "salirApp_button";
+            this.salirApp_button.Size = new System.Drawing.Size(37, 36);
+            this.salirApp_button.TabIndex = 9;
+            this.salirApp_button.TabStop = false;
+            this.salirApp_button.UseVisualStyleBackColor = false;
+            this.salirApp_button.Click += new System.EventHandler(this.salirApp_button_Click);
             // 
             // label2
             // 
@@ -83,20 +86,20 @@
             this.correo_textbox.Size = new System.Drawing.Size(241, 29);
             this.correo_textbox.TabIndex = 1;
             // 
-            // button_inicioSesion
+            // inicioSesion_button
             // 
-            this.button_inicioSesion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_inicioSesion.BackColor = System.Drawing.Color.Black;
-            this.button_inicioSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_inicioSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_inicioSesion.ForeColor = System.Drawing.Color.White;
-            this.button_inicioSesion.Location = new System.Drawing.Point(215, 246);
-            this.button_inicioSesion.Name = "button_inicioSesion";
-            this.button_inicioSesion.Size = new System.Drawing.Size(241, 42);
-            this.button_inicioSesion.TabIndex = 3;
-            this.button_inicioSesion.Text = "Iniciar Sesión";
-            this.button_inicioSesion.UseVisualStyleBackColor = false;
-            this.button_inicioSesion.Click += new System.EventHandler(this.button_inicioSesion_Click);
+            this.inicioSesion_button.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.inicioSesion_button.BackColor = System.Drawing.Color.Black;
+            this.inicioSesion_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.inicioSesion_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inicioSesion_button.ForeColor = System.Drawing.Color.White;
+            this.inicioSesion_button.Location = new System.Drawing.Point(215, 246);
+            this.inicioSesion_button.Name = "inicioSesion_button";
+            this.inicioSesion_button.Size = new System.Drawing.Size(241, 42);
+            this.inicioSesion_button.TabIndex = 3;
+            this.inicioSesion_button.Text = "Iniciar Sesión";
+            this.inicioSesion_button.UseVisualStyleBackColor = false;
+            this.inicioSesion_button.Click += new System.EventHandler(this.inicioSesion_button_Click);
             // 
             // contrasena_textbox
             // 
@@ -106,6 +109,7 @@
             this.contrasena_textbox.Name = "contrasena_textbox";
             this.contrasena_textbox.Size = new System.Drawing.Size(241, 29);
             this.contrasena_textbox.TabIndex = 2;
+            this.contrasena_textbox.UseSystemPasswordChar = true;
             // 
             // Login
             // 
@@ -114,11 +118,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(678, 407);
             this.ControlBox = false;
-            this.Controls.Add(this.button_salir);
+            this.Controls.Add(this.salirApp_button);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.correo_textbox);
-            this.Controls.Add(this.button_inicioSesion);
+            this.Controls.Add(this.inicioSesion_button);
             this.Controls.Add(this.contrasena_textbox);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -131,11 +135,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button_salir;
+        private System.Windows.Forms.Button salirApp_button;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox correo_textbox;
-        private System.Windows.Forms.Button button_inicioSesion;
+        private System.Windows.Forms.Button inicioSesion_button;
         private System.Windows.Forms.TextBox contrasena_textbox;
     }
 }

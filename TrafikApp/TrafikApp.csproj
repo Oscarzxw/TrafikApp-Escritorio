@@ -119,6 +119,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagenes\cerrarSesionImg.png" />
+    <Content Include="Imagenes\incidenciaLogoGestionarImg.png" />
+    <Content Include="Imagenes\salirImg.png" />
+    <Content Include="Imagenes\usuarioLogoGestironarImg.png" />
     <Content Include="Mapa\map.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

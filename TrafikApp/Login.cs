@@ -18,15 +18,16 @@ namespace TrafikApp
             InitializeComponent();
 
             this.FormBorderStyle = FormBorderStyle.None;
+            salirApp_button.FlatAppearance.BorderSize = 0;
 
         }
 
-        private void button_salir_Click(object sender, EventArgs e)
+        private void salirApp_button_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void button_inicioSesion_Click(object sender, EventArgs e)
+        private void inicioSesion_button_Click(object sender, EventArgs e)
         {
             Main main = new Main();
             this.Hide();

@@ -20,9 +20,10 @@ namespace TrafikApp
             InitializeComponent();
 
             this.FormBorderStyle = FormBorderStyle.None;
+            cerrarSesion_button.FlatAppearance.BorderSize = 0;
         }
 
-        private void button_cerrarSesion_Click(object sender, EventArgs e)
+        private void cerrarSesion_button_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -45,5 +46,7 @@ namespace TrafikApp
             gestionarIncidencias_button.Enabled = true;
             gestionarUsuarios_button.Enabled = false;
         }
+
+       
     }
 }
