@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrafikApp.Model;
 
 namespace TrafikApp
 {
@@ -46,6 +49,17 @@ namespace TrafikApp
                 this.Show();
                 correo_textbox.Focus();
             }
+
+            string jsonFilePath = "http://localhost:8080/api/incidencias";
+
+            // Leer el contenido del archivo JSON
+            string jsonContent = File.ReadAllText(jsonFilePath);
+
+            // Deserializar el contenido JSON en un objeto Persona
+            Incidencia incidencia = JsonConvert.DeserializeObject<Incidencia>(jsonContent);
+
+            // Acceder a los datos deserializados
+            Console.WriteLine($"Nombre: {incidencia.id}");
         }
     }
 }

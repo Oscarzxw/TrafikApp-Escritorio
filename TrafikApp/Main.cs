@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrafikApp.Componentes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TrafikApp
 {
@@ -21,6 +22,14 @@ namespace TrafikApp
 
             this.FormBorderStyle = FormBorderStyle.None;
             cerrarSesion_button.FlatAppearance.BorderSize = 0;
+
+            //Para quie se muestre un mensaje cuando se mentiene el cursor encima de un elemento
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(cerrarSesion_button, "Cerrar Sesión");
+
+            // Tiempo de espera para que salga el mensaje
+            toolTip.InitialDelay = 500;
+            toolTip.ShowAlways = true;
         }
 
         private void cerrarSesion_button_Click(object sender, EventArgs e)

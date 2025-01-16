@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.datosUsuarios_dataGrid = new System.Windows.Forms.DataGridView();
             this.nombreUsuario_textbox = new System.Windows.Forms.TextBox();
             this.apellidoUsuario_textbox = new System.Windows.Forms.TextBox();
             this.emailUsuario_textbox = new System.Windows.Forms.TextBox();
@@ -41,20 +41,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.anadirUsuario_button = new System.Windows.Forms.Button();
             this.eliminarUsuario_button = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datosUsuarios_dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // datosUsuarios_dataGrid
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.datosUsuarios_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 36);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(642, 611);
-            this.dataGridView1.TabIndex = 21;
+            this.datosUsuarios_dataGrid.BackgroundColor = System.Drawing.Color.LightGray;
+            this.datosUsuarios_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datosUsuarios_dataGrid.Location = new System.Drawing.Point(15, 36);
+            this.datosUsuarios_dataGrid.Name = "datosUsuarios_dataGrid";
+            this.datosUsuarios_dataGrid.Size = new System.Drawing.Size(642, 611);
+            this.datosUsuarios_dataGrid.TabIndex = 21;
             // 
             // nombreUsuario_textbox
             // 
@@ -208,11 +208,11 @@
             this.Controls.Add(this.emailUsuario_textbox);
             this.Controls.Add(this.apellidoUsuario_textbox);
             this.Controls.Add(this.nombreUsuario_textbox);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.datosUsuarios_dataGrid);
             this.Name = "ComponenteGestionarUsuarios";
             this.Size = new System.Drawing.Size(984, 650);
             this.Load += new System.EventHandler(this.ComponenteGestionarUsuarios_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datosUsuarios_dataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,7 +220,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView datosUsuarios_dataGrid;
         private System.Windows.Forms.TextBox nombreUsuario_textbox;
         private System.Windows.Forms.TextBox apellidoUsuario_textbox;
         private System.Windows.Forms.TextBox emailUsuario_textbox;
