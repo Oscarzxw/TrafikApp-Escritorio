@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace TrafikApp.Componentes
         private void latitud_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !Char.IsControl(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !Char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -46,7 +47,7 @@ namespace TrafikApp.Componentes
 
         private void longitud_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-' && !Char.IsControl(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !Char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -70,6 +71,7 @@ namespace TrafikApp.Componentes
 
                 row.Cells[datosIncidencias_dataGrid.Columns["colId"].Index].Value = inci.incidenceId;
                 row.Cells[datosIncidencias_dataGrid.Columns["colCausa"].Index].Value = inci.cause;
+                row.Cells[datosIncidencias_dataGrid.Columns["colTipo"].Index].Value = inci.incidenceType;
                 row.Cells[datosIncidencias_dataGrid.Columns["colProvincia"].Index].Value = inci.province;
                 row.Cells[datosIncidencias_dataGrid.Columns["colLatitud"].Index].Value = inci.latitude;
                 row.Cells[datosIncidencias_dataGrid.Columns["colLongitud"].Index].Value = inci.longitude;
@@ -108,6 +110,12 @@ namespace TrafikApp.Componentes
 
             datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
+                Name = "colTipo",
+                HeaderText = "Tipo"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 Name = "colProvincia",
                 HeaderText = "Provincia"
             });
@@ -127,7 +135,6 @@ namespace TrafikApp.Componentes
 
         private void reiniciarCampos()
         {
-            tituloIncidencia_textbox.Clear();
             causaIncidencia_textbox.Clear();
             tipoIncidencia_comboBox.SelectedIndex = 0;
             fechaInicio_date.Value = DateTime.Now;
@@ -139,6 +146,51 @@ namespace TrafikApp.Componentes
         private void button1_Click(object sender, EventArgs e)
         {
             reiniciarCampos();
+        }
+
+        private void datosIncidencias_dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = datosIncidencias_dataGrid.Rows[e.RowIndex];
+
+                string causaIncidencia = filaSeleccionada.Cells["colCausa"].Value?.ToString();
+                string tipoIncidencia = filaSeleccionada.Cells["colTipo"].Value?.ToString();
+                string latitudIncidencia = filaSeleccionada.Cells["colLatitud"].Value?.ToString();
+                string longitudIncidencia = filaSeleccionada.Cells["colLongitud"].Value?.ToString();
+                
+
+                causaIncidencia_textbox.Text = causaIncidencia;
+                tipoIncidencia_comboBox.SelectedItem = tipoIncidencia;
+                latitud_textBox.Text = latitudIncidencia;
+                longitud_textBox.Text = longitudIncidencia;
+                
+            }
+
+        }
+
+        private void latitud_textBox_TextChanged(object sender, EventArgs e)
+        {
+            marcarPosicionEnMapa();
+        }
+
+        private void longitud_textBox_TextChanged(object sender, EventArgs e)
+        {
+            marcarPosicionEnMapa();
+        }
+
+        private async void marcarPosicionEnMapa()
+        {
+            string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
+            string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
+
+
+            string script = $"marcarPosicion({latitudIncidencia.ToString(CultureInfo.InvariantCulture)}, {longitudIncidencia.ToString(CultureInfo.InvariantCulture)});";
+            
+            await mapa_webView2.EnsureCoreWebView2Async();
+            await mapa_webView2.ExecuteScriptAsync(script);
+            
+            
         }
     }
 }

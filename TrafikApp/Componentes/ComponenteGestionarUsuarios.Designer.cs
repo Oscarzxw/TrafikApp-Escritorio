@@ -41,11 +41,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.anadirUsuario_button = new System.Windows.Forms.Button();
             this.eliminarUsuario_button = new System.Windows.Forms.Button();
+            this.modificarUsuario_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datosUsuarios_dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // datosUsuarios_dataGrid
             // 
+            this.datosUsuarios_dataGrid.AllowUserToAddRows = false;
+            this.datosUsuarios_dataGrid.AllowUserToDeleteRows = false;
             this.datosUsuarios_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -53,8 +56,10 @@
             this.datosUsuarios_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datosUsuarios_dataGrid.Location = new System.Drawing.Point(15, 36);
             this.datosUsuarios_dataGrid.Name = "datosUsuarios_dataGrid";
+            this.datosUsuarios_dataGrid.ReadOnly = true;
             this.datosUsuarios_dataGrid.Size = new System.Drawing.Size(642, 611);
             this.datosUsuarios_dataGrid.TabIndex = 21;
+            this.datosUsuarios_dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datosUsuarios_dataGrid_CellClick);
             // 
             // nombreUsuario_textbox
             // 
@@ -168,7 +173,7 @@
             this.anadirUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.anadirUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anadirUsuario_button.ForeColor = System.Drawing.Color.White;
-            this.anadirUsuario_button.Location = new System.Drawing.Point(682, 528);
+            this.anadirUsuario_button.Location = new System.Drawing.Point(682, 496);
             this.anadirUsuario_button.Name = "anadirUsuario_button";
             this.anadirUsuario_button.Size = new System.Drawing.Size(278, 39);
             this.anadirUsuario_button.TabIndex = 32;
@@ -191,11 +196,27 @@
             this.eliminarUsuario_button.UseVisualStyleBackColor = false;
             this.eliminarUsuario_button.Click += new System.EventHandler(this.eliminarUsuario_button_Click);
             // 
+            // modificarUsuario_button
+            // 
+            this.modificarUsuario_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.modificarUsuario_button.BackColor = System.Drawing.Color.DimGray;
+            this.modificarUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.modificarUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modificarUsuario_button.ForeColor = System.Drawing.Color.White;
+            this.modificarUsuario_button.Location = new System.Drawing.Point(682, 541);
+            this.modificarUsuario_button.Name = "modificarUsuario_button";
+            this.modificarUsuario_button.Size = new System.Drawing.Size(278, 39);
+            this.modificarUsuario_button.TabIndex = 34;
+            this.modificarUsuario_button.Text = "Modificar";
+            this.modificarUsuario_button.UseVisualStyleBackColor = false;
+            this.modificarUsuario_button.Click += new System.EventHandler(this.modificarUsuario_button_Click);
+            // 
             // ComponenteGestionarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.modificarUsuario_button);
             this.Controls.Add(this.eliminarUsuario_button);
             this.Controls.Add(this.anadirUsuario_button);
             this.Controls.Add(this.label5);
@@ -233,5 +254,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button anadirUsuario_button;
         private System.Windows.Forms.Button eliminarUsuario_button;
+        private System.Windows.Forms.Button modificarUsuario_button;
     }
 }

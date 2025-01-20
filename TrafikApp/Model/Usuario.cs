@@ -15,5 +15,28 @@ namespace TrafikApp.Model
         public string contrasena { get; set; }
         public string rol {  get; set; }
 
+        public Usuario(string nombre, string apellido, string email, string contrasena, string rol)
+        {
+            this.id = 0;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.email = email;
+            this.contrasena = contrasena;
+            this.rol = rol;
+        }
+
+        public Usuario()
+        {
+        }
+
+        public Usuario(int id, string nombre, string apellido, string email, string contrasena, string rol)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.email = email;
+            this.contrasena = contrasena;
+            this.rol = rol;
+        }
     }
 }

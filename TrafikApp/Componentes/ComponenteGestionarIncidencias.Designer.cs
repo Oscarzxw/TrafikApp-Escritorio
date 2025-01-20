@@ -30,7 +30,6 @@
         {
             this.causaIncidencia_textbox = new System.Windows.Forms.TextBox();
             this.latitud_textBox = new System.Windows.Forms.TextBox();
-            this.tituloIncidencia_textbox = new System.Windows.Forms.TextBox();
             this.datosIncidencias_dataGrid = new System.Windows.Forms.DataGridView();
             this.longitud_textBox = new System.Windows.Forms.TextBox();
             this.anadirIncidencia_button = new System.Windows.Forms.Button();
@@ -39,7 +38,6 @@
             this.tipoIncidencia_comboBox = new System.Windows.Forms.ComboBox();
             this.fechaInicio_date = new System.Windows.Forms.DateTimePicker();
             this.fechaFinal_date = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,30 +52,23 @@
             // 
             this.causaIncidencia_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.causaIncidencia_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.causaIncidencia_textbox.Location = new System.Drawing.Point(778, 128);
+            this.causaIncidencia_textbox.Location = new System.Drawing.Point(778, 54);
             this.causaIncidencia_textbox.Multiline = true;
             this.causaIncidencia_textbox.Name = "causaIncidencia_textbox";
-            this.causaIncidencia_textbox.Size = new System.Drawing.Size(331, 95);
+            this.causaIncidencia_textbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.causaIncidencia_textbox.Size = new System.Drawing.Size(331, 125);
             this.causaIncidencia_textbox.TabIndex = 23;
             // 
             // latitud_textBox
             // 
             this.latitud_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.latitud_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.latitud_textBox.Location = new System.Drawing.Point(778, 388);
+            this.latitud_textBox.Location = new System.Drawing.Point(778, 345);
             this.latitud_textBox.Name = "latitud_textBox";
             this.latitud_textBox.Size = new System.Drawing.Size(158, 29);
             this.latitud_textBox.TabIndex = 22;
+            this.latitud_textBox.TextChanged += new System.EventHandler(this.latitud_textBox_TextChanged);
             this.latitud_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.latitud_textBox_KeyPress);
-            // 
-            // tituloIncidencia_textbox
-            // 
-            this.tituloIncidencia_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tituloIncidencia_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tituloIncidencia_textbox.Location = new System.Drawing.Point(778, 64);
-            this.tituloIncidencia_textbox.Name = "tituloIncidencia_textbox";
-            this.tituloIncidencia_textbox.Size = new System.Drawing.Size(331, 29);
-            this.tituloIncidencia_textbox.TabIndex = 21;
             // 
             // datosIncidencias_dataGrid
             // 
@@ -90,15 +81,17 @@
             this.datosIncidencias_dataGrid.Name = "datosIncidencias_dataGrid";
             this.datosIncidencias_dataGrid.Size = new System.Drawing.Size(738, 761);
             this.datosIncidencias_dataGrid.TabIndex = 20;
+            this.datosIncidencias_dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datosIncidencias_dataGrid_CellClick);
             // 
             // longitud_textBox
             // 
             this.longitud_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.longitud_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.longitud_textBox.Location = new System.Drawing.Point(951, 388);
+            this.longitud_textBox.Location = new System.Drawing.Point(951, 345);
             this.longitud_textBox.Name = "longitud_textBox";
             this.longitud_textBox.Size = new System.Drawing.Size(158, 29);
             this.longitud_textBox.TabIndex = 24;
+            this.longitud_textBox.TextChanged += new System.EventHandler(this.longitud_textBox_TextChanged);
             this.longitud_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.longitud_textBox_KeyPress);
             // 
             // anadirIncidencia_button
@@ -149,12 +142,12 @@
             this.tipoIncidencia_comboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tipoIncidencia_comboBox.FormattingEnabled = true;
             this.tipoIncidencia_comboBox.Items.AddRange(new object[] {
-            "OBRAS",
+            "OBRA",
             "EVEN",
             "ACCIDENTE",
             "CALLE CORTADA",
             "OTRO"});
-            this.tipoIncidencia_comboBox.Location = new System.Drawing.Point(778, 258);
+            this.tipoIncidencia_comboBox.Location = new System.Drawing.Point(778, 215);
             this.tipoIncidencia_comboBox.Name = "tipoIncidencia_comboBox";
             this.tipoIncidencia_comboBox.Size = new System.Drawing.Size(331, 32);
             this.tipoIncidencia_comboBox.TabIndex = 28;
@@ -164,7 +157,7 @@
             this.fechaInicio_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fechaInicio_date.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaInicio_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fechaInicio_date.Location = new System.Drawing.Point(778, 327);
+            this.fechaInicio_date.Location = new System.Drawing.Point(778, 284);
             this.fechaInicio_date.Name = "fechaInicio_date";
             this.fechaInicio_date.Size = new System.Drawing.Size(158, 26);
             this.fechaInicio_date.TabIndex = 29;
@@ -174,29 +167,18 @@
             this.fechaFinal_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fechaFinal_date.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaFinal_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fechaFinal_date.Location = new System.Drawing.Point(951, 327);
+            this.fechaFinal_date.Location = new System.Drawing.Point(951, 284);
             this.fechaFinal_date.MinDate = new System.DateTime(2025, 1, 16, 0, 0, 0, 0);
             this.fechaFinal_date.Name = "fechaFinal_date";
             this.fechaFinal_date.Size = new System.Drawing.Size(158, 26);
             this.fechaFinal_date.TabIndex = 30;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(774, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 24);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Titulo";
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(774, 101);
+            this.label2.Location = new System.Drawing.Point(774, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 24);
             this.label2.TabIndex = 32;
@@ -207,7 +189,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(774, 231);
+            this.label3.Location = new System.Drawing.Point(774, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 24);
             this.label3.TabIndex = 33;
@@ -218,7 +200,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(774, 300);
+            this.label4.Location = new System.Drawing.Point(774, 257);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 24);
             this.label4.TabIndex = 34;
@@ -229,7 +211,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(947, 300);
+            this.label5.Location = new System.Drawing.Point(947, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 24);
             this.label5.TabIndex = 35;
@@ -240,7 +222,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(774, 361);
+            this.label6.Location = new System.Drawing.Point(774, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 24);
             this.label6.TabIndex = 36;
@@ -251,7 +233,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(947, 361);
+            this.label7.Location = new System.Drawing.Point(947, 318);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 24);
             this.label7.TabIndex = 37;
@@ -268,7 +250,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.fechaFinal_date);
             this.Controls.Add(this.fechaInicio_date);
             this.Controls.Add(this.tipoIncidencia_comboBox);
@@ -278,7 +259,6 @@
             this.Controls.Add(this.longitud_textBox);
             this.Controls.Add(this.causaIncidencia_textbox);
             this.Controls.Add(this.latitud_textBox);
-            this.Controls.Add(this.tituloIncidencia_textbox);
             this.Controls.Add(this.datosIncidencias_dataGrid);
             this.Name = "ComponenteGestionarIncidencias";
             this.Size = new System.Drawing.Size(1120, 815);
@@ -294,7 +274,6 @@
 
         private System.Windows.Forms.TextBox causaIncidencia_textbox;
         private System.Windows.Forms.TextBox latitud_textBox;
-        private System.Windows.Forms.TextBox tituloIncidencia_textbox;
         private System.Windows.Forms.DataGridView datosIncidencias_dataGrid;
         private System.Windows.Forms.TextBox longitud_textBox;
         private System.Windows.Forms.Button anadirIncidencia_button;
@@ -303,7 +282,6 @@
         private System.Windows.Forms.ComboBox tipoIncidencia_comboBox;
         private System.Windows.Forms.DateTimePicker fechaInicio_date;
         private System.Windows.Forms.DateTimePicker fechaFinal_date;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

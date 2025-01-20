@@ -64,7 +64,20 @@
                 .catch(error => {
                     console.error('Error cargando el archivo GeoJSON:', error);
                 });
-            
+
+            var currentMarker = null;
+            function marcarPosicion(latitud, longitud) {
+                // Elimina el marcador actual si existe
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                }
+
+                // Agrega un nuevo marcador con las coordenadas recibidas
+                currentMarker = L.marker([latitud, longitud]).addTo(map);
+
+                // Centra el mapa en las coordenadas
+                map.setView([latitud, longitud], 14);
+            }
 
             // Agregar un marcador en la ubicación de Londres
             /* L.marker([43.011130, -2.62576]).addTo(map)

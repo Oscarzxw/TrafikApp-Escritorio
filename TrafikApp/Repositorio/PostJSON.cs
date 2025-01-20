@@ -13,6 +13,7 @@ namespace TrafikApp.Repositorio
     internal class PostJSON
     {
         private static readonly string LOGIN = "http://localhost:8080/api/login";
+        private static readonly string CREAR_USUARIO = "http://localhost:8080/api/crearusuario";
 
         public static async Task<Usuario> obtenerUsuarioLogin(string email, string contrasena)
         {
@@ -67,5 +68,49 @@ namespace TrafikApp.Repositorio
             }
         }
 
+
+        public static async Task<bool> crearUsuario(Usuario usuario)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    // Convertir el objeto Usuario a formato JSON
+                    string json = JsonConvert.SerializeObject(usuario);
+
+                    // Crear el contenido con el tipo de contenido 'application/json'
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    // Enviar la solicitud POST con el JSON en el cuerpo
+                    HttpResponseMessage response = await client.PostAsync(CREAR_USUARIO, content);
+
+                    // Verificar si la respuesta fue exitosa
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Opcional: Leer la respuesta del servidor
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        // Puedes deserializar la respuesta si es necesario, por ejemplo:
+                        Usuario usuarioCreado = JsonConvert.DeserializeObject<Usuario>(responseBody);
+
+                        Console.WriteLine("Usuario creado exitosamente.");
+                        return true;
+                    }
+                    else
+                    {
+                        // Manejar casos donde el servidor devuelve un error (ej. 400 o 500)
+                        Console.WriteLine($"Error al crear usuario: {response.StatusCode}");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejar cualquier excepción que ocurra durante la solicitud
+                    Console.WriteLine($"Excepción: {ex.Message}");
+                    return false;
+                }
+            }
+        }
     }
+
 }

@@ -89,7 +89,9 @@
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\DeleteJSON.cs" />
     <Compile Include="Repositorio\GetJSON.cs" />
+    <Compile Include="Repositorio\PatchJSON.cs" />
     <Compile Include="Repositorio\PostJSON.cs" />
     <EmbeddedResource Include="Componentes\ComponenteGestionarIncidencias.resx">
       <DependentUpon>ComponenteGestionarIncidencias.cs</DependentUpon>

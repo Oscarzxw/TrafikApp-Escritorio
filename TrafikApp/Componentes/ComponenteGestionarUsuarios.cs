@@ -20,15 +20,20 @@ namespace TrafikApp.Componentes
             InitializeComponent();
         }
 
-        private async void ComponenteGestionarUsuarios_Load(object sender, EventArgs e)
+        private void ComponenteGestionarUsuarios_Load(object sender, EventArgs e)
         {
             rol_comboBox.SelectedIndex = 0;
             rol_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            ArrayList usuarios = await GetJSON.recogerUsuarios();
+            
 
             crearColumnasTablaUsuarios();
+            rellenarTabla();
+        }
 
+        private async void rellenarTabla()
+        {
+            ArrayList usuarios = await GetJSON.recogerUsuarios();
             datosUsuarios_dataGrid.Rows.Clear();
 
             foreach (Usuario usu in usuarios)
@@ -93,14 +98,43 @@ namespace TrafikApp.Componentes
             });
         }
 
-        private void anadirUsuario_button_Click(object sender, EventArgs e)
+        private async void anadirUsuario_button_Click(object sender, EventArgs e)
         {
-            reiniciarCampos();
+            string nombreUsuario = nombreUsuario_textbox.Text.Trim();
+            string apellidoUsuario = apellidoUsuario_textbox.Text.Trim();
+            string emailUsuario = emailUsuario_textbox.Text.Trim();
+            string contrasenaUsuario = contrasenaUsuario_textbox.Text.Trim();
+            if (!nombreUsuario.Equals("") || !apellidoUsuario.Equals("") || !emailUsuario.Equals("") || !contrasenaUsuario.Equals(""))
+            {
+                string rol = "usuario";
+                switch (rol_comboBox.SelectedIndex)
+                {
+                    case 0:
+                        rol = "usuario";
+                        break;
+                    case 1:
+                        rol = "admin";
+                        break;
+                }
+                Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
+                bool usuarioCreada = await PostJSON.crearUsuario(usuario);
+                reiniciarCampos();
+                rellenarTabla();
+            }
+            
         }
 
-        private void eliminarUsuario_button_Click(object sender, EventArgs e)
+        private async void eliminarUsuario_button_Click(object sender, EventArgs e)
         {
-            reiniciarCampos();
+            string emailUsuario = emailUsuario_textbox.Text.Trim();
+
+            if (!emailUsuario.Equals(""))
+            {
+                Usuario usuario = new Usuario("", "", emailUsuario, "", "");
+                bool usuarioEliminado = await DeleteJSON.eliminarUsuario(usuario);
+                reiniciarCampos();
+                rellenarTabla();
+            }
         }
 
         private void reiniciarCampos()
@@ -110,6 +144,79 @@ namespace TrafikApp.Componentes
             emailUsuario_textbox.Clear();
             contrasenaUsuario_textbox.Clear();
             rol_comboBox.SelectedIndex = 0;
+        }
+
+        private void datosUsuarios_dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = datosUsuarios_dataGrid.Rows[e.RowIndex];
+
+                string nombreUsuario = filaSeleccionada.Cells["colNombre"].Value?.ToString();
+                string apellidoUsuario = filaSeleccionada.Cells["colApellido"].Value?.ToString();
+                string emailUsuario = filaSeleccionada.Cells["colEmail"].Value?.ToString();
+                string rolUsuario = filaSeleccionada.Cells["colRol"].Value?.ToString();
+
+
+                nombreUsuario_textbox.Text = nombreUsuario;
+                apellidoUsuario_textbox.Text = apellidoUsuario;
+                emailUsuario_textbox.Text = emailUsuario;
+                
+                if (rolUsuario.ToLower().Equals("admin"))
+                {
+                    rol_comboBox.SelectedIndex = 1;
+                }
+                else
+                {
+                    rol_comboBox.SelectedIndex = 0;
+                }
+
+            }
+        }
+
+        private async void modificarUsuario_button_Click(object sender, EventArgs e)
+        {
+            if (datosUsuarios_dataGrid.SelectedRows.Count > 0)
+            {
+                DataGridViewRow filaSeleccionada = datosUsuarios_dataGrid.SelectedRows[0];
+
+                int id = Convert.ToInt32(filaSeleccionada.Cells["colId"].Value);
+
+                string nombreUsuario = nombreUsuario_textbox.Text.Trim();
+                string apellidoUsuario = apellidoUsuario_textbox.Text.Trim();
+                string emailUsuario = emailUsuario_textbox.Text.Trim();
+                string contrasenaUsuario = contrasenaUsuario_textbox.Text.Trim();
+
+                if (!string.IsNullOrEmpty(nombreUsuario) || !string.IsNullOrEmpty(apellidoUsuario) ||
+                    !string.IsNullOrEmpty(emailUsuario))
+                {
+                    if (string.IsNullOrEmpty(contrasenaUsuario))
+                    {
+                        contrasenaUsuario = null;
+                    }
+                    string rol = "usuario";
+
+                    switch (rol_comboBox.SelectedIndex)
+                    {
+                        case 0:
+                            rol = "usuario";
+                            break;
+                        case 1:
+                            rol = "admin";
+                            break;
+                    }
+
+                    // Crear un objeto Usuario con los valores obtenidos
+                    Usuario usuario = new Usuario(id, nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
+
+                    // Llamar a la función para modificar el usuario
+                    bool usuarioModificado = await PatchJSON.modificarUsuario(usuario);
+
+                    reiniciarCampos();
+                    rellenarTabla();
+                    
+                }
+            }
         }
     }
 }
