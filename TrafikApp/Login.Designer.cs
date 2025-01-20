@@ -36,6 +36,7 @@
             this.inicioSesion_button = new System.Windows.Forms.Button();
             this.contrasena_textbox = new System.Windows.Forms.TextBox();
             this.mensajeErrorLogin_label = new System.Windows.Forms.Label();
+            this.alternarContrasena_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // salirApp_button
@@ -122,6 +123,20 @@
             this.mensajeErrorLogin_label.Size = new System.Drawing.Size(0, 16);
             this.mensajeErrorLogin_label.TabIndex = 12;
             // 
+            // alternarContrasena_button
+            // 
+            this.alternarContrasena_button.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.alternarContrasena_button.BackColor = System.Drawing.Color.Transparent;
+            this.alternarContrasena_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("alternarContrasena_button.BackgroundImage")));
+            this.alternarContrasena_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.alternarContrasena_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.alternarContrasena_button.Location = new System.Drawing.Point(471, 168);
+            this.alternarContrasena_button.Name = "alternarContrasena_button";
+            this.alternarContrasena_button.Size = new System.Drawing.Size(36, 35);
+            this.alternarContrasena_button.TabIndex = 13;
+            this.alternarContrasena_button.UseVisualStyleBackColor = false;
+            this.alternarContrasena_button.Click += new System.EventHandler(this.alternarContrasena_button_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +144,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(678, 407);
             this.ControlBox = false;
+            this.Controls.Add(this.alternarContrasena_button);
             this.Controls.Add(this.mensajeErrorLogin_label);
             this.Controls.Add(this.salirApp_button);
             this.Controls.Add(this.label2);
@@ -155,6 +171,7 @@
         private System.Windows.Forms.Button inicioSesion_button;
         private System.Windows.Forms.TextBox contrasena_textbox;
         private System.Windows.Forms.Label mensajeErrorLogin_label;
+        private System.Windows.Forms.Button alternarContrasena_button;
     }
 }
 

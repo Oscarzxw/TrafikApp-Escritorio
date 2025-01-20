@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,19 +28,14 @@ namespace TrafikApp.Componentes
             string parentDirectory = Directory.GetParent(baseDirectory).Parent.FullName;
             string projectDirectory = Directory.GetParent(parentDirectory).Parent.FullName;
 
-            string mapFilePath = Path.Combine(projectDirectory,"TrafikApp", "Mapa", "map.html");
+            string mapFilePath = Path.Combine(projectDirectory, "TrafikApp", "Mapa", "map.html");
 
             mapa_webView2.Source = new Uri("file:///" + mapFilePath);
         }
 
-        private void anadirIncidencia_button_Click(object sender, EventArgs e)
-        {
-            reiniciarCampos();
-        }
-
         private void latitud_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !Char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -138,13 +135,26 @@ namespace TrafikApp.Componentes
             causaIncidencia_textbox.Clear();
             tipoIncidencia_comboBox.SelectedIndex = 0;
             fechaInicio_date.Value = DateTime.Now;
-            fechaFinal_date.Value = DateTime.Now;
             latitud_textBox.Clear();
             longitud_textBox.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void eliminarincidencia_button_Click(object sender, EventArgs e)
         {
+            reiniciarCampos();
+        }
+
+        private async void anadirIncidencia_button_Click(object sender, EventArgs e)
+        {
+            string causaIncidencia = causaIncidencia_textbox.Text;
+            string tipoIncidencia = tipoIncidencia_comboBox.SelectedItem.ToString();
+            string fechaIncidencia = fechaInicio_date.ToString();
+            string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
+            string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
+
+            LocalizarIncidencia localizacion = await obtenerDatosLocalizacion(latitudIncidencia, longitudIncidencia);
+
+
             reiniciarCampos();
         }
 
@@ -158,13 +168,13 @@ namespace TrafikApp.Componentes
                 string tipoIncidencia = filaSeleccionada.Cells["colTipo"].Value?.ToString();
                 string latitudIncidencia = filaSeleccionada.Cells["colLatitud"].Value?.ToString();
                 string longitudIncidencia = filaSeleccionada.Cells["colLongitud"].Value?.ToString();
-                
+
 
                 causaIncidencia_textbox.Text = causaIncidencia;
                 tipoIncidencia_comboBox.SelectedItem = tipoIncidencia;
                 latitud_textBox.Text = latitudIncidencia;
                 longitud_textBox.Text = longitudIncidencia;
-                
+
             }
 
         }
@@ -186,11 +196,37 @@ namespace TrafikApp.Componentes
 
 
             string script = $"marcarPosicion({latitudIncidencia.ToString(CultureInfo.InvariantCulture)}, {longitudIncidencia.ToString(CultureInfo.InvariantCulture)});";
-            
+
             await mapa_webView2.EnsureCoreWebView2Async();
             await mapa_webView2.ExecuteScriptAsync(script);
-            
-            
+
+
+        }
+
+        private static async Task<LocalizarIncidencia> obtenerDatosLocalizacion(string latitud, string longitud)
+        {
+            string JSON_datos = "https://nominatim.openstreetmap.org/reverse?lat=" + latitud + "&lon=" + longitud + "&format=json";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    client.DefaultRequestHeaders.Add("User-Agent", "MiAplicacion/1.0 (tuemail@example.com)");
+                    HttpResponseMessage response = await client.GetAsync(JSON_datos);
+                    response.EnsureSuccessStatusCode();
+
+                    string responseBody = await response.Content.ReadAsStringAsync();
+
+                    LocalizarIncidencia datos = JsonConvert.DeserializeObject<LocalizarIncidencia>(responseBody);
+
+                    return datos;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                    return null;
+                }
+            }
         }
     }
 }

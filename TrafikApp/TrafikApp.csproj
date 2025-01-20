@@ -84,7 +84,9 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Incidencia.cs" />
+    <Compile Include="Model\LocalizarIncidencia.cs" />
     <Compile Include="Model\Source.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
@@ -131,6 +133,8 @@
   <ItemGroup>
     <Content Include="Sources\cerrarSesionImg.png" />
     <Content Include="Sources\incidenciaLogoGestionarImg.png" />
+    <Content Include="Sources\ojoAbiertoContrasenaImagen.png" />
+    <Content Include="Sources\ojoCerradoContrasenaImagen.png" />
     <Content Include="Sources\salirImg.png" />
     <Content Include="Sources\usuarioLogoGestironarImg.png" />
     <Content Include="Mapa\map.html" />

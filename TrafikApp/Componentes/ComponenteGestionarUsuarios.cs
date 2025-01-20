@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace TrafikApp.Componentes
 {
     public partial class ComponenteGestionarUsuarios : UserControl
     {
+        private bool contrasenaMostrada = false;
         public ComponenteGestionarUsuarios()
         {
             InitializeComponent();
@@ -206,16 +208,38 @@ namespace TrafikApp.Componentes
                             break;
                     }
 
-                    // Crear un objeto Usuario con los valores obtenidos
                     Usuario usuario = new Usuario(id, nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
 
-                    // Llamar a la función para modificar el usuario
                     bool usuarioModificado = await PatchJSON.modificarUsuario(usuario);
 
                     reiniciarCampos();
                     rellenarTabla();
                     
                 }
+            }
+        }
+
+        private void alternarContrasena_button_Click(object sender, EventArgs e)
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            string parentDirectory = Directory.GetParent(baseDirectory).Parent.FullName;
+            string projectDirectory = Directory.GetParent(parentDirectory).Parent.FullName;
+
+            string rutaImagenOjoAbierto = Path.Combine(projectDirectory, "TrafikApp", "Sources", "ojoAbiertoContrasenaImagen.png");
+            string rutaImagenOjoCerrado = Path.Combine(projectDirectory, "TrafikApp", "Sources", "ojoCerradoContrasenaImagen.png");
+
+            if (contrasenaMostrada)
+            {
+                contrasenaUsuario_textbox.UseSystemPasswordChar = true;
+                alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoCerrado);
+                contrasenaMostrada = false;
+            }
+            else
+            {
+                contrasenaUsuario_textbox.UseSystemPasswordChar = false;
+                alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoAbierto);
+                contrasenaMostrada = true;
             }
         }
     }

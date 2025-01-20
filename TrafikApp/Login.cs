@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using TrafikApp.Model;
 using TrafikApp.Repositorio;
@@ -8,6 +10,7 @@ namespace TrafikApp
 {
     public partial class Login : Form
     {
+        private bool contrasenaMostrada = false;
         public Login()
         {
 
@@ -15,6 +18,7 @@ namespace TrafikApp
 
             this.FormBorderStyle = FormBorderStyle.None;
             salirApp_button.FlatAppearance.BorderSize = 0;
+            alternarContrasena_button.FlatAppearance.BorderSize = 0;
 
         }
 
@@ -58,6 +62,29 @@ namespace TrafikApp
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void alternarContrasena_button_Click(object sender, EventArgs e)
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            string parentDirectory = Directory.GetParent(baseDirectory).Parent.FullName;
+            string projectDirectory = Directory.GetParent(parentDirectory).Parent.FullName;
+
+            string rutaImagenOjoAbierto = Path.Combine(projectDirectory, "TrafikApp", "Sources", "ojoAbiertoContrasenaImagen.png");
+            string rutaImagenOjoCerrado = Path.Combine(projectDirectory, "TrafikApp", "Sources", "ojoCerradoContrasenaImagen.png");
+
+            if (contrasenaMostrada)
+            {
+                contrasena_textbox.UseSystemPasswordChar = true;
+                alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoCerrado);
+                contrasenaMostrada = false;
+            }
+            else{
+                contrasena_textbox.UseSystemPasswordChar = false;
+                alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoAbierto);
+                contrasenaMostrada = true;
+            }
         }
     }
 }
