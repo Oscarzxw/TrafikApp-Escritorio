@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.descripcionIncidencia_textbox = new System.Windows.Forms.TextBox();
+            this.causaIncidencia_textbox = new System.Windows.Forms.TextBox();
             this.latitud_textBox = new System.Windows.Forms.TextBox();
             this.tituloIncidencia_textbox = new System.Windows.Forms.TextBox();
             this.datosIncidencias_dataGrid = new System.Windows.Forms.DataGridView();
@@ -50,15 +50,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.mapa_webView2)).BeginInit();
             this.SuspendLayout();
             // 
-            // descripcionIncidencia_textbox
+            // causaIncidencia_textbox
             // 
-            this.descripcionIncidencia_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.descripcionIncidencia_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descripcionIncidencia_textbox.Location = new System.Drawing.Point(778, 128);
-            this.descripcionIncidencia_textbox.Multiline = true;
-            this.descripcionIncidencia_textbox.Name = "descripcionIncidencia_textbox";
-            this.descripcionIncidencia_textbox.Size = new System.Drawing.Size(331, 95);
-            this.descripcionIncidencia_textbox.TabIndex = 23;
+            this.causaIncidencia_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.causaIncidencia_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.causaIncidencia_textbox.Location = new System.Drawing.Point(778, 128);
+            this.causaIncidencia_textbox.Multiline = true;
+            this.causaIncidencia_textbox.Name = "causaIncidencia_textbox";
+            this.causaIncidencia_textbox.Size = new System.Drawing.Size(331, 95);
+            this.causaIncidencia_textbox.TabIndex = 23;
             // 
             // latitud_textBox
             // 
@@ -150,6 +150,7 @@
             this.tipoIncidencia_comboBox.FormattingEnabled = true;
             this.tipoIncidencia_comboBox.Items.AddRange(new object[] {
             "OBRAS",
+            "EVEN",
             "ACCIDENTE",
             "CALLE CORTADA",
             "OTRO"});
@@ -197,9 +198,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(774, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 24);
+            this.label2.Size = new System.Drawing.Size(63, 24);
             this.label2.TabIndex = 32;
-            this.label2.Text = "Descripción";
+            this.label2.Text = "Causa";
             // 
             // label3
             // 
@@ -208,9 +209,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(774, 231);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 24);
+            this.label3.Size = new System.Drawing.Size(48, 24);
             this.label3.TabIndex = 33;
-            this.label3.Text = "Motivo";
+            this.label3.Text = "Tipo";
             // 
             // label4
             // 
@@ -275,7 +276,7 @@
             this.Controls.Add(this.mapa_webView2);
             this.Controls.Add(this.anadirIncidencia_button);
             this.Controls.Add(this.longitud_textBox);
-            this.Controls.Add(this.descripcionIncidencia_textbox);
+            this.Controls.Add(this.causaIncidencia_textbox);
             this.Controls.Add(this.latitud_textBox);
             this.Controls.Add(this.tituloIncidencia_textbox);
             this.Controls.Add(this.datosIncidencias_dataGrid);
@@ -291,7 +292,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox descripcionIncidencia_textbox;
+        private System.Windows.Forms.TextBox causaIncidencia_textbox;
         private System.Windows.Forms.TextBox latitud_textBox;
         private System.Windows.Forms.TextBox tituloIncidencia_textbox;
         private System.Windows.Forms.DataGridView datosIncidencias_dataGrid;

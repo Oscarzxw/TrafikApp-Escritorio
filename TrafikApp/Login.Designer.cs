@@ -32,9 +32,10 @@
             this.salirApp_button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.correo_textbox = new System.Windows.Forms.TextBox();
+            this.email_textbox = new System.Windows.Forms.TextBox();
             this.inicioSesion_button = new System.Windows.Forms.Button();
             this.contrasena_textbox = new System.Windows.Forms.TextBox();
+            this.mensajeErrorLogin_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // salirApp_button
@@ -77,14 +78,14 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Email";
             // 
-            // correo_textbox
+            // email_textbox
             // 
-            this.correo_textbox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.correo_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.correo_textbox.Location = new System.Drawing.Point(215, 109);
-            this.correo_textbox.Name = "correo_textbox";
-            this.correo_textbox.Size = new System.Drawing.Size(241, 29);
-            this.correo_textbox.TabIndex = 1;
+            this.email_textbox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.email_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email_textbox.Location = new System.Drawing.Point(215, 109);
+            this.email_textbox.Name = "email_textbox";
+            this.email_textbox.Size = new System.Drawing.Size(241, 29);
+            this.email_textbox.TabIndex = 1;
             // 
             // inicioSesion_button
             // 
@@ -111,6 +112,16 @@
             this.contrasena_textbox.TabIndex = 2;
             this.contrasena_textbox.UseSystemPasswordChar = true;
             // 
+            // mensajeErrorLogin_label
+            // 
+            this.mensajeErrorLogin_label.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mensajeErrorLogin_label.AutoSize = true;
+            this.mensajeErrorLogin_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mensajeErrorLogin_label.Location = new System.Drawing.Point(129, 314);
+            this.mensajeErrorLogin_label.Name = "mensajeErrorLogin_label";
+            this.mensajeErrorLogin_label.Size = new System.Drawing.Size(0, 16);
+            this.mensajeErrorLogin_label.TabIndex = 12;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,10 +129,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(678, 407);
             this.ControlBox = false;
+            this.Controls.Add(this.mensajeErrorLogin_label);
             this.Controls.Add(this.salirApp_button);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.correo_textbox);
+            this.Controls.Add(this.email_textbox);
             this.Controls.Add(this.inicioSesion_button);
             this.Controls.Add(this.contrasena_textbox);
             this.MaximizeBox = false;
@@ -129,6 +141,7 @@
             this.Name = "Login";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,9 +151,10 @@
         private System.Windows.Forms.Button salirApp_button;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox correo_textbox;
+        private System.Windows.Forms.TextBox email_textbox;
         private System.Windows.Forms.Button inicioSesion_button;
         private System.Windows.Forms.TextBox contrasena_textbox;
+        private System.Windows.Forms.Label mensajeErrorLogin_label;
     }
 }
 

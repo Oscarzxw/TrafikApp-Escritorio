@@ -1,15 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrafikApp.Model;
+using TrafikApp.Repositorio;
 
 namespace TrafikApp
 {
@@ -30,36 +23,41 @@ namespace TrafikApp
             Application.Exit();
         }
 
-        private void inicioSesion_button_Click(object sender, EventArgs e)
+        private async void inicioSesion_button_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
-            this.Hide();
-            DialogResult result = main.ShowDialog();
-            if (result == DialogResult.OK)
+            Usuario usuario = await PostJSON.obtenerUsuarioLogin(email_textbox.Text.Trim(), contrasena_textbox.Text.Trim());
+            if (usuario != null && usuario.rol.Equals("admin", StringComparison.OrdinalIgnoreCase))
             {
-                correo_textbox.Clear();
-                contrasena_textbox.Clear();
-                this.Show();
-                correo_textbox.Focus();
+                Main main = new Main();
+                main.setUsuarioActual(usuario.id, usuario.nombre, usuario.apellido,usuario.email,usuario.contrasena,usuario.rol);
+                this.Hide();
+                DialogResult result = main.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    email_textbox.Clear();
+                    contrasena_textbox.Clear();
+                    mensajeErrorLogin_label.Text = "";
+                    this.Show();
+                    email_textbox.Focus();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    email_textbox.Clear();
+                    contrasena_textbox.Clear();
+                    mensajeErrorLogin_label.Text = "";
+                    this.Show();
+                    email_textbox.Focus();
+                }
             }
-            else if (result == DialogResult.Cancel)
-            {
-                correo_textbox.Clear();
-                contrasena_textbox.Clear();
-                this.Show();
-                correo_textbox.Focus();
+            else{
+                mensajeErrorLogin_label.ForeColor = System.Drawing.Color.Red;
+                mensajeErrorLogin_label.Text = "El email o contraseña no son correctos o debes de ser administrador.";
             }
+        }
 
-            string jsonFilePath = "http://localhost:8080/api/incidencias";
+        private void Login_Load(object sender, EventArgs e)
+        {
 
-            // Leer el contenido del archivo JSON
-            string jsonContent = File.ReadAllText(jsonFilePath);
-
-            // Deserializar el contenido JSON en un objeto Persona
-            Incidencia incidencia = JsonConvert.DeserializeObject<Incidencia>(jsonContent);
-
-            // Acceder a los datos deserializados
-            Console.WriteLine($"Nombre: {incidencia.id}");
         }
     }
 }

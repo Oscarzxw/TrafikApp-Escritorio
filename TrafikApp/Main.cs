@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrafikApp.Componentes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TrafikApp.Model;
 
 namespace TrafikApp
 {
@@ -16,6 +9,9 @@ namespace TrafikApp
     {
         ComponenteGestionarIncidencias componenteGestionarIncidencias = new ComponenteGestionarIncidencias();
         ComponenteGestionarUsuarios componenteGestionarUsuarios = new ComponenteGestionarUsuarios();
+        private Usuario usuarioActual = new Usuario();
+
+        
         public Main()
         {
             InitializeComponent();
@@ -23,8 +19,8 @@ namespace TrafikApp
             this.FormBorderStyle = FormBorderStyle.None;
             cerrarSesion_button.FlatAppearance.BorderSize = 0;
 
-            //Para quie se muestre un mensaje cuando se mentiene el cursor encima de un elemento
-            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            //Para que se muestre un mensaje cuando se mentiene el cursor encima de un elemento
+            ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(cerrarSesion_button, "Cerrar Sesión");
 
             // Tiempo de espera para que salga el mensaje
@@ -56,6 +52,16 @@ namespace TrafikApp
             gestionarUsuarios_button.Enabled = false;
         }
 
-       
+        public void setUsuarioActual(int id, string nombre, string apellido, string email, string contrasena, string rol)
+        { 
+            usuarioActual.id = id;
+            usuarioActual.nombre = nombre;
+            usuarioActual.apellido = apellido;
+            usuarioActual.email = email;
+            usuarioActual.contrasena = contrasena;
+            usuarioActual.rol = rol;
+        }
+
     }
+
 }

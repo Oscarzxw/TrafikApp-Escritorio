@@ -86,8 +86,11 @@
     </Compile>
     <Compile Include="Model\Incidencia.cs" />
     <Compile Include="Model\Source.cs" />
+    <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\GetJSON.cs" />
+    <Compile Include="Repositorio\PostJSON.cs" />
     <EmbeddedResource Include="Componentes\ComponenteGestionarIncidencias.resx">
       <DependentUpon>ComponenteGestionarIncidencias.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,10 +127,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Imagenes\cerrarSesionImg.png" />
-    <Content Include="Imagenes\incidenciaLogoGestionarImg.png" />
-    <Content Include="Imagenes\salirImg.png" />
-    <Content Include="Imagenes\usuarioLogoGestironarImg.png" />
+    <Content Include="Sources\cerrarSesionImg.png" />
+    <Content Include="Sources\incidenciaLogoGestionarImg.png" />
+    <Content Include="Sources\salirImg.png" />
+    <Content Include="Sources\usuarioLogoGestironarImg.png" />
     <Content Include="Mapa\map.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

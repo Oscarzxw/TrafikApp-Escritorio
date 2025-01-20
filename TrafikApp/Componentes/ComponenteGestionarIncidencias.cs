@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrafikApp.Model;
+using TrafikApp.Repositorio;
 
 namespace TrafikApp.Componentes
 {
@@ -49,16 +52,83 @@ namespace TrafikApp.Componentes
             }
         }
 
-        private void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
+        private async void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
         {
             tipoIncidencia_comboBox.SelectedIndex = 0;
             tipoIncidencia_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            ArrayList incidencias = await GetJSON.recogerIncidencias();
+
+            crearColumnasTablaIncidencias();
+
+            datosIncidencias_dataGrid.Rows.Clear();
+
+            foreach (Incidencia inci in incidencias)
+            {
+                var row = new DataGridViewRow();
+                row.CreateCells(datosIncidencias_dataGrid);
+
+                row.Cells[datosIncidencias_dataGrid.Columns["colId"].Index].Value = inci.incidenceId;
+                row.Cells[datosIncidencias_dataGrid.Columns["colCausa"].Index].Value = inci.cause;
+                row.Cells[datosIncidencias_dataGrid.Columns["colProvincia"].Index].Value = inci.province;
+                row.Cells[datosIncidencias_dataGrid.Columns["colLatitud"].Index].Value = inci.latitude;
+                row.Cells[datosIncidencias_dataGrid.Columns["colLongitud"].Index].Value = inci.longitude;
+
+                datosIncidencias_dataGrid.Rows.Add(row);
+            }
+        }
+
+        private void crearColumnasTablaIncidencias()
+        {
+            datosIncidencias_dataGrid.AutoGenerateColumns = false;
+
+            datosIncidencias_dataGrid.Columns.Clear();
+
+            datosIncidencias_dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            datosIncidencias_dataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            datosIncidencias_dataGrid.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular);
+
+
+            datosIncidencias_dataGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 13, FontStyle.Bold);
+            datosIncidencias_dataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colId",
+                HeaderText = "ID"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colCausa",
+                HeaderText = "Causa"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colProvincia",
+                HeaderText = "Provincia"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colLatitud",
+                HeaderText = "Latitud"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colLongitud",
+                HeaderText = "Longitud"
+            });
         }
 
         private void reiniciarCampos()
         {
             tituloIncidencia_textbox.Clear();
-            descripcionIncidencia_textbox.Clear();
+            causaIncidencia_textbox.Clear();
             tipoIncidencia_comboBox.SelectedIndex = 0;
             fechaInicio_date.Value = DateTime.Now;
             fechaFinal_date.Value = DateTime.Now;
