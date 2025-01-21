@@ -17,6 +17,7 @@ namespace TrafikApp.Componentes
     public partial class ComponenteGestionarUsuarios : UserControl
     {
         private bool contrasenaMostrada = false;
+        private Usuario usuarioActual = new Usuario();
         public ComponenteGestionarUsuarios()
         {
             InitializeComponent();
@@ -26,8 +27,8 @@ namespace TrafikApp.Componentes
         {
             rol_comboBox.SelectedIndex = 0;
             rol_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            alternarContrasena_button.FlatAppearance.BorderSize = 0;
 
-            
 
             crearColumnasTablaUsuarios();
             rellenarTabla();
@@ -102,26 +103,55 @@ namespace TrafikApp.Componentes
 
         private async void anadirUsuario_button_Click(object sender, EventArgs e)
         {
+
+            bool emailExistente = false;
             string nombreUsuario = nombreUsuario_textbox.Text.Trim();
             string apellidoUsuario = apellidoUsuario_textbox.Text.Trim();
             string emailUsuario = emailUsuario_textbox.Text.Trim();
             string contrasenaUsuario = contrasenaUsuario_textbox.Text.Trim();
-            if (!nombreUsuario.Equals("") || !apellidoUsuario.Equals("") || !emailUsuario.Equals("") || !contrasenaUsuario.Equals(""))
+            foreach (DataGridViewRow row in datosUsuarios_dataGrid.Rows)
             {
-                string rol = "usuario";
-                switch (rol_comboBox.SelectedIndex)
+                if (!row.IsNewRow)
                 {
-                    case 0:
-                        rol = "usuario";
-                        break;
-                    case 1:
-                        rol = "admin";
-                        break;
+                    string email = row.Cells["colEmail"].Value?.ToString();
+
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        if (email.Equals(emailUsuario))
+                        {
+                            emailExistente = true;
+                            break;
+                        }
+                    }
                 }
-                Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
-                bool usuarioCreada = await PostJSON.crearUsuario(usuario);
-                reiniciarCampos();
-                rellenarTabla();
+            }
+            if (!emailExistente)
+            {
+                if (!nombreUsuario.Equals("") && !apellidoUsuario.Equals("") && !emailUsuario.Equals("") && !contrasenaUsuario.Equals(""))
+                {
+                    string rol = "usuario";
+                    switch (rol_comboBox.SelectedIndex)
+                    {
+                        case 0:
+                            rol = "usuario";
+                            break;
+                        case 1:
+                            rol = "admin";
+                            break;
+                    }
+                    Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
+                    bool usuarioCreada = await PostJSON.crearUsuario(usuario);
+                    reiniciarCampos();
+                    rellenarTabla();
+                }
+                else
+                {
+                    MessageBox.Show("Rellena todos los campos para poder añadir un nuevo usuario.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ese email ya existe.");
             }
             
         }
@@ -132,10 +162,20 @@ namespace TrafikApp.Componentes
 
             if (!emailUsuario.Equals(""))
             {
-                Usuario usuario = new Usuario("", "", emailUsuario, "", "");
-                bool usuarioEliminado = await DeleteJSON.eliminarUsuario(usuario);
-                reiniciarCampos();
-                rellenarTabla();
+                if (!emailUsuario.Equals(usuarioActual.email))
+                {
+                    Usuario usuario = new Usuario("", "", emailUsuario, "", "");
+                    bool usuarioEliminado = await DeleteJSON.eliminarUsuario(usuario);
+                    reiniciarCampos();
+                    rellenarTabla();
+                }
+                else
+                {
+                    MessageBox.Show("No puedes eliminar tu propio usuario.");
+                }
+            }
+            else{
+                MessageBox.Show("Introduce un email para eliminar el usuario.");
             }
         }
 
@@ -183,38 +223,43 @@ namespace TrafikApp.Componentes
                 DataGridViewRow filaSeleccionada = datosUsuarios_dataGrid.SelectedRows[0];
 
                 int id = Convert.ToInt32(filaSeleccionada.Cells["colId"].Value);
-
-                string nombreUsuario = nombreUsuario_textbox.Text.Trim();
-                string apellidoUsuario = apellidoUsuario_textbox.Text.Trim();
-                string emailUsuario = emailUsuario_textbox.Text.Trim();
-                string contrasenaUsuario = contrasenaUsuario_textbox.Text.Trim();
-
-                if (!string.IsNullOrEmpty(nombreUsuario) || !string.IsNullOrEmpty(apellidoUsuario) ||
-                    !string.IsNullOrEmpty(emailUsuario))
+                if (!filaSeleccionada.Cells["colEmail"].Value.ToString().Equals(usuarioActual.email))
                 {
-                    if (string.IsNullOrEmpty(contrasenaUsuario))
+                    string nombreUsuario = nombreUsuario_textbox.Text.Trim();
+                    string apellidoUsuario = apellidoUsuario_textbox.Text.Trim();
+                    string emailUsuario = emailUsuario_textbox.Text.Trim();
+                    string contrasenaUsuario = contrasenaUsuario_textbox.Text.Trim();
+
+                    if (!string.IsNullOrEmpty(nombreUsuario) || !string.IsNullOrEmpty(apellidoUsuario) ||
+                        !string.IsNullOrEmpty(emailUsuario))
                     {
-                        contrasenaUsuario = null;
+                        if (string.IsNullOrEmpty(contrasenaUsuario))
+                        {
+                            contrasenaUsuario = null;
+                        }
+                        string rol = "usuario";
+
+                        switch (rol_comboBox.SelectedIndex)
+                        {
+                            case 0:
+                                rol = "usuario";
+                                break;
+                            case 1:
+                                rol = "admin";
+                                break;
+                        }
+
+                        Usuario usuario = new Usuario(id, nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
+
+                        bool usuarioModificado = await PatchJSON.modificarUsuario(usuario);
+
+                        reiniciarCampos();
+                        rellenarTabla();
                     }
-                    string rol = "usuario";
-
-                    switch (rol_comboBox.SelectedIndex)
-                    {
-                        case 0:
-                            rol = "usuario";
-                            break;
-                        case 1:
-                            rol = "admin";
-                            break;
-                    }
-
-                    Usuario usuario = new Usuario(id, nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
-
-                    bool usuarioModificado = await PatchJSON.modificarUsuario(usuario);
-
-                    reiniciarCampos();
-                    rellenarTabla();
-                    
+                }
+                else
+                {
+                    MessageBox.Show("No puedes modificar tu  propio usuario.");
                 }
             }
         }
@@ -241,6 +286,16 @@ namespace TrafikApp.Componentes
                 alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoAbierto);
                 contrasenaMostrada = true;
             }
+        }
+
+        public void setUsuarioActual(int id, string nombre, string apellido, string email, string contrasena, string rol)
+        {
+            usuarioActual.id = id;
+            usuarioActual.nombre = nombre;
+            usuarioActual.apellido = apellido;
+            usuarioActual.email = email;
+            usuarioActual.contrasena = contrasena;
+            usuarioActual.rol = rol;
         }
     }
 }

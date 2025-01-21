@@ -53,7 +53,7 @@
             this.causaIncidencia_textbox.Multiline = true;
             this.causaIncidencia_textbox.Name = "causaIncidencia_textbox";
             this.causaIncidencia_textbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.causaIncidencia_textbox.Size = new System.Drawing.Size(578, 155);
+            this.causaIncidencia_textbox.Size = new System.Drawing.Size(536, 155);
             this.causaIncidencia_textbox.TabIndex = 23;
             // 
             // latitud_textBox
@@ -61,7 +61,7 @@
             this.latitud_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.latitud_textBox.Location = new System.Drawing.Point(376, 274);
             this.latitud_textBox.Name = "latitud_textBox";
-            this.latitud_textBox.Size = new System.Drawing.Size(225, 29);
+            this.latitud_textBox.Size = new System.Drawing.Size(183, 29);
             this.latitud_textBox.TabIndex = 22;
             this.latitud_textBox.TextChanged += new System.EventHandler(this.latitud_textBox_TextChanged);
             this.latitud_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.latitud_textBox_KeyPress);
@@ -73,12 +73,12 @@
             this.datosIncidencias_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.datosIncidencias_dataGrid.BackgroundColor = System.Drawing.Color.LightGray;
+            this.datosIncidencias_dataGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.datosIncidencias_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datosIncidencias_dataGrid.Location = new System.Drawing.Point(23, 447);
             this.datosIncidencias_dataGrid.Name = "datosIncidencias_dataGrid";
             this.datosIncidencias_dataGrid.ReadOnly = true;
-            this.datosIncidencias_dataGrid.Size = new System.Drawing.Size(1460, 354);
+            this.datosIncidencias_dataGrid.Size = new System.Drawing.Size(1418, 354);
             this.datosIncidencias_dataGrid.TabIndex = 20;
             this.datosIncidencias_dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datosIncidencias_dataGrid_CellClick);
             // 
@@ -87,7 +87,7 @@
             this.longitud_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.longitud_textBox.Location = new System.Drawing.Point(376, 349);
             this.longitud_textBox.Name = "longitud_textBox";
-            this.longitud_textBox.Size = new System.Drawing.Size(225, 29);
+            this.longitud_textBox.Size = new System.Drawing.Size(183, 29);
             this.longitud_textBox.TabIndex = 24;
             this.longitud_textBox.TextChanged += new System.EventHandler(this.longitud_textBox_TextChanged);
             this.longitud_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.longitud_textBox_KeyPress);
@@ -99,9 +99,9 @@
             this.anadirIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.anadirIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anadirIncidencia_button.ForeColor = System.Drawing.Color.White;
-            this.anadirIncidencia_button.Location = new System.Drawing.Point(565, 177);
+            this.anadirIncidencia_button.Location = new System.Drawing.Point(601, 177);
             this.anadirIncidencia_button.Name = "anadirIncidencia_button";
-            this.anadirIncidencia_button.Size = new System.Drawing.Size(331, 40);
+            this.anadirIncidencia_button.Size = new System.Drawing.Size(234, 40);
             this.anadirIncidencia_button.TabIndex = 25;
             this.anadirIncidencia_button.Text = "Añadir";
             this.anadirIncidencia_button.UseVisualStyleBackColor = false;
@@ -113,9 +113,9 @@
             this.mapa_webView2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mapa_webView2.CreationProperties = null;
             this.mapa_webView2.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.mapa_webView2.Location = new System.Drawing.Point(840, 18);
+            this.mapa_webView2.Location = new System.Drawing.Point(906, 35);
             this.mapa_webView2.Name = "mapa_webView2";
-            this.mapa_webView2.Size = new System.Drawing.Size(643, 392);
+            this.mapa_webView2.Size = new System.Drawing.Size(535, 392);
             this.mapa_webView2.TabIndex = 26;
             this.mapa_webView2.ZoomFactor = 1D;
             // 
@@ -126,9 +126,9 @@
             this.eliminarIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eliminarIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eliminarIncidencia_button.ForeColor = System.Drawing.Color.White;
-            this.eliminarIncidencia_button.Location = new System.Drawing.Point(565, 236);
+            this.eliminarIncidencia_button.Location = new System.Drawing.Point(601, 244);
             this.eliminarIncidencia_button.Name = "eliminarIncidencia_button";
-            this.eliminarIncidencia_button.Size = new System.Drawing.Size(331, 41);
+            this.eliminarIncidencia_button.Size = new System.Drawing.Size(234, 41);
             this.eliminarIncidencia_button.TabIndex = 27;
             this.eliminarIncidencia_button.Text = "Eliminar";
             this.eliminarIncidencia_button.UseVisualStyleBackColor = false;
@@ -228,7 +228,7 @@
             this.Controls.Add(this.latitud_textBox);
             this.Controls.Add(this.datosIncidencias_dataGrid);
             this.Name = "ComponenteGestionarIncidencias";
-            this.Size = new System.Drawing.Size(1507, 815);
+            this.Size = new System.Drawing.Size(1465, 815);
             this.Load += new System.EventHandler(this.ComponenteGestionarIncidencias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datosIncidencias_dataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapa_webView2)).EndInit();

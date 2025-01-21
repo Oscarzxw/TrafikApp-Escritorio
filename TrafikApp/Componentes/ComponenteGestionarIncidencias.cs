@@ -55,26 +55,8 @@ namespace TrafikApp.Componentes
             tipoIncidencia_comboBox.SelectedIndex = 0;
             tipoIncidencia_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            ArrayList incidencias = await GetJSON.recogerIncidencias();
-
             crearColumnasTablaIncidencias();
-
-            datosIncidencias_dataGrid.Rows.Clear();
-
-            foreach (Incidencia inci in incidencias)
-            {
-                var row = new DataGridViewRow();
-                row.CreateCells(datosIncidencias_dataGrid);
-
-                row.Cells[datosIncidencias_dataGrid.Columns["colId"].Index].Value = inci.incidenceId;
-                row.Cells[datosIncidencias_dataGrid.Columns["colCausa"].Index].Value = inci.cause;
-                row.Cells[datosIncidencias_dataGrid.Columns["colTipo"].Index].Value = inci.incidenceType;
-                row.Cells[datosIncidencias_dataGrid.Columns["colProvincia"].Index].Value = inci.province;
-                row.Cells[datosIncidencias_dataGrid.Columns["colLatitud"].Index].Value = inci.latitude;
-                row.Cells[datosIncidencias_dataGrid.Columns["colLongitud"].Index].Value = inci.longitude;
-
-                datosIncidencias_dataGrid.Rows.Add(row);
-            }
+            rellenarTabla();
         }
 
         private void crearColumnasTablaIncidencias()
@@ -151,11 +133,64 @@ namespace TrafikApp.Componentes
             string fechaIncidencia = fechaInicio_date.ToString();
             string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
             string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
+            if (!string.IsNullOrEmpty(causaIncidencia) && !string.IsNullOrEmpty(latitudIncidencia) && !string.IsNullOrEmpty(longitudIncidencia)) 
+            {
+                LocalizarIncidencia localizacion = await obtenerDatosLocalizacion(latitudIncidencia, longitudIncidencia);
 
-            LocalizarIncidencia localizacion = await obtenerDatosLocalizacion(latitudIncidencia, longitudIncidencia);
+                latitudIncidencia = latitud_textBox.Text.ToString();
+                longitudIncidencia = longitud_textBox.Text.ToString();
 
+                double latitud = Double.Parse(latitudIncidencia);
+                double longitud = Double.Parse(longitudIncidencia);
 
-            reiniciarCampos();
+                string cityTown;
+                string province;
+                string road;
+
+                if(localizacion.address != null)
+                {
+                    if (!string.IsNullOrEmpty(localizacion.address.city))
+                    {
+                        cityTown = localizacion.address.city;
+                    }
+                    else
+                    {
+                        cityTown = "";
+                    }
+
+                    if (!string.IsNullOrEmpty(localizacion.address.province))
+                    {
+                        province = localizacion.address.province;
+                    }
+                    else
+                    {
+                        province = "";
+                    }
+
+                    if (!string.IsNullOrEmpty(localizacion.address.road))
+                    {
+                        road = localizacion.address.road;
+                    }
+                    else
+                    {
+                        road = "";
+                    }
+                }
+                else
+                {
+                    cityTown = "";
+                    province = "";
+                    road = "";
+                }
+                
+
+                Incidencia incidenciaCrear = new Incidencia(1, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
+
+                bool incidenciaCreada = await PostJSON.crearIncidencia(incidenciaCrear);
+
+                rellenarTabla();
+                reiniciarCampos();
+            }            
         }
 
         private void datosIncidencias_dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -226,6 +261,26 @@ namespace TrafikApp.Componentes
                     Console.WriteLine($"Error al obtener datos: {ex.Message}");
                     return null;
                 }
+            }
+        }
+        private async void rellenarTabla()
+        {
+            ArrayList incidencias = await GetJSON.recogerIncidencias();
+            datosIncidencias_dataGrid.Rows.Clear();
+
+            foreach (Incidencia inci in incidencias)
+            {
+                var row = new DataGridViewRow();
+                row.CreateCells(datosIncidencias_dataGrid);
+
+                row.Cells[datosIncidencias_dataGrid.Columns["colId"].Index].Value = inci.incidenceId;
+                row.Cells[datosIncidencias_dataGrid.Columns["colCausa"].Index].Value = inci.cause;
+                row.Cells[datosIncidencias_dataGrid.Columns["colTipo"].Index].Value = inci.incidenceType;
+                row.Cells[datosIncidencias_dataGrid.Columns["colProvincia"].Index].Value = inci.province;
+                row.Cells[datosIncidencias_dataGrid.Columns["colLatitud"].Index].Value = inci.latitude;
+                row.Cells[datosIncidencias_dataGrid.Columns["colLongitud"].Index].Value = inci.longitude;
+
+                datosIncidencias_dataGrid.Rows.Add(row);
             }
         }
     }

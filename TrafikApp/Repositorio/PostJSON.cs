@@ -14,6 +14,7 @@ namespace TrafikApp.Repositorio
     {
         private static readonly string LOGIN = "http://localhost:8080/api/login";
         private static readonly string CREAR_USUARIO = "http://localhost:8080/api/crearusuario";
+        private static readonly string CREAR_INCIDENCIA = "http://localhost:8080/api/crearincidencia";
 
         public static async Task<Usuario> obtenerUsuarioLogin(string email, string contrasena)
         {
@@ -106,6 +107,56 @@ namespace TrafikApp.Repositorio
                 catch (Exception ex)
                 {
                     // Manejar cualquier excepción que ocurra durante la solicitud
+                    Console.WriteLine($"Excepción: {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
+        public static async Task<bool> crearIncidencia(Incidencia incidencia)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var datosAEnviar = new
+                    {
+                        sourceId = incidencia.sourceId,
+                        incidenceType = incidencia.incidenceType,
+                        autonomousRegion = incidencia.autonomousRegion,
+                        province = incidencia.province,
+                        cause = incidencia.cause,
+                        cityTown = incidencia.cityTown,
+                        startDate = incidencia.startDate,
+                        road = incidencia.road,
+                        latitude = incidencia.latitude,
+                        longitude = incidencia.longitude
+                        // Agrega más propiedades si es necesario
+                    };
+
+                    string json = JsonConvert.SerializeObject(datosAEnviar);
+
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync(CREAR_INCIDENCIA, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        Incidencia incidenciaCreada = JsonConvert.DeserializeObject<Incidencia>(responseBody);
+
+                        Console.WriteLine("Incidencia creada exitosamente.");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error al crear incidencia: {response.StatusCode}");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
                     Console.WriteLine($"Excepción: {ex.Message}");
                     return false;
                 }
