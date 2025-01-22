@@ -50,7 +50,7 @@ namespace TrafikApp.Componentes
             }
         }
 
-        private async void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
+        private void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
         {
             tipoIncidencia_comboBox.SelectedIndex = 0;
             tipoIncidencia_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -155,7 +155,7 @@ namespace TrafikApp.Componentes
                     }
                     else
                     {
-                        cityTown = "";
+                        cityTown = "NOT FOUND";
                     }
 
                     if (!string.IsNullOrEmpty(localizacion.address.province))
@@ -164,7 +164,7 @@ namespace TrafikApp.Componentes
                     }
                     else
                     {
-                        province = "";
+                        province = "NOT FOUND";
                     }
 
                     if (!string.IsNullOrEmpty(localizacion.address.road))
@@ -173,14 +173,14 @@ namespace TrafikApp.Componentes
                     }
                     else
                     {
-                        road = "";
+                        road = "NOT FOUND";
                     }
                 }
                 else
                 {
-                    cityTown = "";
-                    province = "";
-                    road = "";
+                    cityTown = "NOT FOUND";
+                    province = "NOT FOUND";
+                    road = "NOT FOUND";
                 }
                 
 
@@ -216,11 +216,44 @@ namespace TrafikApp.Componentes
 
         private void latitud_textBox_TextChanged(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(latitud_textBox.Text))
+            {
+                if (Double.Parse(latitud_textBox.Text) < 42.47)
+                {
+                    latitud_textBox.Text = "42,47";
+                }
+                else if (Double.Parse(latitud_textBox.Text) > 43.45)
+                {
+                    latitud_textBox.Text = "43,45";
+                }
+            }
+            else
+            {
+                latitud_textBox.Text = "43";
+            }
+            
             marcarPosicionEnMapa();
         }
 
         private void longitud_textBox_TextChanged(object sender, EventArgs e)
         {
+
+            if (!string.IsNullOrEmpty(longitud_textBox.Text))
+            {
+                if (Double.Parse(longitud_textBox.Text) < -3.44)
+                {
+                    longitud_textBox.Text = "-3,44";
+                }
+                else if (Double.Parse(longitud_textBox.Text) > -1.73)
+                {
+                    longitud_textBox.Text = "-1,73";
+                }
+            }
+            else
+            {
+                longitud_textBox.Text = "-2,6";
+            }
+
             marcarPosicionEnMapa();
         }
 

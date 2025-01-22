@@ -130,16 +130,20 @@ namespace TrafikApp.Componentes
                 if (!nombreUsuario.Equals("") && !apellidoUsuario.Equals("") && !emailUsuario.Equals("") && !contrasenaUsuario.Equals(""))
                 {
                     string rol = "usuario";
-                    switch (rol_comboBox.SelectedIndex)
+                    if(rol_comboBox.SelectedIndex == 0)
                     {
-                        case 0:
-                            rol = "usuario";
-                            break;
-                        case 1:
-                            rol = "admin";
-                            break;
+                        rol = "usuario";
                     }
+                    else if(rol_comboBox.SelectedIndex == 1)
+                    {
+                        rol = "admin";
+                    }
+
                     Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
+
+
+
+
                     bool usuarioCreada = await PostJSON.crearUsuario(usuario);
                     reiniciarCampos();
                     rellenarTabla();
