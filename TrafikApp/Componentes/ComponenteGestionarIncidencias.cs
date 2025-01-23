@@ -216,7 +216,9 @@ namespace TrafikApp.Componentes
 
         private void latitud_textBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(latitud_textBox.Text))
+            double numeroValido;
+            
+            if (Double.TryParse(latitud_textBox.Text, out numeroValido))
             {
                 if (Double.Parse(latitud_textBox.Text) < 42.47)
                 {
@@ -237,8 +239,9 @@ namespace TrafikApp.Componentes
 
         private void longitud_textBox_TextChanged(object sender, EventArgs e)
         {
+            double numeroValido;
 
-            if (!string.IsNullOrEmpty(longitud_textBox.Text))
+            if (Double.TryParse(longitud_textBox.Text, out numeroValido))
             {
                 if (Double.Parse(longitud_textBox.Text) < -3.44)
                 {
