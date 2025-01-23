@@ -14,6 +14,7 @@ namespace TrafikApp.Repositorio
     {
 
         private static readonly string ELIMINAR_USUARIO = "http://localhost:8080/api/eliminarusuario";
+        private static readonly string ELIMINAR_INCIDENCIA = "http://localhost:8080/api/eliminarincidencia";
 
         public static async Task<bool> eliminarUsuario(Usuario usuario)
         {
@@ -40,6 +41,45 @@ namespace TrafikApp.Repositorio
                     else
                     {
                         Console.WriteLine($"Error al eliminar usuario: {response.StatusCode}");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Excepción: {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
+        public static async Task<bool> eliminarIncidencia(string incidenciaId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    Incidencia incidencia = new Incidencia(incidenciaId);
+
+
+                    string json = JsonConvert.SerializeObject(incidencia);
+
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.SendAsync(new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Delete,
+                        RequestUri = new Uri(ELIMINAR_INCIDENCIA),
+                        Content = content
+                    });
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Incidencia eliminada exitosamente.");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error al eliminar incidencia: {response.StatusCode}");
                         return false;
                     }
                 }

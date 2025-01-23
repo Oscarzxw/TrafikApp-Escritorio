@@ -73,7 +73,8 @@
                 }
 
                 // Agrega un nuevo marcador con las coordenadas recibidas
-                currentMarker = L.marker([latitud, longitud]).addTo(map);
+                currentMarker = L.marker([latitud, longitud]).addTo(map);   //.bindPopup("asdas")
+                    //.openPopup();
 
                 // Centra el mapa en las coordenadas
                 map.setView([latitud, longitud], 14);
@@ -85,12 +86,25 @@
              .openPopup();*/
 
             // Agregar un evento de clic en el mapa para mostrar las coordenadas del clic
-            /*map.on('click', function(e) {
+            map.on('click', function (e) {
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                }
               var latlng = e.latlng;
-              L.marker(latlng).addTo(map)
-                .bindPopup('You clicked the map at ' + latlng.toString())
-                .openPopup();
-            });*/
+              currentMarker = L.marker(latlng).addTo(map)
+                //.bindPopup("asdsa")
+                   // .openPopup();
+
+                enviarCoordenadas(latlng.lat, latlng.lng);
+
+            });
+
+            function enviarCoordenadas(latitud, longitud) {
+                // Enviar las coordenadas a la aplicación host
+                if (window.chrome && window.chrome.webview) {
+                    window.chrome.webview.postMessage({ lat: latitud, lng: longitud });
+                }
+            }
         </script>
 
     </body>

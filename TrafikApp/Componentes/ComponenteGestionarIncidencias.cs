@@ -19,6 +19,7 @@ namespace TrafikApp.Componentes
 {
     public partial class ComponenteGestionarIncidencias : UserControl
     {
+        string incidenceIdSeleccionada;
         public ComponenteGestionarIncidencias()
         {
             InitializeComponent();
@@ -57,6 +58,8 @@ namespace TrafikApp.Componentes
 
             crearColumnasTablaIncidencias();
             rellenarTabla();
+
+            mapa_webView2.CoreWebView2.WebMessageReceived += Mapa_WebMessageReceived;
         }
 
         private void crearColumnasTablaIncidencias()
@@ -121,9 +124,30 @@ namespace TrafikApp.Componentes
             longitud_textBox.Clear();
         }
 
-        private void eliminarincidencia_button_Click(object sender, EventArgs e)
+        private async void eliminarincidencia_button_Click(object sender, EventArgs e)
         {
-            reiniciarCampos();
+            if (!string.IsNullOrEmpty(incidenceIdSeleccionada))
+            {
+                if(incidenceIdSeleccionada.Contains("-creada"))
+                {
+                    bool incidenciaEliminada = await DeleteJSON.eliminarIncidencia(incidenceIdSeleccionada.Trim());
+
+                    if (incidenciaEliminada)
+                    {
+                        reiniciarCampos();
+                        rellenarTabla();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Solo se pueden eliminar incidencias creadas.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Necesitas seleccionar una incidencia de la tabla.");
+            }
+            
         }
 
         private async void anadirIncidencia_button_Click(object sender, EventArgs e)
@@ -190,6 +214,10 @@ namespace TrafikApp.Componentes
 
                 rellenarTabla();
                 reiniciarCampos();
+            }
+            else
+            {
+                MessageBox.Show("Rellena todos los campos para añadir la incidencia.");
             }            
         }
 
@@ -203,6 +231,7 @@ namespace TrafikApp.Componentes
                 string tipoIncidencia = filaSeleccionada.Cells["colTipo"].Value?.ToString();
                 string latitudIncidencia = filaSeleccionada.Cells["colLatitud"].Value?.ToString();
                 string longitudIncidencia = filaSeleccionada.Cells["colLongitud"].Value?.ToString();
+                incidenceIdSeleccionada = filaSeleccionada.Cells["colId"].Value?.ToString();
 
 
                 causaIncidencia_textbox.Text = causaIncidencia;
@@ -317,6 +346,27 @@ namespace TrafikApp.Componentes
                 row.Cells[datosIncidencias_dataGrid.Columns["colLongitud"].Index].Value = inci.longitude;
 
                 datosIncidencias_dataGrid.Rows.Add(row);
+            }
+        }
+
+        private void Mapa_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
+        {
+            try
+            {
+                var mensaje = JsonConvert.DeserializeObject<Dictionary<string, string>>(e.WebMessageAsJson);
+
+                if (mensaje != null && mensaje.ContainsKey("lat") && mensaje.ContainsKey("lng"))
+                {
+                    string latitud = mensaje["lat"];
+                    string longitud = mensaje["lng"];
+
+                    latitud_textBox.Text = latitud.Replace(".", ",");
+                    longitud_textBox.Text = longitud.Replace(".", ",");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al procesar el mensaje del mapa: {ex.Message}");
             }
         }
     }

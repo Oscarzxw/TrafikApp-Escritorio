@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -68,6 +69,27 @@ namespace TrafikApp.Model
             this.latitude = latitude;
             this.longitude = longitude;
             this.creada = creada;
+            this.source = null;
+        }
+
+        public Incidencia(string incidenceId)
+        {
+            this.incidenceId = incidenceId;
+            this.sourceId = 0;
+            this.incidenceType = "";
+            this.autonomousRegion = "";
+            this.province = "";
+            this.carRegistration = "";
+            this.cause = "";
+            this.cityTown = "";
+            this.startDate = "";
+            this.road = "";
+            this.pkStart = "";
+            this.pkEnd = "";
+            this.direction = "";
+            this.latitude = 0.1;
+            this.longitude = 0.1;
+            this.creada = true;
             this.source = null;
         }
 

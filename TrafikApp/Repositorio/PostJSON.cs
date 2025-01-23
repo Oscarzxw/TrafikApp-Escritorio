@@ -131,7 +131,6 @@ namespace TrafikApp.Repositorio
                         road = incidencia.road,
                         latitude = incidencia.latitude,
                         longitude = incidencia.longitude
-                        // Agrega más propiedades si es necesario
                     };
 
                     string json = JsonConvert.SerializeObject(datosAEnviar);
