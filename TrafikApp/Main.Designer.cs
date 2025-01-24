@@ -53,7 +53,7 @@
             this.cerrarSesion_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cerrarSesion_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cerrarSesion_button.ForeColor = System.Drawing.Color.Black;
-            this.cerrarSesion_button.Location = new System.Drawing.Point(508, 20);
+            this.cerrarSesion_button.Location = new System.Drawing.Point(523, 20);
             this.cerrarSesion_button.Name = "cerrarSesion_button";
             this.cerrarSesion_button.Size = new System.Drawing.Size(39, 35);
             this.cerrarSesion_button.TabIndex = 10;

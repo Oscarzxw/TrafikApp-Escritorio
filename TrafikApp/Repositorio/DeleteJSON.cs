@@ -12,10 +12,7 @@ namespace TrafikApp.Repositorio
 {
     internal class DeleteJSON
     {
-
-        private static readonly string ELIMINAR_USUARIO = "http://localhost:8080/api/eliminarusuario";
-        private static readonly string ELIMINAR_INCIDENCIA = "http://localhost:8080/api/eliminarincidencia";
-
+        
         public static async Task<bool> eliminarUsuario(Usuario usuario)
         {
             using (HttpClient client = new HttpClient())
@@ -29,7 +26,7 @@ namespace TrafikApp.Repositorio
                     HttpResponseMessage response = await client.SendAsync(new HttpRequestMessage
                     {
                         Method = HttpMethod.Delete,
-                        RequestUri = new Uri(ELIMINAR_USUARIO),
+                        RequestUri = new Uri(LinksJSON.ELIMINAR_USUARIO),
                         Content = content
                     });
 
@@ -68,7 +65,7 @@ namespace TrafikApp.Repositorio
                     HttpResponseMessage response = await client.SendAsync(new HttpRequestMessage
                     {
                         Method = HttpMethod.Delete,
-                        RequestUri = new Uri(ELIMINAR_INCIDENCIA),
+                        RequestUri = new Uri(LinksJSON.ELIMINAR_INCIDENCIA),
                         Content = content
                     });
 

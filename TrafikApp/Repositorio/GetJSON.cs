@@ -14,9 +14,7 @@ namespace TrafikApp.Repositorio
 {
     internal class GetJSON
     {
-        private static readonly string INCIDENCIAS = "http://localhost:8080/api/incidencias";
-        private static readonly string SOURCES = "http://localhost:8080/api/sources";
-        private static readonly string USUARIOS = "http://localhost:8080/api/usuarios";
+        
 
         public static async Task<ArrayList> recogerIncidencias()
         {
@@ -25,7 +23,7 @@ namespace TrafikApp.Repositorio
                 try
                 {
                    
-                    string contenidoJSON = await client.GetStringAsync(INCIDENCIAS);
+                    string contenidoJSON = await client.GetStringAsync(LinksJSON.INCIDENCIAS);
 
                     
                     List<Incidencia> listaIncidencias = JsonConvert.DeserializeObject<List<Incidencia>>(contenidoJSON);
@@ -46,7 +44,7 @@ namespace TrafikApp.Repositorio
             {
                 try
                 {
-                    string contenidoJSON = await client.GetStringAsync(SOURCES);
+                    string contenidoJSON = await client.GetStringAsync(LinksJSON.SOURCES);
 
                     List<Source> listaIncidencias = JsonConvert.DeserializeObject<List<Source>>(contenidoJSON);
 
@@ -65,7 +63,7 @@ namespace TrafikApp.Repositorio
             {
                 try
                 {
-                    string contenidoJSON = await client.GetStringAsync(USUARIOS);
+                    string contenidoJSON = await client.GetStringAsync(LinksJSON.USUARIOS);
 
                     List<Usuario> listaIncidencias = JsonConvert.DeserializeObject<List<Usuario>>(contenidoJSON);
 

@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrafikApp.Correo;
 using TrafikApp.Model;
 using TrafikApp.Repositorio;
 
@@ -142,7 +145,13 @@ namespace TrafikApp.Componentes
                     Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
 
 
+                    Thread enviarCorreo = new Thread(() =>
+                    {
+                        EnviarCorreo.enviarCorreo(usuario);
+                    });
 
+                    enviarCorreo.IsBackground = true;
+                    enviarCorreo.Start();
 
                     bool usuarioCreada = await PostJSON.crearUsuario(usuario);
                     reiniciarCampos();
@@ -160,6 +169,7 @@ namespace TrafikApp.Componentes
             
         }
 
+        
         private async void eliminarUsuario_button_Click(object sender, EventArgs e)
         {
             string emailUsuario = emailUsuario_textbox.Text.Trim();

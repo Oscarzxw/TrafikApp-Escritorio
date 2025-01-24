@@ -92,7 +92,5 @@ namespace TrafikApp.Model
             this.creada = true;
             this.source = null;
         }
-
-
     }
 }
