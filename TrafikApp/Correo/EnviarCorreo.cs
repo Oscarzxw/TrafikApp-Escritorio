@@ -41,7 +41,7 @@ namespace TrafikApp.Correo
             if (usuario.rol.Equals("admin", StringComparison.OrdinalIgnoreCase))
             {
                 rol = "ADMINISTRADOR";
-                mensajePersonalizado = "Ahora puedes gestionar usuarios \ne incidencias en la aplicación de escritorio de TrafikApp.";
+                mensajePersonalizado = "Ahora puedes gestionar usuarios e incidencias en la aplicación de escritorio de TrafikApp.";
             }
             else
             {
@@ -60,18 +60,18 @@ namespace TrafikApp.Correo
                     body {{
                         font-family: Arial, sans-serif;
                         background-color: #f9f9f9;
-                        font-size: 16px;
                         margin: 0;
                         padding: 0;
                     }}
                     .email-container {{
-                        max-width: 650px;
+                        max-width: 600px;
                         margin: 20px auto;
                         background-color: #ffffff;
                         border-radius: 10px;
                         overflow: hidden;
                         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                         border: 1px solid #ddd;
+                        box-sizing: border-box;
                     }}
                     .header {{
                         background-color: #007BFF;
@@ -92,10 +92,10 @@ namespace TrafikApp.Correo
                      .content div {{
                         width: 100%; /* Asegura que el div interno ocupe todo el ancho del contenedor */
                         height: 100%; /* Asegura que el div interno ocupe todo el alto */
-                        position: absolute; /* Para colocar este div sobre la imagen de fondo */
                         top: 0;
                         left: 0;
                         padding: 20px; /* Padding para el texto */
+                        box-sizing: border-box;
                     }}
 
                     .content p {{
@@ -126,7 +126,7 @@ namespace TrafikApp.Correo
                         <h1>¡Bienvenido a TrafikApp!</h1>
                     </div>
                     <div class='content'>
-                        <div style='background-color:rgba(255, 255, 255, 0.7);'>
+                        <div style='background-color:rgba(255, 255, 255, 0.6);'>
                             <p>Hola <span class='highlight'>{nombre} {apellido}</span>,</p>
                             <p>¡Tu cuenta de <b>{rol}</b> ha sido creada exitosamente en TrafikApp! {mensajePersonalizado}</p>
                             <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
