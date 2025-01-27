@@ -206,6 +206,7 @@ namespace TrafikApp.Componentes
         {
             if (e.RowIndex >= 0)
             {
+                datosUsuarios_dataGrid.Rows[e.RowIndex].Selected = true;
                 DataGridViewRow filaSeleccionada = datosUsuarios_dataGrid.Rows[e.RowIndex];
 
                 string nombreUsuario = filaSeleccionada.Cells["colNombre"].Value?.ToString();
@@ -253,14 +254,13 @@ namespace TrafikApp.Componentes
                         }
                         string rol = "usuario";
 
-                        switch (rol_comboBox.SelectedIndex)
+                        if(rol_comboBox.SelectedIndex == 0)
                         {
-                            case 0:
-                                rol = "usuario";
-                                break;
-                            case 1:
-                                rol = "admin";
-                                break;
+                            rol = "usuario";
+                        }
+                        else
+                        {
+                            rol = "admin";
                         }
 
                         Usuario usuario = new Usuario(id, nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);

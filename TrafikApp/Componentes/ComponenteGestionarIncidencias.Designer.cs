@@ -42,6 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.generarInforme_button = new System.Windows.Forms.Button();
+            this.modificarIncidencia_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datosIncidencias_dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapa_webView2)).BeginInit();
             this.SuspendLayout();
@@ -99,7 +101,7 @@
             this.anadirIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.anadirIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anadirIncidencia_button.ForeColor = System.Drawing.Color.White;
-            this.anadirIncidencia_button.Location = new System.Drawing.Point(601, 177);
+            this.anadirIncidencia_button.Location = new System.Drawing.Point(601, 132);
             this.anadirIncidencia_button.Name = "anadirIncidencia_button";
             this.anadirIncidencia_button.Size = new System.Drawing.Size(234, 40);
             this.anadirIncidencia_button.TabIndex = 25;
@@ -128,7 +130,7 @@
             this.eliminarIncidencia_button.ForeColor = System.Drawing.Color.White;
             this.eliminarIncidencia_button.Location = new System.Drawing.Point(601, 244);
             this.eliminarIncidencia_button.Name = "eliminarIncidencia_button";
-            this.eliminarIncidencia_button.Size = new System.Drawing.Size(234, 41);
+            this.eliminarIncidencia_button.Size = new System.Drawing.Size(234, 39);
             this.eliminarIncidencia_button.TabIndex = 27;
             this.eliminarIncidencia_button.Text = "Eliminar";
             this.eliminarIncidencia_button.UseVisualStyleBackColor = false;
@@ -208,11 +210,43 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Longitud";
             // 
+            // generarInforme_button
+            // 
+            this.generarInforme_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.generarInforme_button.BackColor = System.Drawing.Color.SteelBlue;
+            this.generarInforme_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.generarInforme_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generarInforme_button.ForeColor = System.Drawing.Color.White;
+            this.generarInforme_button.Location = new System.Drawing.Point(601, 323);
+            this.generarInforme_button.Name = "generarInforme_button";
+            this.generarInforme_button.Size = new System.Drawing.Size(234, 37);
+            this.generarInforme_button.TabIndex = 38;
+            this.generarInforme_button.Text = "Generar Informe";
+            this.generarInforme_button.UseVisualStyleBackColor = false;
+            this.generarInforme_button.Click += new System.EventHandler(this.generarInforme_button_Click);
+            // 
+            // modificarIncidencia_button
+            // 
+            this.modificarIncidencia_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.modificarIncidencia_button.BackColor = System.Drawing.Color.DimGray;
+            this.modificarIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.modificarIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modificarIncidencia_button.ForeColor = System.Drawing.Color.White;
+            this.modificarIncidencia_button.Location = new System.Drawing.Point(601, 188);
+            this.modificarIncidencia_button.Name = "modificarIncidencia_button";
+            this.modificarIncidencia_button.Size = new System.Drawing.Size(234, 40);
+            this.modificarIncidencia_button.TabIndex = 39;
+            this.modificarIncidencia_button.Text = "Modificar";
+            this.modificarIncidencia_button.UseVisualStyleBackColor = false;
+            this.modificarIncidencia_button.Click += new System.EventHandler(this.modificarIncidencia_button_Click);
+            // 
             // ComponenteGestionarIncidencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.modificarIncidencia_button);
+            this.Controls.Add(this.generarInforme_button);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -253,5 +287,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button generarInforme_button;
+        private System.Windows.Forms.Button modificarIncidencia_button;
     }
 }

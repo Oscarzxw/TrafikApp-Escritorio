@@ -18,6 +18,7 @@ namespace TrafikApp.Repositorio
 
         //PATCH
         public static readonly string MODIFICAR_USUARIO = COMIENZO_LINKS + "modificarusuario";
+        public static readonly string MODIFICAR_INCIDENCIA = COMIENZO_LINKS + "modificarincidencia";
 
         //POST
         public static readonly string LOGIN = COMIENZO_LINKS + "login";

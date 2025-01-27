@@ -16,7 +16,7 @@ namespace TrafikApp.Repositorio
     {
         
 
-        public static async Task<ArrayList> recogerIncidencias()
+        public static async Task<List<Incidencia>> recogerIncidencias()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -29,7 +29,7 @@ namespace TrafikApp.Repositorio
                     List<Incidencia> listaIncidencias = JsonConvert.DeserializeObject<List<Incidencia>>(contenidoJSON);
 
                     
-                    return new ArrayList(listaIncidencias);
+                    return listaIncidencias;
                 }
                 catch (Exception ex)
                 {

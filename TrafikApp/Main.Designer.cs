@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.cerrarSesion_button = new System.Windows.Forms.Button();
             this.gestionarUsuarios_button = new System.Windows.Forms.Button();
             this.gestionarIncidencias_button = new System.Windows.Forms.Button();
             this.componentes_panel = new System.Windows.Forms.Panel();
@@ -37,29 +36,12 @@
             this.gestionarUsuarios_panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.incidencia_pictureBox = new System.Windows.Forms.PictureBox();
+            this.verPerfil_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.usuario_pictureBox)).BeginInit();
             this.gestionarUsuarios_panel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.incidencia_pictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cerrarSesion_button
-            // 
-            this.cerrarSesion_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cerrarSesion_button.BackColor = System.Drawing.Color.Transparent;
-            this.cerrarSesion_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cerrarSesion_button.BackgroundImage")));
-            this.cerrarSesion_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.cerrarSesion_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cerrarSesion_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cerrarSesion_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cerrarSesion_button.ForeColor = System.Drawing.Color.Black;
-            this.cerrarSesion_button.Location = new System.Drawing.Point(523, 20);
-            this.cerrarSesion_button.Name = "cerrarSesion_button";
-            this.cerrarSesion_button.Size = new System.Drawing.Size(39, 35);
-            this.cerrarSesion_button.TabIndex = 10;
-            this.cerrarSesion_button.TabStop = false;
-            this.cerrarSesion_button.UseVisualStyleBackColor = false;
-            this.cerrarSesion_button.Click += new System.EventHandler(this.cerrarSesion_button_Click);
             // 
             // gestionarUsuarios_button
             // 
@@ -95,7 +77,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.componentes_panel.Location = new System.Drawing.Point(12, 100);
             this.componentes_panel.Name = "componentes_panel";
-            this.componentes_panel.Size = new System.Drawing.Size(1078, 430);
+            this.componentes_panel.Size = new System.Drawing.Size(1267, 430);
             this.componentes_panel.TabIndex = 13;
             // 
             // usuario_pictureBox
@@ -111,19 +93,20 @@
             // 
             // gestionarUsuarios_panel
             // 
+            this.gestionarUsuarios_panel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gestionarUsuarios_panel.Controls.Add(this.usuario_pictureBox);
             this.gestionarUsuarios_panel.Controls.Add(this.gestionarUsuarios_button);
-            this.gestionarUsuarios_panel.Location = new System.Drawing.Point(29, 12);
+            this.gestionarUsuarios_panel.Location = new System.Drawing.Point(49, 12);
             this.gestionarUsuarios_panel.Name = "gestionarUsuarios_panel";
             this.gestionarUsuarios_panel.Size = new System.Drawing.Size(384, 67);
             this.gestionarUsuarios_panel.TabIndex = 15;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.Controls.Add(this.incidencia_pictureBox);
             this.panel1.Controls.Add(this.gestionarIncidencias_button);
-            this.panel1.Location = new System.Drawing.Point(677, 12);
+            this.panel1.Location = new System.Drawing.Point(816, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(387, 67);
             this.panel1.TabIndex = 16;
@@ -139,22 +122,41 @@
             this.incidencia_pictureBox.TabIndex = 16;
             this.incidencia_pictureBox.TabStop = false;
             // 
+            // verPerfil_button
+            // 
+            this.verPerfil_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.verPerfil_button.BackColor = System.Drawing.Color.Transparent;
+            this.verPerfil_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("verPerfil_button.BackgroundImage")));
+            this.verPerfil_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.verPerfil_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.verPerfil_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.verPerfil_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verPerfil_button.ForeColor = System.Drawing.Color.Black;
+            this.verPerfil_button.Location = new System.Drawing.Point(1241, 12);
+            this.verPerfil_button.Name = "verPerfil_button";
+            this.verPerfil_button.Size = new System.Drawing.Size(38, 36);
+            this.verPerfil_button.TabIndex = 17;
+            this.verPerfil_button.TabStop = false;
+            this.verPerfil_button.UseVisualStyleBackColor = false;
+            this.verPerfil_button.Click += new System.EventHandler(this.verPerfil_button_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1102, 542);
+            this.ClientSize = new System.Drawing.Size(1291, 542);
             this.ControlBox = false;
+            this.Controls.Add(this.verPerfil_button);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gestionarUsuarios_panel);
             this.Controls.Add(this.componentes_panel);
-            this.Controls.Add(this.cerrarSesion_button);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.usuario_pictureBox)).EndInit();
             this.gestionarUsuarios_panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -164,8 +166,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button cerrarSesion_button;
         private System.Windows.Forms.Button gestionarUsuarios_button;
         private System.Windows.Forms.Button gestionarIncidencias_button;
         private System.Windows.Forms.Panel componentes_panel;
@@ -173,5 +173,6 @@
         private System.Windows.Forms.Panel gestionarUsuarios_panel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox incidencia_pictureBox;
+        private System.Windows.Forms.Button verPerfil_button;
     }
 }

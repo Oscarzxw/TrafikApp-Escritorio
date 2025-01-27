@@ -84,12 +84,6 @@ namespace TrafikApp.Correo
                         font-size: 24px;
                     }}
                     .content {{
-                        background-image: url('https://i.ibb.co/6bXScpq/Trafik-App.png'); /* Ruta de la imagen */
-                        background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-                        background-position: center; /* Centra la imagen */
-                        background-repeat: no-repeat; /* No repetir la imagen */
-                    }}
-                     .content div {{
                         width: 100%; /* Asegura que el div interno ocupe todo el ancho del contenedor */
                         height: 100%; /* Asegura que el div interno ocupe todo el alto */
                         top: 0;
@@ -97,7 +91,6 @@ namespace TrafikApp.Correo
                         padding: 20px; /* Padding para el texto */
                         box-sizing: border-box;
                     }}
-
                     .content p {{
                         margin: 0 0 15px;
                         line-height: 1.5;
@@ -126,12 +119,10 @@ namespace TrafikApp.Correo
                         <h1>¡Bienvenido a TrafikApp!</h1>
                     </div>
                     <div class='content'>
-                        <div style='background-color:rgba(255, 255, 255, 0.6);'>
-                            <p>Hola <span class='highlight'>{nombre} {apellido}</span>,</p>
-                            <p>¡Tu cuenta de <b>{rol}</b> ha sido creada exitosamente en TrafikApp! {mensajePersonalizado}</p>
-                            <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
-                            <p>Atentamente,<br>El equipo de TrafikApp</p>
-                        </div>
+                        <p>Hola <span class='highlight'>{nombre} {apellido}</span>,</p>
+                        <p>¡Tu cuenta de <b>{rol}</b> ha sido creada exitosamente en TrafikApp! {mensajePersonalizado}</p>
+                        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
+                        <p>Atentamente,<br>El equipo de TrafikApp</p>
                     </div>
                     <div class='footer'>
                         <p>© 2025 TrafikApp. Todos los derechos reservados.</p>

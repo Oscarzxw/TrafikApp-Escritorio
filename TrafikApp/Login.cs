@@ -34,8 +34,9 @@ namespace TrafikApp
             {
                 Main main = new Main();
                 main.setUsuarioActual(usuario.id, usuario.nombre, usuario.apellido,usuario.email,usuario.contrasena,usuario.rol);
-                this.Hide();
                 DialogResult result = main.ShowDialog();
+                this.Hide();
+                
                 if (result == DialogResult.OK)
                 {
                     email_textbox.Clear();

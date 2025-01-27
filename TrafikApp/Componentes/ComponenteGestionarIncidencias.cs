@@ -154,7 +154,7 @@ namespace TrafikApp.Componentes
         {
             string causaIncidencia = causaIncidencia_textbox.Text;
             string tipoIncidencia = tipoIncidencia_comboBox.SelectedItem.ToString();
-            string fechaIncidencia = fechaInicio_date.ToString();
+            string fechaIncidencia = fechaInicio_date.Value.ToString();
             string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
             string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
             if (!string.IsNullOrEmpty(causaIncidencia) && !string.IsNullOrEmpty(latitudIncidencia) && !string.IsNullOrEmpty(longitudIncidencia)) 
@@ -206,7 +206,8 @@ namespace TrafikApp.Componentes
                     province = "NOT FOUND";
                     road = "NOT FOUND";
                 }
-                
+
+                int sourceId = buscarSourceId(cityTown, province);
 
                 Incidencia incidenciaCrear = new Incidencia(1, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
 
@@ -330,7 +331,7 @@ namespace TrafikApp.Componentes
         }
         private async void rellenarTabla()
         {
-            ArrayList incidencias = await GetJSON.recogerIncidencias();
+            List<Incidencia> incidencias = await GetJSON.recogerIncidencias();
             datosIncidencias_dataGrid.Rows.Clear();
 
             foreach (Incidencia inci in incidencias)
@@ -369,5 +370,132 @@ namespace TrafikApp.Componentes
                 Console.WriteLine($"Error al procesar el mensaje del mapa: {ex.Message}");
             }
         }
+
+        private async void generarInforme_button_Click(object sender, EventArgs e)
+        {
+            List<Incidencia> incidencias = await GetJSON.recogerIncidencias();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivos PDF (*.pdf)|*.pdf";
+            saveFileDialog.Title = "Guardar Informe de Incidencias";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                GenerarInforme.generarInforme(incidencias, saveFileDialog.FileName);
+            }
+            else
+            {
+                Console.WriteLine("Creación de informe cancelado.");
+            }
+        }
+
+        private async void modificarIncidencia_button_Click(object sender, EventArgs e)
+        {
+            string causaIncidencia = causaIncidencia_textbox.Text;
+            string tipoIncidencia = tipoIncidencia_comboBox.SelectedItem.ToString();
+            string fechaIncidencia = fechaInicio_date.Value.ToString();
+            string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
+            string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
+            if (!string.IsNullOrEmpty(causaIncidencia) && !string.IsNullOrEmpty(latitudIncidencia) && !string.IsNullOrEmpty(longitudIncidencia))
+            {
+                LocalizarIncidencia localizacion = await obtenerDatosLocalizacion(latitudIncidencia, longitudIncidencia);
+
+                latitudIncidencia = latitud_textBox.Text.ToString();
+                longitudIncidencia = longitud_textBox.Text.ToString();
+
+                double latitud = Double.Parse(latitudIncidencia);
+                double longitud = Double.Parse(longitudIncidencia);
+
+                string cityTown;
+                string province;
+                string road;
+
+                if (localizacion.address != null)
+                {
+                    if (!string.IsNullOrEmpty(localizacion.address.city))
+                    {
+                        cityTown = localizacion.address.city;
+                    }
+                    else
+                    {
+                        cityTown = "NOT FOUND";
+                    }
+
+                    if (!string.IsNullOrEmpty(localizacion.address.province))
+                    {
+                        province = localizacion.address.province;
+                    }
+                    else
+                    {
+                        province = "NOT FOUND";
+                    }
+
+                    if (!string.IsNullOrEmpty(localizacion.address.road))
+                    {
+                        road = localizacion.address.road;
+                    }
+                    else
+                    {
+                        road = "NOT FOUND";
+                    }
+                }
+                else
+                {
+                    cityTown = "NOT FOUND";
+                    province = "NOT FOUND";
+                    road = "NOT FOUND";
+                }
+
+                int sourceId = buscarSourceId(cityTown,province);
+
+
+                Incidencia incidenciaModificar = new Incidencia(sourceId, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
+
+                bool incidenciaCreada = await PatchJSON.modificarIncidencia(incidenciaModificar);
+
+                rellenarTabla();
+                reiniciarCampos();
+            }
+            else
+            {
+                MessageBox.Show("Rellena todos los campos para añadir la incidencia.");
+            }
+        }
+
+        private int buscarSourceId(string cityTown, string province)
+        {
+
+            if (cityTown.Contains("Donostia"))
+            {
+                return 7;
+            }
+            else if (cityTown.Contains("Vitoria"))
+            {
+                return 6;
+            }
+            else if (cityTown.Contains("Bilbao"))
+            {
+                return 5;
+            }
+            else if (province.Contains("Gip"))
+            {
+                return 4;
+            }
+            else if (province.Contains("Ala"))
+            {
+                return 3;
+            }
+            else if (province.Contains("Bizk"))
+            {
+                return 2;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
     }
+
+    
 }
