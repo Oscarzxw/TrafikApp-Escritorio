@@ -54,6 +54,7 @@ namespace TrafikApp.Componentes
                 row.Cells[datosUsuarios_dataGrid.Columns["colRol"].Index].Value = usu.rol;
 
                 datosUsuarios_dataGrid.Rows.Add(row);
+                row.DefaultCellStyle.BackColor = Color.LightGray;
             }
         }
 
@@ -70,6 +71,9 @@ namespace TrafikApp.Componentes
             datosUsuarios_dataGrid.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular);
 
 
+            datosUsuarios_dataGrid.EnableHeadersVisualStyles = false;
+            datosUsuarios_dataGrid.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkBlue;
+            datosUsuarios_dataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             datosUsuarios_dataGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 13, FontStyle.Bold);
             datosUsuarios_dataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 

@@ -54,9 +54,10 @@
             this.datosUsuarios_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.datosUsuarios_dataGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.datosUsuarios_dataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.datosUsuarios_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datosUsuarios_dataGrid.Location = new System.Drawing.Point(15, 338);
+            this.datosUsuarios_dataGrid.MultiSelect = false;
             this.datosUsuarios_dataGrid.Name = "datosUsuarios_dataGrid";
             this.datosUsuarios_dataGrid.ReadOnly = true;
             this.datosUsuarios_dataGrid.Size = new System.Drawing.Size(1129, 300);
@@ -98,6 +99,7 @@
             // 
             // rol_comboBox
             // 
+            this.rol_comboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rol_comboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rol_comboBox.FormattingEnabled = true;
             this.rol_comboBox.Items.AddRange(new object[] {
@@ -162,6 +164,7 @@
             // 
             this.anadirUsuario_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.anadirUsuario_button.BackColor = System.Drawing.Color.Black;
+            this.anadirUsuario_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.anadirUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.anadirUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anadirUsuario_button.ForeColor = System.Drawing.Color.White;
@@ -177,6 +180,7 @@
             // 
             this.eliminarUsuario_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.eliminarUsuario_button.BackColor = System.Drawing.Color.Red;
+            this.eliminarUsuario_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.eliminarUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eliminarUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eliminarUsuario_button.ForeColor = System.Drawing.Color.White;
@@ -192,6 +196,7 @@
             // 
             this.modificarUsuario_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.modificarUsuario_button.BackColor = System.Drawing.Color.DimGray;
+            this.modificarUsuario_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.modificarUsuario_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.modificarUsuario_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modificarUsuario_button.ForeColor = System.Drawing.Color.White;
@@ -208,6 +213,7 @@
             this.alternarContrasena_button.BackColor = System.Drawing.Color.Transparent;
             this.alternarContrasena_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("alternarContrasena_button.BackgroundImage")));
             this.alternarContrasena_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.alternarContrasena_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.alternarContrasena_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.alternarContrasena_button.Location = new System.Drawing.Point(660, 157);
             this.alternarContrasena_button.Name = "alternarContrasena_button";

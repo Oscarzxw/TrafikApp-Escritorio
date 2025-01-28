@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComponenteGestionarIncidencias));
             this.causaIncidencia_textbox = new System.Windows.Forms.TextBox();
             this.latitud_textBox = new System.Windows.Forms.TextBox();
             this.datosIncidencias_dataGrid = new System.Windows.Forms.DataGridView();
@@ -44,6 +45,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.generarInforme_button = new System.Windows.Forms.Button();
             this.modificarIncidencia_button = new System.Windows.Forms.Button();
+            this.actualizarIncidencias_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datosIncidencias_dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapa_webView2)).BeginInit();
             this.SuspendLayout();
@@ -75,9 +77,10 @@
             this.datosIncidencias_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.datosIncidencias_dataGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.datosIncidencias_dataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.datosIncidencias_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datosIncidencias_dataGrid.Location = new System.Drawing.Point(23, 447);
+            this.datosIncidencias_dataGrid.MultiSelect = false;
             this.datosIncidencias_dataGrid.Name = "datosIncidencias_dataGrid";
             this.datosIncidencias_dataGrid.ReadOnly = true;
             this.datosIncidencias_dataGrid.Size = new System.Drawing.Size(1418, 354);
@@ -98,6 +101,7 @@
             // 
             this.anadirIncidencia_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.anadirIncidencia_button.BackColor = System.Drawing.Color.Black;
+            this.anadirIncidencia_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.anadirIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.anadirIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.anadirIncidencia_button.ForeColor = System.Drawing.Color.White;
@@ -125,6 +129,7 @@
             // 
             this.eliminarIncidencia_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.eliminarIncidencia_button.BackColor = System.Drawing.Color.Red;
+            this.eliminarIncidencia_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.eliminarIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eliminarIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eliminarIncidencia_button.ForeColor = System.Drawing.Color.White;
@@ -138,6 +143,7 @@
             // 
             // tipoIncidencia_comboBox
             // 
+            this.tipoIncidencia_comboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tipoIncidencia_comboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tipoIncidencia_comboBox.FormattingEnabled = true;
             this.tipoIncidencia_comboBox.Items.AddRange(new object[] {
@@ -154,6 +160,7 @@
             // fechaInicio_date
             // 
             this.fechaInicio_date.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaInicio_date.Cursor = System.Windows.Forms.Cursors.Hand;
             this.fechaInicio_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaInicio_date.Location = new System.Drawing.Point(23, 349);
             this.fechaInicio_date.Name = "fechaInicio_date";
@@ -214,6 +221,7 @@
             // 
             this.generarInforme_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.generarInforme_button.BackColor = System.Drawing.Color.SteelBlue;
+            this.generarInforme_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.generarInforme_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.generarInforme_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generarInforme_button.ForeColor = System.Drawing.Color.White;
@@ -229,6 +237,7 @@
             // 
             this.modificarIncidencia_button.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.modificarIncidencia_button.BackColor = System.Drawing.Color.DimGray;
+            this.modificarIncidencia_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.modificarIncidencia_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.modificarIncidencia_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modificarIncidencia_button.ForeColor = System.Drawing.Color.White;
@@ -240,11 +249,26 @@
             this.modificarIncidencia_button.UseVisualStyleBackColor = false;
             this.modificarIncidencia_button.Click += new System.EventHandler(this.modificarIncidencia_button_Click);
             // 
+            // actualizarIncidencias_button
+            // 
+            this.actualizarIncidencias_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.actualizarIncidencias_button.BackColor = System.Drawing.Color.Transparent;
+            this.actualizarIncidencias_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("actualizarIncidencias_button.BackgroundImage")));
+            this.actualizarIncidencias_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.actualizarIncidencias_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.actualizarIncidencias_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.actualizarIncidencias_button.Location = new System.Drawing.Point(23, 433);
+            this.actualizarIncidencias_button.Name = "actualizarIncidencias_button";
+            this.actualizarIncidencias_button.Size = new System.Drawing.Size(35, 35);
+            this.actualizarIncidencias_button.TabIndex = 40;
+            this.actualizarIncidencias_button.UseVisualStyleBackColor = false;
+            // 
             // ComponenteGestionarIncidencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.actualizarIncidencias_button);
             this.Controls.Add(this.modificarIncidencia_button);
             this.Controls.Add(this.generarInforme_button);
             this.Controls.Add(this.label7);
@@ -289,5 +313,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button generarInforme_button;
         private System.Windows.Forms.Button modificarIncidencia_button;
+        private System.Windows.Forms.Button actualizarIncidencias_button;
     }
 }

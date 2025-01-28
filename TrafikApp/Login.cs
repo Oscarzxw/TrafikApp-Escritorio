@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 using TrafikApp.Model;
@@ -22,6 +23,7 @@ namespace TrafikApp
 
         }
 
+
         private void salirApp_button_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -33,6 +35,7 @@ namespace TrafikApp
             if (usuario != null && usuario.rol.Equals("admin", StringComparison.OrdinalIgnoreCase))
             {
                 Main main = new Main();
+
                 main.setUsuarioActual(usuario.id, usuario.nombre, usuario.apellido,usuario.email,usuario.contrasena,usuario.rol);
                 DialogResult result = main.ShowDialog();
                 this.Hide();

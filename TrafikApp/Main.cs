@@ -38,7 +38,7 @@ namespace TrafikApp
             ToolStripMenuItem opcionVerPerfil = new ToolStripMenuItem("Perfil", imagenVerPerfil);
             ToolStripMenuItem opcionCerrarSesion = new ToolStripMenuItem("Cerrar Sesión", imagenCerrarSesion);
 
-            opcionVerPerfil.Click += (sender, e) => MessageBox.Show("Has seleccionado Opción 1");
+            opcionVerPerfil.Click += opcionPerfil_Click;
             opcionCerrarSesion.Click += opcionCerrarSesion_Click;
 
             
@@ -59,6 +59,23 @@ namespace TrafikApp
             this.Close();
         }
 
+        private void opcionPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil perfil = new Perfil();
+            perfil.setUsuarioActual(usuarioActual.id, usuarioActual.nombre, usuarioActual.apellido, usuarioActual.email, usuarioActual.contrasena, usuarioActual.rol);
+            DialogResult result = perfil.ShowDialog();
+            this.Hide();
+            if(result == DialogResult.OK)
+            {
+                this.Show();
+            }
+            else
+            {
+                usuarioActual = new Usuario();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+        }
 
         private void gestionarIncidencias_button_Click(object sender, EventArgs e)
         {
@@ -89,6 +106,14 @@ namespace TrafikApp
             usuarioActual.rol = rol;
             ToolStripLabel nombreUsuario = new ToolStripLabel(usuarioActual.nombre + " " + usuarioActual.apellido);
             menuDesplegable.Items.Insert(0, nombreUsuario);
+
+            componentes_panel.Controls.Clear();
+            componenteGestionarUsuarios.Dock = DockStyle.Fill;
+            componentes_panel.Controls.Add(componenteGestionarUsuarios);
+            componenteGestionarUsuarios.setUsuarioActual(usuarioActual.id, usuarioActual.nombre, usuarioActual.apellido, usuarioActual.email, usuarioActual.contrasena, usuarioActual.rol);
+            gestionarIncidencias_button.Enabled = true;
+            gestionarUsuarios_button.Enabled = false;
+
         }
 
         private void verPerfil_button_Click(object sender, EventArgs e)

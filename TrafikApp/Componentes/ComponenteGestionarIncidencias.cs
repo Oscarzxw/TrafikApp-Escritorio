@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrafikApp.Model;
@@ -32,6 +27,8 @@ namespace TrafikApp.Componentes
             string mapFilePath = Path.Combine(projectDirectory, "TrafikApp", "Mapa", "map.html");
 
             mapa_webView2.Source = new Uri("file:///" + mapFilePath);
+            actualizarIncidencias_button.FlatAppearance.BorderSize = 0;
+
         }
 
         private void latitud_textBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -64,6 +61,7 @@ namespace TrafikApp.Componentes
 
         private void crearColumnasTablaIncidencias()
         {
+            
             datosIncidencias_dataGrid.AutoGenerateColumns = false;
 
             datosIncidencias_dataGrid.Columns.Clear();
@@ -75,8 +73,12 @@ namespace TrafikApp.Componentes
             datosIncidencias_dataGrid.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular);
 
 
+            datosIncidencias_dataGrid.EnableHeadersVisualStyles = false;
+            datosIncidencias_dataGrid.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkBlue;
+            datosIncidencias_dataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             datosIncidencias_dataGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 13, FontStyle.Bold);
             datosIncidencias_dataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
 
             datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -104,6 +106,24 @@ namespace TrafikApp.Componentes
 
             datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
+                Name = "colCiudad",
+                HeaderText = "Ciudad"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colRoad",
+                HeaderText = "Road"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colFecha",
+                HeaderText = "Fecha"
+            });
+
+            datosIncidencias_dataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 Name = "colLatitud",
                 HeaderText = "Latitud"
             });
@@ -113,6 +133,7 @@ namespace TrafikApp.Componentes
                 Name = "colLongitud",
                 HeaderText = "Longitud"
             });
+
         }
 
         private void reiniciarCampos()
@@ -226,6 +247,7 @@ namespace TrafikApp.Componentes
         {
             if (e.RowIndex >= 0)
             {
+                datosIncidencias_dataGrid.Rows[e.RowIndex].Selected = true;
                 DataGridViewRow filaSeleccionada = datosIncidencias_dataGrid.Rows[e.RowIndex];
 
                 string causaIncidencia = filaSeleccionada.Cells["colCausa"].Value?.ToString();
@@ -343,10 +365,15 @@ namespace TrafikApp.Componentes
                 row.Cells[datosIncidencias_dataGrid.Columns["colCausa"].Index].Value = inci.cause;
                 row.Cells[datosIncidencias_dataGrid.Columns["colTipo"].Index].Value = inci.incidenceType;
                 row.Cells[datosIncidencias_dataGrid.Columns["colProvincia"].Index].Value = inci.province;
+                row.Cells[datosIncidencias_dataGrid.Columns["colCiudad"].Index].Value = inci.cityTown;
+                row.Cells[datosIncidencias_dataGrid.Columns["colRoad"].Index].Value = inci.road;
+                row.Cells[datosIncidencias_dataGrid.Columns["colFecha"].Index].Value = inci.startDate;
                 row.Cells[datosIncidencias_dataGrid.Columns["colLatitud"].Index].Value = inci.latitude;
                 row.Cells[datosIncidencias_dataGrid.Columns["colLongitud"].Index].Value = inci.longitude;
 
                 datosIncidencias_dataGrid.Rows.Add(row);
+
+                row.DefaultCellStyle.BackColor = Color.LightGray;
             }
         }
 
@@ -391,75 +418,81 @@ namespace TrafikApp.Componentes
 
         private async void modificarIncidencia_button_Click(object sender, EventArgs e)
         {
-            string causaIncidencia = causaIncidencia_textbox.Text;
-            string tipoIncidencia = tipoIncidencia_comboBox.SelectedItem.ToString();
-            string fechaIncidencia = fechaInicio_date.Value.ToString();
-            string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
-            string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
-            if (!string.IsNullOrEmpty(causaIncidencia) && !string.IsNullOrEmpty(latitudIncidencia) && !string.IsNullOrEmpty(longitudIncidencia))
+            if (!string.IsNullOrEmpty(incidenceIdSeleccionada))
             {
-                LocalizarIncidencia localizacion = await obtenerDatosLocalizacion(latitudIncidencia, longitudIncidencia);
-
-                latitudIncidencia = latitud_textBox.Text.ToString();
-                longitudIncidencia = longitud_textBox.Text.ToString();
-
-                double latitud = Double.Parse(latitudIncidencia);
-                double longitud = Double.Parse(longitudIncidencia);
-
-                string cityTown;
-                string province;
-                string road;
-
-                if (localizacion.address != null)
+                string causaIncidencia = causaIncidencia_textbox.Text;
+                string tipoIncidencia = tipoIncidencia_comboBox.SelectedItem.ToString();
+                string fechaIncidencia = fechaInicio_date.Value.ToString();
+                string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
+                string longitudIncidencia = longitud_textBox.Text.ToString().Replace(",", ".");
+                if (!string.IsNullOrEmpty(causaIncidencia) && !string.IsNullOrEmpty(latitudIncidencia) && !string.IsNullOrEmpty(longitudIncidencia))
                 {
-                    if (!string.IsNullOrEmpty(localizacion.address.city))
+                    LocalizarIncidencia localizacion = await obtenerDatosLocalizacion(latitudIncidencia, longitudIncidencia);
+
+                    latitudIncidencia = latitud_textBox.Text.ToString();
+                    longitudIncidencia = longitud_textBox.Text.ToString();
+
+                    double latitud = Double.Parse(latitudIncidencia);
+                    double longitud = Double.Parse(longitudIncidencia);
+
+                    string cityTown;
+                    string province;
+                    string road;
+
+                    if (localizacion.address != null)
                     {
-                        cityTown = localizacion.address.city;
+                        if (!string.IsNullOrEmpty(localizacion.address.city))
+                        {
+                            cityTown = localizacion.address.city;
+                        }
+                        else
+                        {
+                            cityTown = "NOT FOUND";
+                        }
+
+                        if (!string.IsNullOrEmpty(localizacion.address.province))
+                        {
+                            province = localizacion.address.province;
+                        }
+                        else
+                        {
+                            province = "NOT FOUND";
+                        }
+
+                        if (!string.IsNullOrEmpty(localizacion.address.road))
+                        {
+                            road = localizacion.address.road;
+                        }
+                        else
+                        {
+                            road = "NOT FOUND";
+                        }
                     }
                     else
                     {
                         cityTown = "NOT FOUND";
-                    }
-
-                    if (!string.IsNullOrEmpty(localizacion.address.province))
-                    {
-                        province = localizacion.address.province;
-                    }
-                    else
-                    {
                         province = "NOT FOUND";
-                    }
-
-                    if (!string.IsNullOrEmpty(localizacion.address.road))
-                    {
-                        road = localizacion.address.road;
-                    }
-                    else
-                    {
                         road = "NOT FOUND";
                     }
+
+                    int sourceId = buscarSourceId(cityTown, province);
+
+
+                    Incidencia incidenciaModificar = new Incidencia(sourceId, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
+
+                    incidenciaModificar.incidenceId = incidenceIdSeleccionada;
+
+                    bool incidenciaCreada = await PatchJSON.modificarIncidencia(incidenciaModificar);
+
+                    rellenarTabla();
+                    reiniciarCampos();
                 }
-                else
-                {
-                    cityTown = "NOT FOUND";
-                    province = "NOT FOUND";
-                    road = "NOT FOUND";
-                }
-
-                int sourceId = buscarSourceId(cityTown,province);
-
-
-                Incidencia incidenciaModificar = new Incidencia(sourceId, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
-
-                bool incidenciaCreada = await PatchJSON.modificarIncidencia(incidenciaModificar);
-
-                rellenarTabla();
-                reiniciarCampos();
             }
             else
             {
-                MessageBox.Show("Rellena todos los campos para añadir la incidencia.");
+                MessageBox.Show("Necesitas seleccionar una incidencia de la tabla.");
             }
+            
         }
 
         private int buscarSourceId(string cityTown, string province)

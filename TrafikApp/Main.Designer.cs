@@ -37,15 +37,18 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.incidencia_pictureBox = new System.Windows.Forms.PictureBox();
             this.verPerfil_button = new System.Windows.Forms.Button();
+            this.imagenLogo_pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.usuario_pictureBox)).BeginInit();
             this.gestionarUsuarios_panel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.incidencia_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagenLogo_pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // gestionarUsuarios_button
             // 
             this.gestionarUsuarios_button.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gestionarUsuarios_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.gestionarUsuarios_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gestionarUsuarios_button.ForeColor = System.Drawing.Color.Black;
             this.gestionarUsuarios_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -61,6 +64,7 @@
             // gestionarIncidencias_button
             // 
             this.gestionarIncidencias_button.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gestionarIncidencias_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.gestionarIncidencias_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gestionarIncidencias_button.Location = new System.Drawing.Point(94, 8);
             this.gestionarIncidencias_button.Name = "gestionarIncidencias_button";
@@ -140,6 +144,17 @@
             this.verPerfil_button.UseVisualStyleBackColor = false;
             this.verPerfil_button.Click += new System.EventHandler(this.verPerfil_button_Click);
             // 
+            // imagenLogo_pictureBox
+            // 
+            this.imagenLogo_pictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imagenLogo_pictureBox.BackgroundImage")));
+            this.imagenLogo_pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.imagenLogo_pictureBox.Location = new System.Drawing.Point(12, 12);
+            this.imagenLogo_pictureBox.Name = "imagenLogo_pictureBox";
+            this.imagenLogo_pictureBox.Size = new System.Drawing.Size(74, 68);
+            this.imagenLogo_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imagenLogo_pictureBox.TabIndex = 18;
+            this.imagenLogo_pictureBox.TabStop = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +162,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1291, 542);
             this.ControlBox = false;
+            this.Controls.Add(this.imagenLogo_pictureBox);
             this.Controls.Add(this.verPerfil_button);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gestionarUsuarios_panel);
@@ -161,6 +177,7 @@
             this.gestionarUsuarios_panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.incidencia_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagenLogo_pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -174,5 +191,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox incidencia_pictureBox;
         private System.Windows.Forms.Button verPerfil_button;
+        private System.Windows.Forms.PictureBox imagenLogo_pictureBox;
     }
 }
