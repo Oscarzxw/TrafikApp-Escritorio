@@ -28,7 +28,6 @@ namespace TrafikApp.ChatArchivos
         {
             try
             {
-                Console.WriteLine("Hilo de recepción iniciado"); // Log para ver si se inicia el hilo
                 string mensaje;
                 while ((mensaje = reader.ReadLine()) != null)
                 {
@@ -37,8 +36,17 @@ namespace TrafikApp.ChatArchivos
                         // Log de depuración
                         Console.WriteLine("Mensaje recibido: " + mensaje);
 
-                        // Usamos Invoke para actualizar el ListBox en el hilo principal
-                        perfil.Invoke(new Action(() => perfil.MostrarMensaje("Servidor: " + mensaje)));
+                        // Verificar si el formulario está completamente cargado antes de usar Invoke
+                        if (perfil.InvokeRequired)
+                        {
+                            // Usamos Invoke para actualizar el ListBox en el hilo principal
+                            perfil.Invoke(new Action(() => perfil.MostrarMensaje("Servidor: " + mensaje)));
+                        }
+                        else
+                        {
+                            // Si estamos en el hilo principal, podemos directamente actualizar la UI
+                            perfil.MostrarMensaje("Servidor: " + mensaje);
+                        }
                     }
                     else
                     {
