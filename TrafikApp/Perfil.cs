@@ -26,11 +26,17 @@ namespace TrafikApp
 
             this.FormBorderStyle = FormBorderStyle.None;
             flechaAtras_button.FlatAppearance.BorderSize = 0;
+            enviarMensaje_button.FlatAppearance.BorderSize = 0;
             cliente = new Cliente(this);
             cliente.Conectar();
+            this.AcceptButton = enviarMensaje_button;
 
         }
 
+        public Cliente devolverCliente()
+        {
+            return cliente;
+        }
         
 
         private void enviarMensaje_button_Click(object sender, EventArgs e)
@@ -41,11 +47,14 @@ namespace TrafikApp
                 cliente.EnviarMensaje(mensaje);
                 miMensaje_textBox.Clear();
             }
+            miMensaje_textBox.Focus();
         }
 
         public void MostrarMensaje(string mensaje)
         {
             listaMensajes.Items.Add(mensaje);
+            listaMensajes.TopIndex = listaMensajes.Items.Count - 1;
+
         }
 
         private void Perfil_Load(object sender, EventArgs e)
@@ -56,8 +65,7 @@ namespace TrafikApp
         private void flechaAtras_button_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            cliente.CerrarConexion();
-            this.Close();
+            this.Hide();
         }
 
         public void setUsuarioActual(int id, string nombre, string apellido, string email, string contrasena, string rol)
@@ -68,6 +76,9 @@ namespace TrafikApp
             usuarioActual.email = email;
             usuarioActual.contrasena = contrasena;
             usuarioActual.rol = rol;
+
+            cliente.nombreUsuario = usuarioActual.nombre;
+            cliente.apellidoUsuario = usuarioActual.apellido;
 
             rellenarDatos();
         }

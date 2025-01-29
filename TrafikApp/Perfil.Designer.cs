@@ -116,34 +116,38 @@
             // miMensaje_textBox
             // 
             this.miMensaje_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.miMensaje_textBox.Location = new System.Drawing.Point(909, 201);
+            this.miMensaje_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miMensaje_textBox.Location = new System.Drawing.Point(723, 429);
             this.miMensaje_textBox.Name = "miMensaje_textBox";
-            this.miMensaje_textBox.Size = new System.Drawing.Size(212, 20);
+            this.miMensaje_textBox.Size = new System.Drawing.Size(417, 26);
             this.miMensaje_textBox.TabIndex = 7;
             this.miMensaje_textBox.TextChanged += new System.EventHandler(this.miMensaje_textBox_TextChanged);
             // 
             // enviarMensaje_button
             // 
             this.enviarMensaje_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.enviarMensaje_button.BackColor = System.Drawing.Color.Black;
+            this.enviarMensaje_button.BackColor = System.Drawing.Color.Transparent;
+            this.enviarMensaje_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("enviarMensaje_button.BackgroundImage")));
+            this.enviarMensaje_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.enviarMensaje_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.enviarMensaje_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enviarMensaje_button.ForeColor = System.Drawing.Color.White;
-            this.enviarMensaje_button.Location = new System.Drawing.Point(909, 241);
+            this.enviarMensaje_button.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.enviarMensaje_button.Location = new System.Drawing.Point(1111, 430);
             this.enviarMensaje_button.Name = "enviarMensaje_button";
-            this.enviarMensaje_button.Size = new System.Drawing.Size(212, 49);
+            this.enviarMensaje_button.Size = new System.Drawing.Size(29, 25);
             this.enviarMensaje_button.TabIndex = 8;
-            this.enviarMensaje_button.Text = "EnviarMensaje";
             this.enviarMensaje_button.UseVisualStyleBackColor = false;
             this.enviarMensaje_button.Click += new System.EventHandler(this.enviarMensaje_button_Click);
             // 
             // listaMensajes
             // 
             this.listaMensajes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaMensajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaMensajes.FormattingEnabled = true;
-            this.listaMensajes.Location = new System.Drawing.Point(909, 54);
+            this.listaMensajes.ItemHeight = 20;
+            this.listaMensajes.Location = new System.Drawing.Point(723, 6);
             this.listaMensajes.Name = "listaMensajes";
-            this.listaMensajes.Size = new System.Drawing.Size(212, 134);
+            this.listaMensajes.Size = new System.Drawing.Size(417, 424);
             this.listaMensajes.TabIndex = 9;
             // 
             // Perfil

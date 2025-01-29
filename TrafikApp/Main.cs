@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using TrafikApp.ChatArchivos;
 using TrafikApp.Componentes;
 using TrafikApp.Model;
 
@@ -14,6 +15,8 @@ namespace TrafikApp
         ComponenteGestionarUsuarios componenteGestionarUsuarios = new ComponenteGestionarUsuarios();
         private Usuario usuarioActual = new Usuario();
         private ContextMenuStrip menuDesplegable;
+        private Cliente cliente;
+        private Perfil perfil = new Perfil();
 
 
         public Main()
@@ -56,17 +59,24 @@ namespace TrafikApp
         {
             usuarioActual = new Usuario();
             this.DialogResult = DialogResult.OK;
+
+            if (cliente != null)
+            {
+                cliente.CerrarConexion();
+            }
+            
             this.Close();
         }
 
         private void opcionPerfil_Click(object sender, EventArgs e)
         {
-            Perfil perfil = new Perfil();
+            
             perfil.setUsuarioActual(usuarioActual.id, usuarioActual.nombre, usuarioActual.apellido, usuarioActual.email, usuarioActual.contrasena, usuarioActual.rol);
             DialogResult result = perfil.ShowDialog();
             this.Hide();
             if(result == DialogResult.OK)
             {
+                cliente = perfil.devolverCliente();
                 this.Show();
             }
             else

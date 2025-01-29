@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TrafikApp.ChatArchivos
 {
-    internal class Cliente
+    public class Cliente
     {
         private const string HOST = "10.10.13.160";
         private const int PUERTO = 5000;
@@ -17,6 +17,8 @@ namespace TrafikApp.ChatArchivos
         private StreamReader reader;
         private StreamWriter writer;
         private Perfil prefil;
+        public string nombreUsuario {  get; set; }
+        public string apellidoUsuario { get; set; }
 
         public Cliente(Perfil prefil)
         {
@@ -45,17 +47,18 @@ namespace TrafikApp.ChatArchivos
 
         // Enviar mensaje al servidor
         public void EnviarMensaje(string mensaje)
-        {
-            try
-            {
-                writer.WriteLine(mensaje);
-                prefil.MostrarMensaje("Tú: " + mensaje);
-            }
-            catch (Exception ex)
-            {
-                prefil.MostrarMensaje("Error al enviar mensaje: " + ex.Message);
-            }
-        }
+{
+    try
+    {
+        string mensajeFinal = nombreUsuario + " " + apellidoUsuario + ": " + mensaje;
+        writer.WriteLine(mensajeFinal);
+        prefil.MostrarMensaje("Tú: " + mensaje);
+    }
+    catch (Exception ex)
+    {
+        prefil.MostrarMensaje("Error al enviar mensaje: " + ex.Message);
+    }
+}
 
         // Cerrar la conexión
         public void CerrarConexion()

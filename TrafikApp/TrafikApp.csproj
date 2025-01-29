@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sources\cerrarSesionImg.png" />
+    <Content Include="Sources\enviarImg.png" />
     <Content Include="Sources\flechaAtras.png" />
     <Content Include="Sources\incidenciaLogoGestionarImg.png" />
     <Content Include="Sources\ojoAbiertoContrasenaImagen.png" />

@@ -40,12 +40,12 @@ namespace TrafikApp.ChatArchivos
                         if (perfil.InvokeRequired)
                         {
                             // Usamos Invoke para actualizar el ListBox en el hilo principal
-                            perfil.Invoke(new Action(() => perfil.MostrarMensaje("Servidor: " + mensaje)));
+                            perfil.Invoke(new Action(() => perfil.MostrarMensaje(mensaje)));
                         }
                         else
                         {
                             // Si estamos en el hilo principal, podemos directamente actualizar la UI
-                            perfil.MostrarMensaje("Servidor: " + mensaje);
+                            perfil.MostrarMensaje(mensaje);
                         }
                     }
                     else
