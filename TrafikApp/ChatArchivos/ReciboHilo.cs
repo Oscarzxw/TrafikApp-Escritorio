@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace TrafikApp.ChatArchivos
 {
     internal class ReciboHilo
     {
-
         private StreamReader reader;
         private Perfil perfil;
 
@@ -37,16 +31,24 @@ namespace TrafikApp.ChatArchivos
                 string mensaje;
                 while ((mensaje = reader.ReadLine()) != null)
                 {
-                    // Usamos Invoke para actualizar el ListBox en el hilo principal
-                    perfil.Invoke(new Action(() => perfil.MostrarMensaje("Servidor: " + mensaje)));
+                    if (!string.IsNullOrEmpty(mensaje))
+                    {
+                        // Log de depuración
+                        Console.WriteLine("Mensaje recibido: " + mensaje);
+
+                        // Usamos Invoke para actualizar el ListBox en el hilo principal
+                        perfil.Invoke(new Action(() => perfil.MostrarMensaje("Servidor: " + mensaje)));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Mensaje vacío recibido.");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                //perfil.Invoke(new Action(() => formulario.MostrarMensaje("Error al recibir mensaje: " + ex.Message)));
+                Console.WriteLine("Error al recibir mensaje: " + ex.Message);
             }
         }
-
     }
 }
