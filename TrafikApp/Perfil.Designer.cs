@@ -139,6 +139,7 @@
             // 
             // listaMensajes
             // 
+            this.listaMensajes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listaMensajes.FormattingEnabled = true;
             this.listaMensajes.Location = new System.Drawing.Point(909, 54);
             this.listaMensajes.Name = "listaMensajes";

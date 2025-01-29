@@ -34,7 +34,7 @@ namespace TrafikApp.ChatArchivos
                 writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = true };
 
                 // Crear un hilo para escuchar los mensajes del servidor
-                RecivoHilo hiloRecibir = new RecivoHilo(reader, prefil);
+                ReciboHilo hiloRecibir = new ReciboHilo(reader, prefil);
                 hiloRecibir.Start();
             }
             catch (Exception ex)

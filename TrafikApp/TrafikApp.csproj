@@ -133,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatArchivos\Cliente.cs" />
-    <Compile Include="ChatArchivos\RecivoHilo.cs" />
+    <Compile Include="ChatArchivos\ReciboHilo.cs" />
     <Compile Include="Componentes\ComponenteGestionarIncidencias.cs">
       <SubType>UserControl</SubType>
     </Compile>

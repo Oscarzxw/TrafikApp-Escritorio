@@ -9,24 +9,27 @@ using System.Windows.Forms;
 
 namespace TrafikApp.ChatArchivos
 {
-    internal class RecivoHilo
+    internal class ReciboHilo
     {
 
         private StreamReader reader;
         private Perfil perfil;
 
-        public RecivoHilo(StreamReader reader, Perfil perfil)
+        public ReciboHilo(StreamReader reader, Perfil perfil)
         {
             this.reader = reader;
             this.perfil = perfil;
         }
 
+        // Método que se ejecuta en un hilo separado
         public void Start()
         {
             Thread hilo = new Thread(RecibirMensajes);
+            hilo.IsBackground = true;  // Hacer el hilo en segundo plano
             hilo.Start();
         }
 
+        // Método para recibir mensajes
         private void RecibirMensajes()
         {
             try
@@ -41,7 +44,7 @@ namespace TrafikApp.ChatArchivos
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                //perfil.Invoke(new Action(() => perfil.MostrarMensaje("Error al recibir mensaje: " + ex.Message)));
+                //perfil.Invoke(new Action(() => formulario.MostrarMensaje("Error al recibir mensaje: " + ex.Message)));
             }
         }
 
