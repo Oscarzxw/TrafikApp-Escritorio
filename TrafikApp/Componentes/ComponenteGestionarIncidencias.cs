@@ -27,7 +27,7 @@ namespace TrafikApp.Componentes
             string mapFilePath = Path.Combine(projectDirectory, "TrafikApp", "Mapa", "map.html");
 
             mapa_webView2.Source = new Uri("file:///" + mapFilePath);
-            actualizarIncidencias_button.FlatAppearance.BorderSize = 0;
+            
 
         }
 
@@ -230,7 +230,7 @@ namespace TrafikApp.Componentes
 
                 int sourceId = buscarSourceId(cityTown, province);
 
-                Incidencia incidenciaCrear = new Incidencia(1, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
+                Incidencia incidenciaCrear = new Incidencia(sourceId, tipoIncidencia, province, causaIncidencia, cityTown, fechaIncidencia, road, latitud, longitud, true);
 
                 bool incidenciaCreada = await PostJSON.crearIncidencia(incidenciaCrear);
 
@@ -374,6 +374,35 @@ namespace TrafikApp.Componentes
                 datosIncidencias_dataGrid.Rows.Add(row);
 
                 row.DefaultCellStyle.BackColor = Color.LightGray;
+
+
+                switch(inci.sourceId)
+                {
+                    case 1:
+                        row.HeaderCell.Style.BackColor = Color.LightPink;
+                        break;
+                    case 2:
+                        row.HeaderCell.Style.BackColor = Color.LightYellow;
+                        break;
+                    case 3:
+                        row.HeaderCell.Style.BackColor = Color.Red;
+                        break;
+                    case 4:
+                        row.HeaderCell.Style.BackColor = Color.LightCoral;
+                        break;
+                    case 5:
+                        row.HeaderCell.Style.BackColor = Color.LightGreen;
+                        break;
+                    case 6:
+                        row.HeaderCell.Style.BackColor = Color.LightBlue;
+                        break;
+                    case 7:
+                        row.HeaderCell.Style.BackColor = Color.LightCyan;
+                        break;
+                    default:
+                        row.HeaderCell.Style.BackColor = Color.White;
+                        break;
+                }
             }
         }
 
@@ -497,28 +526,27 @@ namespace TrafikApp.Componentes
 
         private int buscarSourceId(string cityTown, string province)
         {
-
-            if (cityTown.Contains("Donostia"))
+            if (cityTown.Equals("Donostia",StringComparison.OrdinalIgnoreCase))
             {
                 return 7;
             }
-            else if (cityTown.Contains("Vitoria"))
+            else if (cityTown.Equals("Vitoria", StringComparison.OrdinalIgnoreCase))
             {
                 return 6;
             }
-            else if (cityTown.Contains("Bilbao"))
+            else if (cityTown.Equals("Bilbao", StringComparison.OrdinalIgnoreCase))
             {
                 return 5;
             }
-            else if (province.Contains("Gip"))
+            else if (province.Equals("Gipuzkoa", StringComparison.OrdinalIgnoreCase))
             {
                 return 4;
             }
-            else if (province.Contains("Ala"))
+            else if (province.Equals("Araba/Álava", StringComparison.OrdinalIgnoreCase) || province.Equals("Araba", StringComparison.OrdinalIgnoreCase))
             {
                 return 3;
             }
-            else if (province.Contains("Bizk"))
+            else if (province.Equals("Bizkaia", StringComparison.OrdinalIgnoreCase))
             {
                 return 2;
             }

@@ -132,6 +132,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatArchivos\Cliente.cs" />
+    <Compile Include="ChatArchivos\RecivoHilo.cs" />
     <Compile Include="Componentes\ComponenteGestionarIncidencias.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -17,9 +17,10 @@ namespace TrafikApp
 
             InitializeComponent();
 
-            this.FormBorderStyle = FormBorderStyle.None;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
             salirApp_button.FlatAppearance.BorderSize = 0;
             alternarContrasena_button.FlatAppearance.BorderSize = 0;
+            this.AcceptButton = inicioSesion_button;
 
         }
 
@@ -84,7 +85,8 @@ namespace TrafikApp
                 alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoCerrado);
                 contrasenaMostrada = false;
             }
-            else{
+            else
+            {
                 contrasena_textbox.UseSystemPasswordChar = false;
                 alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoAbierto);
                 contrasenaMostrada = true;

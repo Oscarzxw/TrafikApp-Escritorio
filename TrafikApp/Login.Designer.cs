@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.salirApp_button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.email_textbox = new System.Windows.Forms.TextBox();
@@ -37,34 +36,17 @@
             this.contrasena_textbox = new System.Windows.Forms.TextBox();
             this.mensajeErrorLogin_label = new System.Windows.Forms.Label();
             this.alternarContrasena_button = new System.Windows.Forms.Button();
+            this.salirApp_button = new System.Windows.Forms.Button();
             this.imagenLogo_pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.imagenLogo_pictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // salirApp_button
-            // 
-            this.salirApp_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.salirApp_button.BackColor = System.Drawing.Color.Transparent;
-            this.salirApp_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("salirApp_button.BackgroundImage")));
-            this.salirApp_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.salirApp_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.salirApp_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.salirApp_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salirApp_button.ForeColor = System.Drawing.Color.Black;
-            this.salirApp_button.Location = new System.Drawing.Point(629, 12);
-            this.salirApp_button.Name = "salirApp_button";
-            this.salirApp_button.Size = new System.Drawing.Size(37, 36);
-            this.salirApp_button.TabIndex = 9;
-            this.salirApp_button.TabStop = false;
-            this.salirApp_button.UseVisualStyleBackColor = false;
-            this.salirApp_button.Click += new System.EventHandler(this.salirApp_button_Click);
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(211, 226);
+            this.label2.Location = new System.Drawing.Point(135, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 24);
             this.label2.TabIndex = 11;
@@ -75,7 +57,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(211, 162);
+            this.label1.Location = new System.Drawing.Point(135, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 24);
             this.label1.TabIndex = 10;
@@ -85,7 +67,7 @@
             // 
             this.email_textbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.email_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.email_textbox.Location = new System.Drawing.Point(215, 189);
+            this.email_textbox.Location = new System.Drawing.Point(139, 104);
             this.email_textbox.Name = "email_textbox";
             this.email_textbox.Size = new System.Drawing.Size(241, 29);
             this.email_textbox.TabIndex = 1;
@@ -98,7 +80,7 @@
             this.inicioSesion_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.inicioSesion_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inicioSesion_button.ForeColor = System.Drawing.Color.White;
-            this.inicioSesion_button.Location = new System.Drawing.Point(215, 326);
+            this.inicioSesion_button.Location = new System.Drawing.Point(139, 241);
             this.inicioSesion_button.Name = "inicioSesion_button";
             this.inicioSesion_button.Size = new System.Drawing.Size(241, 42);
             this.inicioSesion_button.TabIndex = 3;
@@ -110,7 +92,7 @@
             // 
             this.contrasena_textbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.contrasena_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contrasena_textbox.Location = new System.Drawing.Point(215, 253);
+            this.contrasena_textbox.Location = new System.Drawing.Point(139, 168);
             this.contrasena_textbox.Name = "contrasena_textbox";
             this.contrasena_textbox.Size = new System.Drawing.Size(241, 29);
             this.contrasena_textbox.TabIndex = 2;
@@ -121,7 +103,7 @@
             this.mensajeErrorLogin_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.mensajeErrorLogin_label.AutoSize = true;
             this.mensajeErrorLogin_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mensajeErrorLogin_label.Location = new System.Drawing.Point(129, 394);
+            this.mensajeErrorLogin_label.Location = new System.Drawing.Point(44, 286);
             this.mensajeErrorLogin_label.Name = "mensajeErrorLogin_label";
             this.mensajeErrorLogin_label.Size = new System.Drawing.Size(0, 16);
             this.mensajeErrorLogin_label.TabIndex = 12;
@@ -134,12 +116,25 @@
             this.alternarContrasena_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.alternarContrasena_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.alternarContrasena_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.alternarContrasena_button.Location = new System.Drawing.Point(471, 248);
+            this.alternarContrasena_button.Location = new System.Drawing.Point(395, 163);
             this.alternarContrasena_button.Name = "alternarContrasena_button";
             this.alternarContrasena_button.Size = new System.Drawing.Size(36, 35);
             this.alternarContrasena_button.TabIndex = 13;
             this.alternarContrasena_button.UseVisualStyleBackColor = false;
             this.alternarContrasena_button.Click += new System.EventHandler(this.alternarContrasena_button_Click);
+            // 
+            // salirApp_button
+            // 
+            this.salirApp_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.salirApp_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("salirApp_button.BackgroundImage")));
+            this.salirApp_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.salirApp_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.salirApp_button.Location = new System.Drawing.Point(460, 12);
+            this.salirApp_button.Name = "salirApp_button";
+            this.salirApp_button.Size = new System.Drawing.Size(37, 35);
+            this.salirApp_button.TabIndex = 16;
+            this.salirApp_button.UseVisualStyleBackColor = true;
+            this.salirApp_button.Click += new System.EventHandler(this.salirApp_button_Click);
             // 
             // imagenLogo_pictureBox
             // 
@@ -149,7 +144,7 @@
             this.imagenLogo_pictureBox.Name = "imagenLogo_pictureBox";
             this.imagenLogo_pictureBox.Size = new System.Drawing.Size(74, 68);
             this.imagenLogo_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imagenLogo_pictureBox.TabIndex = 14;
+            this.imagenLogo_pictureBox.TabIndex = 19;
             this.imagenLogo_pictureBox.TabStop = false;
             // 
             // Login
@@ -157,23 +152,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(678, 567);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(509, 351);
             this.ControlBox = false;
             this.Controls.Add(this.imagenLogo_pictureBox);
-            this.Controls.Add(this.alternarContrasena_button);
-            this.Controls.Add(this.mensajeErrorLogin_label);
-            this.Controls.Add(this.salirApp_button);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.email_textbox);
-            this.Controls.Add(this.inicioSesion_button);
             this.Controls.Add(this.contrasena_textbox);
+            this.Controls.Add(this.salirApp_button);
+            this.Controls.Add(this.alternarContrasena_button);
+            this.Controls.Add(this.inicioSesion_button);
+            this.Controls.Add(this.email_textbox);
+            this.Controls.Add(this.mensajeErrorLogin_label);
+            this.Controls.Add(this.label2);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagenLogo_pictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -182,7 +178,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button salirApp_button;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox email_textbox;
@@ -190,6 +185,7 @@
         private System.Windows.Forms.TextBox contrasena_textbox;
         private System.Windows.Forms.Label mensajeErrorLogin_label;
         private System.Windows.Forms.Button alternarContrasena_button;
+        private System.Windows.Forms.Button salirApp_button;
         private System.Windows.Forms.PictureBox imagenLogo_pictureBox;
     }
 }

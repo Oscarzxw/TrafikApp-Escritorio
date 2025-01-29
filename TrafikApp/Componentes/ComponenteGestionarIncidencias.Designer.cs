@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComponenteGestionarIncidencias));
             this.causaIncidencia_textbox = new System.Windows.Forms.TextBox();
             this.latitud_textBox = new System.Windows.Forms.TextBox();
             this.datosIncidencias_dataGrid = new System.Windows.Forms.DataGridView();
@@ -45,7 +44,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.generarInforme_button = new System.Windows.Forms.Button();
             this.modificarIncidencia_button = new System.Windows.Forms.Button();
-            this.actualizarIncidencias_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datosIncidencias_dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapa_webView2)).BeginInit();
             this.SuspendLayout();
@@ -249,26 +247,11 @@
             this.modificarIncidencia_button.UseVisualStyleBackColor = false;
             this.modificarIncidencia_button.Click += new System.EventHandler(this.modificarIncidencia_button_Click);
             // 
-            // actualizarIncidencias_button
-            // 
-            this.actualizarIncidencias_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.actualizarIncidencias_button.BackColor = System.Drawing.Color.Transparent;
-            this.actualizarIncidencias_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("actualizarIncidencias_button.BackgroundImage")));
-            this.actualizarIncidencias_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.actualizarIncidencias_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.actualizarIncidencias_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.actualizarIncidencias_button.Location = new System.Drawing.Point(23, 433);
-            this.actualizarIncidencias_button.Name = "actualizarIncidencias_button";
-            this.actualizarIncidencias_button.Size = new System.Drawing.Size(35, 35);
-            this.actualizarIncidencias_button.TabIndex = 40;
-            this.actualizarIncidencias_button.UseVisualStyleBackColor = false;
-            // 
             // ComponenteGestionarIncidencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.actualizarIncidencias_button);
             this.Controls.Add(this.modificarIncidencia_button);
             this.Controls.Add(this.generarInforme_button);
             this.Controls.Add(this.label7);
@@ -313,6 +296,5 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button generarInforme_button;
         private System.Windows.Forms.Button modificarIncidencia_button;
-        private System.Windows.Forms.Button actualizarIncidencias_button;
     }
 }
