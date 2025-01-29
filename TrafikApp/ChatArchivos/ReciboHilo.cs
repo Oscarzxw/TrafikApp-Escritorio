@@ -28,6 +28,7 @@ namespace TrafikApp.ChatArchivos
         {
             try
             {
+                Console.WriteLine("Hilo de recepción iniciado"); // Log para ver si se inicia el hilo
                 string mensaje;
                 while ((mensaje = reader.ReadLine()) != null)
                 {

@@ -91,6 +91,7 @@ namespace TrafikApp
         private void cerrarSesion_button_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+            cliente.CerrarConexion();
             this.Close();
         }
 
