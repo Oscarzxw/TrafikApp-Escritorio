@@ -47,9 +47,28 @@ namespace TrafikApp.Repositorio
                 Row row = table.Rows.Add();
                 row.Cells.Add(incidencia.incidenceId.ToString());
                 row.Cells.Add(incidencia.startDate);
+                row.Cells.Add(incidencia.incidenceType);
                 row.Cells.Add(incidencia.cause);
 
-                row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.Red;
+                if(incidencia.incidenceType.Equals("EVEN", StringComparison.OrdinalIgnoreCase))
+                {
+                    row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkBlue;
+                }
+                else
+                {
+                    if (incidencia.incidenceType.Equals("OBRA", StringComparison.OrdinalIgnoreCase))
+                    {
+                        row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkCyan;
+                    }
+                    else
+                    {
+                        if (incidencia.incidenceType.Equals("OTRO", StringComparison.OrdinalIgnoreCase))
+                        {
+                            row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.Black;
+                        }
+                    }
+                }
+                
             }
 
             page.Paragraphs.Add(table);

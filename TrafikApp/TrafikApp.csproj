@@ -146,6 +146,7 @@
     <Compile Include="Componentes\ComponenteGestionarUsuarios.Designer.cs">
       <DependentUpon>ComponenteGestionarUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Correo\CuerposCorreos.cs" />
     <Compile Include="Correo\EnviarCorreo.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
