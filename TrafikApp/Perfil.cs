@@ -77,11 +77,12 @@ namespace TrafikApp
             usuarioActual.contrasena = contrasena;
             usuarioActual.rol = rol;
 
-            if (cliente == null)
+            if (cliente != null)
             {
-                cliente = new Cliente(this);
+                await cliente.CerrarConexionAsync();
             }
 
+            cliente = new Cliente(this);
             cliente.nombreUsuario = usuarioActual.nombre;
             cliente.apellidoUsuario = usuarioActual.apellido;
 

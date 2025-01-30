@@ -8,8 +8,8 @@ namespace TrafikApp.Repositorio
 {
     internal class LinksJSON
     {
-        private static readonly string COMIENZO_LINKS = "https://junior-cherrita-trafikapp-039b4b86.koyeb.app/api/";
-        public static readonly string CHAT_LINK = "ws://junior-cherrita-trafikapp-039b4b86.koyeb.app/chat";
+        private static readonly string COMIENZO_LINKS = "https://grateful-aile-trafikapp-6e4aea32.koyeb.app/api/";
+        public static readonly string CHAT_LINK = "wss://grateful-aile-trafikapp-6e4aea32.koyeb.app/chat";
         //private static readonly string COMIENZO_LINKS = "http://10.10.13.157:8080/api/";
 
         //GET
