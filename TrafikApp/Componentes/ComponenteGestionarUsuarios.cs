@@ -148,18 +148,21 @@ namespace TrafikApp.Componentes
 
                     Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, emailUsuario, contrasenaUsuario, rol);
 
-
-                    Thread enviarCorreo = new Thread(() =>
-                    {
-                        EnviarCorreo.enviarCorreo(usuario);
-                    });
-
-                    enviarCorreo.IsBackground = true;
-                    enviarCorreo.Start();
-
                     bool usuarioCreada = await PostJSON.crearUsuario(usuario);
-                    reiniciarCampos();
-                    rellenarTabla();
+
+                    if (usuarioCreada)
+                    {
+                        Thread enviarCorreo = new Thread(() =>
+                        {
+                            EnviarCorreo.enviarCorreo(CuerposCorreos.mensajeBienvenida(usuario.nombre, usuario.apellido, usuario.rol), usuario.email);
+                        });
+
+                        enviarCorreo.IsBackground = true;
+                        enviarCorreo.Start();
+
+                        reiniciarCampos();
+                        rellenarTabla();
+                    }
                 }
                 else
                 {
@@ -177,6 +180,8 @@ namespace TrafikApp.Componentes
         private async void eliminarUsuario_button_Click(object sender, EventArgs e)
         {
             string emailUsuario = emailUsuario_textbox.Text.Trim();
+            string nombreUsuario = nombreUsuario_textbox.Text;
+            string apellidoUsuario = apellidoUsuario_textbox.Text;
 
             if (!emailUsuario.Equals(""))
             {
@@ -184,8 +189,21 @@ namespace TrafikApp.Componentes
                 {
                     Usuario usuario = new Usuario("", "", emailUsuario, "", "");
                     bool usuarioEliminado = await DeleteJSON.eliminarUsuario(usuario);
-                    reiniciarCampos();
-                    rellenarTabla();
+
+                    if (usuarioEliminado)
+                    {
+                        Thread enviarCorreo = new Thread(() =>
+                        {
+                            EnviarCorreo.enviarCorreo(CuerposCorreos.mensajeDespedida(nombreUsuario, apellidoUsuario), usuario.email);
+                        });
+
+                        enviarCorreo.IsBackground = true;
+                        enviarCorreo.Start();
+
+                        reiniciarCampos();
+                        rellenarTabla();
+                    }
+                    
                 }
                 else
                 {
