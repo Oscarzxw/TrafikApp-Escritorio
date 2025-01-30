@@ -1,80 +1,125 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Sockets;
+using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using TrafikApp.Repositorio;
 
 namespace TrafikApp.ChatArchivos
 {
     public class Cliente
     {
-        private const string HOST = "10.10.13.160";
-        private const int PUERTO = 5000;
-        private TcpClient cliente;
-        private NetworkStream stream;
-        private StreamReader reader;
-        private StreamWriter writer;
-        private Perfil prefil;
-        public string nombreUsuario {  get; set; }
+        private readonly string URL = LinksJSON.CHAT_LINK; 
+        private ClientWebSocket webSocket;
+        private CancellationTokenSource cts;
+        private Perfil perfil;
+        public string nombreUsuario { get; set; }
         public string apellidoUsuario { get; set; }
 
-        public Cliente(Perfil prefil)
+        public Cliente(Perfil perfil)
         {
-            this.prefil = prefil;
+            this.perfil = perfil;
+            this.webSocket = new ClientWebSocket();
+            this.cts = new CancellationTokenSource();
         }
 
-        // Conectar al servidor
-        public void Conectar()
+        public async Task ConectarAsync()
         {
             try
             {
-                cliente = new TcpClient(HOST, PUERTO);
-                stream = cliente.GetStream();
-                reader = new StreamReader(stream, Encoding.ASCII);
-                writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = true };
-
-                // Crear un hilo para escuchar los mensajes del servidor
-                ReciboHilo hiloRecibir = new ReciboHilo(reader, prefil);
-                hiloRecibir.Start();
+                await webSocket.ConnectAsync(new Uri(URL), cts.Token);
+                // Iniciar la escucha de mensajes
+                _ = RecibirMensajesAsync();
+                perfil.MostrarMensaje("Conectado al servidor de chat");
             }
             catch (Exception ex)
             {
-                prefil.MostrarMensaje("Error al conectarse al servidor: " + ex.Message);
+                perfil.MostrarMensaje("Error al conectarse al servidor: " + ex.Message);
             }
         }
 
-        // Enviar mensaje al servidor
-        public void EnviarMensaje(string mensaje)
-{
-    try
-    {
-        string mensajeFinal = nombreUsuario + " " + apellidoUsuario + ": " + mensaje;
-        writer.WriteLine(mensajeFinal);
-        prefil.MostrarMensaje("Tú: " + mensaje);
-    }
-    catch (Exception ex)
-    {
-        prefil.MostrarMensaje("Error al enviar mensaje: " + ex.Message);
-    }
-}
-
-        // Cerrar la conexión
-        public void CerrarConexion()
+        public async Task EnviarMensajeAsync(string mensaje)
         {
             try
             {
-                if (cliente != null)
+                if (webSocket.State != WebSocketState.Open)
                 {
-                    cliente.Close();
+                    perfil.MostrarMensaje("No está conectado al servidor");
+                    return;
+                }
+
+                string mensajeFinal = $"{nombreUsuario} {apellidoUsuario}: {mensaje}";
+                byte[] buffer = Encoding.UTF8.GetBytes(mensajeFinal);
+                await webSocket.SendAsync(new ArraySegment<byte>(buffer),
+                    WebSocketMessageType.Text,
+                    true,
+                    cts.Token);
+
+                perfil.MostrarMensaje("Tú: " + mensaje);
+            }
+            catch (Exception ex)
+            {
+                perfil.MostrarMensaje("Error al enviar mensaje: " + ex.Message);
+            }
+        }
+
+        private async Task RecibirMensajesAsync()
+        {
+            byte[] buffer = new byte[1024 * 4];
+            try
+            {
+                while (webSocket.State == WebSocketState.Open)
+                {
+                    WebSocketReceiveResult result = await webSocket.ReceiveAsync(
+                        new ArraySegment<byte>(buffer),
+                        cts.Token);
+
+                    if (result.MessageType == WebSocketMessageType.Close)
+                    {
+                        await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure,
+                            string.Empty,
+                            CancellationToken.None);
+                    }
+                    else
+                    {
+                        string mensaje = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                        if (!string.IsNullOrEmpty(mensaje))
+                        {
+                            if (perfil.InvokeRequired)
+                            {
+                                perfil.Invoke(new Action(() => perfil.MostrarMensaje(mensaje)));
+                            }
+                            else
+                            {
+                                perfil.MostrarMensaje(mensaje);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                prefil.MostrarMensaje("Error al cerrar la conexión: " + ex.Message);
+                perfil.MostrarMensaje("Error al recibir mensaje: " + ex.Message);
             }
         }
 
+        public async Task CerrarConexionAsync()
+        {
+            try
+            {
+                if (webSocket.State == WebSocketState.Open)
+                {
+                    await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure,
+                        string.Empty,
+                        CancellationToken.None);
+                }
+                cts.Cancel();
+                webSocket.Dispose();
+            }
+            catch (Exception ex)
+            {
+                perfil.MostrarMensaje("Error al cerrar la conexión: " + ex.Message);
+            }
+        }
     }
 }

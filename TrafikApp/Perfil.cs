@@ -28,7 +28,7 @@ namespace TrafikApp
             flechaAtras_button.FlatAppearance.BorderSize = 0;
             enviarMensaje_button.FlatAppearance.BorderSize = 0;
             cliente = new Cliente(this);
-            cliente.Conectar();
+            //cliente.Conectar();
             this.AcceptButton = enviarMensaje_button;
 
         }
@@ -37,14 +37,14 @@ namespace TrafikApp
         {
             return cliente;
         }
-        
 
-        private void enviarMensaje_button_Click(object sender, EventArgs e)
+
+        private async void enviarMensaje_button_Click(object sender, EventArgs e)
         {
             string mensaje = miMensaje_textBox.Text;
             if (!string.IsNullOrEmpty(mensaje))
             {
-                cliente.EnviarMensaje(mensaje);
+                await cliente.EnviarMensajeAsync(mensaje);
                 miMensaje_textBox.Clear();
             }
             miMensaje_textBox.Focus();
@@ -68,7 +68,7 @@ namespace TrafikApp
             this.Hide();
         }
 
-        public void setUsuarioActual(int id, string nombre, string apellido, string email, string contrasena, string rol)
+        public async void setUsuarioActual(int id, string nombre, string apellido, string email, string contrasena, string rol)
         {
             usuarioActual.id = id;
             usuarioActual.nombre = nombre;
@@ -77,8 +77,15 @@ namespace TrafikApp
             usuarioActual.contrasena = contrasena;
             usuarioActual.rol = rol;
 
+            if (cliente == null)
+            {
+                cliente = new Cliente(this);
+            }
+
             cliente.nombreUsuario = usuarioActual.nombre;
             cliente.apellidoUsuario = usuarioActual.apellido;
+
+            await cliente.ConectarAsync();
 
             rellenarDatos();
         }
@@ -99,14 +106,17 @@ namespace TrafikApp
             
         }
 
-        private void cerrarSesion_button_Click(object sender, EventArgs e)
+        private async void cerrarSesion_button_Click(object sender, EventArgs e)
         {
+            if (cliente != null)
+            {
+                await cliente.CerrarConexionAsync();
+            }
             this.DialogResult = DialogResult.Cancel;
-            cliente.CerrarConexion();
             this.Close();
         }
 
-        
+
 
         private void miMensaje_textBox_TextChanged(object sender, EventArgs e)
         {
@@ -116,6 +126,15 @@ namespace TrafikApp
         private void listaMensajes_textbox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected override async void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (cliente != null)
+            {
+                await cliente.CerrarConexionAsync();
+            }
+            base.OnFormClosing(e);
         }
     }
 }

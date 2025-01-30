@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using TrafikApp.ChatArchivos;
 using TrafikApp.Componentes;
 using TrafikApp.Model;
+using System.Threading.Tasks;
 
 namespace TrafikApp
 {
@@ -55,16 +56,16 @@ namespace TrafikApp
             
 
         }
-        private void opcionCerrarSesion_Click(object sender, EventArgs e)
+        private async void opcionCerrarSesion_Click(object sender, EventArgs e)
         {
             usuarioActual = new Usuario();
             this.DialogResult = DialogResult.OK;
 
             if (cliente != null)
             {
-                cliente.CerrarConexion();
+                await cliente.CerrarConexionAsync();
             }
-            
+
             this.Close();
         }
 
@@ -134,6 +135,15 @@ namespace TrafikApp
         private void Main_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected override async void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (cliente != null)
+            {
+                await cliente.CerrarConexionAsync();
+            }
+            base.OnFormClosing(e);
         }
     }
 
