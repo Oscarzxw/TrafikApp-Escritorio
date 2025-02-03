@@ -52,7 +52,15 @@ namespace TrafikApp
 
         public void MostrarMensaje(string mensaje)
         {
-            listaMensajes.Items.Add(mensaje);
+            int maxChars = 50; // Máximo de caracteres por línea (ajústalo según el ancho del ListBox)
+
+            while (mensaje.Length > maxChars)
+            {
+                listaMensajes.Items.Add(mensaje.Substring(0, maxChars)); // Agrega la primera parte
+                mensaje = mensaje.Substring(maxChars); // Corta el mensaje y sigue
+            }
+
+            listaMensajes.Items.Add(mensaje); // Agrega la última parte
             listaMensajes.TopIndex = listaMensajes.Items.Count - 1;
 
         }

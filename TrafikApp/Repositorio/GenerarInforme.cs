@@ -1,14 +1,14 @@
 ﻿using Aspose.Pdf.Text;
 using Aspose.Pdf;
+using Aspose.Pdf.Drawing;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrafikApp.Model;
-using System.Drawing;
 using System.Diagnostics;
-using System.Collections;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using TrafikApp.Model;
+using System.Linq;
 
 namespace TrafikApp.Repositorio
 {
@@ -32,7 +32,7 @@ namespace TrafikApp.Repositorio
 
             Table table = new Table
             {
-                ColumnWidths = "50 150 300",
+                ColumnWidths = "50 150 50 300",
                 DefaultCellPadding = new MarginInfo(5, 5, 5, 5),
                 Border = new BorderInfo(BorderSide.All, 0.5f)
             };
@@ -40,6 +40,7 @@ namespace TrafikApp.Repositorio
             Row headerRow = table.Rows.Add();
             headerRow.Cells.Add("ID");
             headerRow.Cells.Add("Fecha");
+            headerRow.Cells.Add("Tipo");
             headerRow.Cells.Add("Descripción");
 
             foreach (var incidencia in incidencias)
@@ -50,7 +51,7 @@ namespace TrafikApp.Repositorio
                 row.Cells.Add(incidencia.incidenceType);
                 row.Cells.Add(incidencia.cause);
 
-                if(incidencia.incidenceType.Equals("EVEN", StringComparison.OrdinalIgnoreCase))
+                if (incidencia.incidenceType.Equals("EVEN", StringComparison.OrdinalIgnoreCase))
                 {
                     row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkBlue;
                 }
@@ -66,16 +67,110 @@ namespace TrafikApp.Repositorio
                         {
                             row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.Black;
                         }
+                        else
+                        {
+                            if (incidencia.incidenceType.Equals("ACCIDENTE", StringComparison.OrdinalIgnoreCase))
+                            {
+                                row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkGreen;
+                            }
+                            else
+                            {
+                                if (incidencia.incidenceType.Equals("CALLE CORTADA", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkMagenta;
+                                }
+                            }
+                        }
                     }
                 }
-                
+
             }
 
             page.Paragraphs.Add(table);
+            page.Paragraphs.Add(new TextFragment("\n\n"));
+
+            string imagePath = "grafico.png";
+            GenerarGraficoTartaConLeyenda(incidencias, imagePath);
+
+            Aspose.Pdf.Image pdfImage = new Aspose.Pdf.Image();
+            pdfImage.File = imagePath;
+            page.Paragraphs.Add(pdfImage);
 
             document.Save(nombreArchivo);
 
             AbrirPDF(nombreArchivo);
+        }
+
+        private static void GenerarGraficoTartaConLeyenda(List<Incidencia> incidencias, string filePath)
+        {
+            int evenCount = incidencias.Count(i => i.incidenceType.Equals("EVEN", StringComparison.OrdinalIgnoreCase));
+            int obraCount = incidencias.Count(i => i.incidenceType.Equals("OBRA", StringComparison.OrdinalIgnoreCase));
+            int accidenteCount = incidencias.Count(i => i.incidenceType.Equals("ACCIDENTE", StringComparison.OrdinalIgnoreCase));
+            int calleCount = incidencias.Count(i => i.incidenceType.Equals("CALLE CORTADA", StringComparison.OrdinalIgnoreCase));
+            int otroCount = incidencias.Count(i => i.incidenceType.Equals("OTRO", StringComparison.OrdinalIgnoreCase));
+
+            int total = evenCount + obraCount + accidenteCount + calleCount + otroCount;
+            if (total == 0) return;
+
+            using (Bitmap bitmap = new Bitmap(500, 400))
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                g.Clear(System.Drawing.Color.White);
+
+                float startAngle = 0;
+                float sweepEven = (evenCount / (float)total) * 360;
+                float sweepObra = (obraCount / (float)total) * 360;
+                float sweepAccidente = (accidenteCount / (float)total) * 360;
+                float sweepCalle = (calleCount / (float)total) * 360;
+                float sweepOtro = (otroCount / (float)total) * 360;
+
+                System.Drawing.Color colorEven = System.Drawing.Color.Blue;
+                System.Drawing.Color colorObra = System.Drawing.Color.Cyan;
+                System.Drawing.Color colorAccidente = System.Drawing.Color.Red;
+                System.Drawing.Color colorCalle = System.Drawing.Color.Green;
+                System.Drawing.Color colorOtro = System.Drawing.Color.Gray;
+
+                using (Brush brushEven = new SolidBrush(colorEven))
+                using (Brush brushObra = new SolidBrush(colorObra))
+                using (Brush brushAccidente = new SolidBrush(colorAccidente))
+                using (Brush brushCalle = new SolidBrush(colorCalle))
+                using (Brush brushOtro = new SolidBrush(colorOtro))
+                {
+                    g.FillPie(brushEven, 50, 50, 300, 300, startAngle, sweepEven);
+                    startAngle += sweepEven;
+                    g.FillPie(brushObra, 50, 50, 300, 300, startAngle, sweepObra);
+                    startAngle += sweepObra;
+                    g.FillPie(brushAccidente, 50, 50, 300, 300, startAngle, sweepAccidente);
+                    startAngle += sweepAccidente;
+                    g.FillPie(brushCalle, 50, 50, 300, 300, startAngle, sweepCalle);
+                    startAngle += sweepCalle;
+                    g.FillPie(brushOtro, 50, 50, 300, 300, startAngle, sweepOtro);
+                }
+
+                System.Drawing.Font font = new System.Drawing.Font("Arial", 12);
+                Brush textBrush = Brushes.Black;
+                int legendX = 380;
+                int legendY = 100;
+                int boxSize = 20; 
+
+                DibujarLeyenda(g, "EVEN", colorEven, legendX, legendY, boxSize, font, textBrush);
+                DibujarLeyenda(g, "OBRA", colorObra, legendX, legendY + 30, boxSize, font, textBrush);
+                DibujarLeyenda(g, "ACCIDENTE", colorAccidente, legendX, legendY + 60, boxSize, font, textBrush);
+                DibujarLeyenda(g, "CALLE CORTADA", colorCalle, legendX, legendY + 90, boxSize, font, textBrush);
+                DibujarLeyenda(g, "OTRO", colorOtro, legendX, legendY + 120, boxSize, font, textBrush);
+
+                bitmap.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+            }
+        }
+
+        private static void DibujarLeyenda(Graphics g, string texto, System.Drawing.Color color, int x, int y, int size, System.Drawing.Font font, Brush textBrush)
+        {
+            using (Brush brush = new SolidBrush(color))
+            {
+                g.FillRectangle(brush, x, y, size, size); // Dibuja el cuadrado de color
+            }
+            g.DrawRectangle(Pens.Black, x, y, size, size); // Dibuja el borde del cuadrado
+            g.DrawString(texto, font, textBrush, x + size + 5, y); // Dibuja el texto al lado
         }
 
         private static void AbrirPDF(string rutaPDF)

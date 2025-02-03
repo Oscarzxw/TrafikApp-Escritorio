@@ -38,7 +38,12 @@
             this.miMensaje_textBox = new System.Windows.Forms.TextBox();
             this.enviarMensaje_button = new System.Windows.Forms.Button();
             this.listaMensajes = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.imagenPerfil_button)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imagenPerfil_button
@@ -70,33 +75,33 @@
             this.nombreApellido_Label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nombreApellido_Label.AutoSize = true;
             this.nombreApellido_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombreApellido_Label.Location = new System.Drawing.Point(580, 113);
+            this.nombreApellido_Label.Location = new System.Drawing.Point(127, 10);
             this.nombreApellido_Label.Name = "nombreApellido_Label";
-            this.nombreApellido_Label.Size = new System.Drawing.Size(25, 25);
+            this.nombreApellido_Label.Size = new System.Drawing.Size(200, 25);
             this.nombreApellido_Label.TabIndex = 2;
-            this.nombreApellido_Label.Text = "n";
+            this.nombreApellido_Label.Text = "Cargando datos...";
             // 
             // correo_Label
             // 
             this.correo_Label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.correo_Label.AutoSize = true;
             this.correo_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.correo_Label.Location = new System.Drawing.Point(580, 253);
+            this.correo_Label.Location = new System.Drawing.Point(127, 148);
             this.correo_Label.Name = "correo_Label";
-            this.correo_Label.Size = new System.Drawing.Size(24, 25);
+            this.correo_Label.Size = new System.Drawing.Size(183, 25);
             this.correo_Label.TabIndex = 3;
-            this.correo_Label.Text = "e";
+            this.correo_Label.Text = "Cargando datos...";
             // 
             // rol_label
             // 
             this.rol_label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.rol_label.AutoSize = true;
             this.rol_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rol_label.Location = new System.Drawing.Point(580, 408);
+            this.rol_label.Location = new System.Drawing.Point(127, 301);
             this.rol_label.Name = "rol_label";
-            this.rol_label.Size = new System.Drawing.Size(19, 25);
+            this.rol_label.Size = new System.Drawing.Size(183, 25);
             this.rol_label.TabIndex = 4;
-            this.rol_label.Text = "r";
+            this.rol_label.Text = "Cargando datos...";
             // 
             // cerrarSesion_button
             // 
@@ -115,17 +120,17 @@
             // 
             // miMensaje_textBox
             // 
-            this.miMensaje_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.miMensaje_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.miMensaje_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.miMensaje_textBox.Location = new System.Drawing.Point(723, 429);
             this.miMensaje_textBox.Name = "miMensaje_textBox";
-            this.miMensaje_textBox.Size = new System.Drawing.Size(417, 26);
+            this.miMensaje_textBox.Size = new System.Drawing.Size(388, 26);
             this.miMensaje_textBox.TabIndex = 7;
             this.miMensaje_textBox.TextChanged += new System.EventHandler(this.miMensaje_textBox_TextChanged);
             // 
             // enviarMensaje_button
             // 
-            this.enviarMensaje_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.enviarMensaje_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.enviarMensaje_button.BackColor = System.Drawing.Color.Transparent;
             this.enviarMensaje_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("enviarMensaje_button.BackgroundImage")));
             this.enviarMensaje_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -141,7 +146,8 @@
             // 
             // listaMensajes
             // 
-            this.listaMensajes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaMensajes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaMensajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaMensajes.FormattingEnabled = true;
             this.listaMensajes.ItemHeight = 20;
@@ -150,18 +156,64 @@
             this.listaMensajes.Size = new System.Drawing.Size(417, 424);
             this.listaMensajes.TabIndex = 9;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 25);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Nombre:";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 25);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Email:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(21, 301);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 25);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Rol:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.rol_label);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.nombreApellido_Label);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.correo_Label);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(412, 102);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(336, 337);
+            this.panel1.TabIndex = 13;
+            // 
             // Perfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 538);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.listaMensajes);
             this.Controls.Add(this.enviarMensaje_button);
             this.Controls.Add(this.miMensaje_textBox);
             this.Controls.Add(this.cerrarSesion_button);
-            this.Controls.Add(this.rol_label);
-            this.Controls.Add(this.correo_Label);
-            this.Controls.Add(this.nombreApellido_Label);
             this.Controls.Add(this.flechaAtras_button);
             this.Controls.Add(this.imagenPerfil_button);
             this.Name = "Perfil";
@@ -169,6 +221,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Perfil_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagenPerfil_button)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +239,9 @@
         private System.Windows.Forms.TextBox miMensaje_textBox;
         private System.Windows.Forms.Button enviarMensaje_button;
         private System.Windows.Forms.ListBox listaMensajes;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

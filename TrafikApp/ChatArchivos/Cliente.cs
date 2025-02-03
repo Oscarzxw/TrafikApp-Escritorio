@@ -27,6 +27,7 @@ namespace TrafikApp.ChatArchivos
         {
             try
             {
+                ReiniciarWebSocket();
                 await webSocket.ConnectAsync(new Uri(URL), cts.Token);
                 // Iniciar la escucha de mensajes
                 _ = RecibirMensajesAsync();
@@ -66,6 +67,7 @@ namespace TrafikApp.ChatArchivos
         private async Task RecibirMensajesAsync()
         {
             byte[] buffer = new byte[1024 * 4];
+
             try
             {
                 while (webSocket.State == WebSocketState.Open)
@@ -79,10 +81,12 @@ namespace TrafikApp.ChatArchivos
                         await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure,
                             string.Empty,
                             CancellationToken.None);
+                        return;
                     }
                     else
                     {
                         string mensaje = Encoding.UTF8.GetString(buffer, 0, result.Count);
+
                         if (!string.IsNullOrEmpty(mensaje))
                         {
                             if (perfil.InvokeRequired)
@@ -97,11 +101,16 @@ namespace TrafikApp.ChatArchivos
                     }
                 }
             }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("WebSocket ya fue cerrado. Terminando la escucha.");
+            }
             catch (Exception ex)
             {
                 perfil.MostrarMensaje("Error al recibir mensaje: " + ex.Message);
             }
         }
+
 
         public async Task CerrarConexionAsync()
         {
@@ -120,6 +129,17 @@ namespace TrafikApp.ChatArchivos
             {
                 perfil.MostrarMensaje("Error al cerrar la conexión: " + ex.Message);
             }
+        }
+
+        private void ReiniciarWebSocket()
+        {
+            if (webSocket != null)
+            {
+                webSocket.Dispose(); // Asegurar que el socket anterior se libera
+            }
+
+            webSocket = new ClientWebSocket();
+            cts = new CancellationTokenSource();
         }
     }
 }
