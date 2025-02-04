@@ -15,15 +15,13 @@ namespace TrafikApp.ChatArchivos
             this.perfil = perfil;
         }
 
-        // Método que se ejecuta en un hilo separado
         public void Start()
         {
             Thread hilo = new Thread(RecibirMensajes);
-            hilo.IsBackground = true;  // Hacer el hilo en segundo plano
+            hilo.IsBackground = true;
             hilo.Start();
         }
 
-        // Método para recibir mensajes
         private void RecibirMensajes()
         {
             try
@@ -33,18 +31,14 @@ namespace TrafikApp.ChatArchivos
                 {
                     if (!string.IsNullOrEmpty(mensaje))
                     {
-                        // Log de depuración
                         Console.WriteLine("Mensaje recibido: " + mensaje);
 
-                        // Verificar si el formulario está completamente cargado antes de usar Invoke
                         if (perfil.InvokeRequired)
                         {
-                            // Usamos Invoke para actualizar el ListBox en el hilo principal
                             perfil.Invoke(new Action(() => perfil.MostrarMensaje(mensaje)));
                         }
                         else
                         {
-                            // Si estamos en el hilo principal, podemos directamente actualizar la UI
                             perfil.MostrarMensaje(mensaje);
                         }
                     }

@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrafikApp.Correo;
 using TrafikApp.Model;
@@ -55,6 +48,18 @@ namespace TrafikApp.Componentes
 
                 datosUsuarios_dataGrid.Rows.Add(row);
                 row.DefaultCellStyle.BackColor = Color.LightGray;
+                row.DefaultCellStyle.BackColor = Color.LightGray;
+
+                if (usu.rol.Equals("admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    row.HeaderCell.Style.BackColor = Color.Green;
+                }
+                else
+                {
+                    row.HeaderCell.Style.BackColor = Color.Blue;
+                }
+                
+
             }
         }
 
@@ -203,6 +208,10 @@ namespace TrafikApp.Componentes
                         reiniciarCampos();
                         rellenarTabla();
                     }
+                    else
+                    {
+                        MessageBox.Show("Error al eliminar el usuario.");
+                    }
                     
                 }
                 else
@@ -289,8 +298,15 @@ namespace TrafikApp.Componentes
 
                         bool usuarioModificado = await PatchJSON.modificarUsuario(usuario);
 
-                        reiniciarCampos();
-                        rellenarTabla();
+                        if (usuarioModificado)
+                        {
+                            reiniciarCampos();
+                            rellenarTabla();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al modificar el usuario.");
+                        }
                     }
                 }
                 else

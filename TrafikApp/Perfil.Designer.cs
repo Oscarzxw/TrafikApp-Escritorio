@@ -51,9 +51,9 @@
             this.imagenPerfil_button.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.imagenPerfil_button.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imagenPerfil_button.BackgroundImage")));
             this.imagenPerfil_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.imagenPerfil_button.Location = new System.Drawing.Point(60, 85);
+            this.imagenPerfil_button.Location = new System.Drawing.Point(57, 85);
             this.imagenPerfil_button.Name = "imagenPerfil_button";
-            this.imagenPerfil_button.Size = new System.Drawing.Size(401, 370);
+            this.imagenPerfil_button.Size = new System.Drawing.Size(389, 370);
             this.imagenPerfil_button.TabIndex = 0;
             this.imagenPerfil_button.TabStop = false;
             // 

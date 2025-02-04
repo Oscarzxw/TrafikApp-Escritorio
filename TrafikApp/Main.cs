@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using TrafikApp.ChatArchivos;
 using TrafikApp.Componentes;
 using TrafikApp.Model;
-using System.Threading.Tasks;
 
 namespace TrafikApp
 {

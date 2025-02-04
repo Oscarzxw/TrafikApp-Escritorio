@@ -1,12 +1,9 @@
 ﻿using Aspose.Pdf.Text;
 using Aspose.Pdf;
-using Aspose.Pdf.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using TrafikApp.Model;
 using System.Linq;
 
@@ -71,13 +68,13 @@ namespace TrafikApp.Repositorio
                         {
                             if (incidencia.incidenceType.Equals("ACCIDENTE", StringComparison.OrdinalIgnoreCase))
                             {
-                                row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkGreen;
+                                row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.Red;
                             }
                             else
                             {
                                 if (incidencia.incidenceType.Equals("CALLE CORTADA", StringComparison.OrdinalIgnoreCase))
                                 {
-                                    row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkMagenta;
+                                    row.DefaultCellTextState.ForegroundColor = Aspose.Pdf.Color.DarkGreen;
                                 }
                             }
                         }
@@ -167,10 +164,10 @@ namespace TrafikApp.Repositorio
         {
             using (Brush brush = new SolidBrush(color))
             {
-                g.FillRectangle(brush, x, y, size, size); // Dibuja el cuadrado de color
+                g.FillRectangle(brush, x, y, size, size);
             }
-            g.DrawRectangle(Pens.Black, x, y, size, size); // Dibuja el borde del cuadrado
-            g.DrawString(texto, font, textBrush, x + size + 5, y); // Dibuja el texto al lado
+            g.DrawRectangle(Pens.Black, x, y, size, size);
+            g.DrawString(texto, font, textBrush, x + size + 5, y);
         }
 
         private static void AbrirPDF(string rutaPDF)

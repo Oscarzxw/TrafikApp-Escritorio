@@ -231,6 +231,7 @@
     <Content Include="Sources\ojoCerradoContrasenaImagen.png" />
     <Content Include="Sources\reiniciarImg.png" />
     <Content Include="Sources\salirImg.png" />
+    <Content Include="Sources\TrafikAppSinFondo.png" />
     <Content Include="Sources\TrafikApp.png" />
     <Content Include="Sources\usuarioImagen.png" />
     <Content Include="Sources\usuarioLogoGestionarImg.png" />

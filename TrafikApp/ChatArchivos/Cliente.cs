@@ -29,7 +29,6 @@ namespace TrafikApp.ChatArchivos
             {
                 ReiniciarWebSocket();
                 await webSocket.ConnectAsync(new Uri(URL), cts.Token);
-                // Iniciar la escucha de mensajes
                 _ = RecibirMensajesAsync();
                 perfil.MostrarMensaje("Conectado al servidor de chat");
             }
@@ -135,7 +134,7 @@ namespace TrafikApp.ChatArchivos
         {
             if (webSocket != null)
             {
-                webSocket.Dispose(); // Asegurar que el socket anterior se libera
+                webSocket.Dispose();
             }
 
             webSocket = new ClientWebSocket();

@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrafikApp.ChatArchivos;
-using TrafikApp.Componentes;
 using TrafikApp.Model;
 
 namespace TrafikApp
 {
+
     public partial class Perfil : Form
     {
         private Usuario usuarioActual = new Usuario();

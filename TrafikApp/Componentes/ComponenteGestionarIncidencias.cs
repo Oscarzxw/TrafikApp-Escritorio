@@ -12,9 +12,18 @@ using TrafikApp.Repositorio;
 
 namespace TrafikApp.Componentes
 {
+    /**
+     *  Es el componente encargado de gestionar las incidencias
+     */
+
     public partial class ComponenteGestionarIncidencias : UserControl
     {
         string incidenceIdSeleccionada;
+
+        /**
+         * Es el constructor del componente
+         */
+
         public ComponenteGestionarIncidencias()
         {
             InitializeComponent();
@@ -31,6 +40,9 @@ namespace TrafikApp.Componentes
 
         }
 
+        /**
+         * Esta funcion limita los caracteres que se pueden introducir en el campo de latitud
+         */
         private void latitud_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -40,6 +52,10 @@ namespace TrafikApp.Componentes
             }
         }
 
+        /**
+         * Esta funcion limita los caracteres que se pueden introducir en el campo de longitud
+         */
+
         private void longitud_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !Char.IsControl(e.KeyChar))
@@ -47,6 +63,11 @@ namespace TrafikApp.Componentes
                 e.Handled = true;
             }
         }
+
+        /**
+         * Esta funcion se ejecuta cunado el formulario se inicializa
+         */
+
 
         private void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
         {
@@ -58,6 +79,10 @@ namespace TrafikApp.Componentes
 
             mapa_webView2.CoreWebView2.WebMessageReceived += Mapa_WebMessageReceived;
         }
+
+        /**
+         * Esta funcion se encarga de crear las columnas de la tabla de las incidencias
+         */
 
         private void crearColumnasTablaIncidencias()
         {
@@ -136,6 +161,10 @@ namespace TrafikApp.Componentes
 
         }
 
+        /**
+         * Esta funcion se encarga de reiniciar los campos
+         */
+
         private void reiniciarCampos()
         {
             causaIncidencia_textbox.Clear();
@@ -144,6 +173,10 @@ namespace TrafikApp.Componentes
             latitud_textBox.Clear();
             longitud_textBox.Clear();
         }
+
+        /**
+         * Esta funcion se encarga de eliminar la incidencia seleccionada en la tabla. Si la incidencia no es creada por nosotros no se podrá eliminar.
+         */
 
         private async void eliminarincidencia_button_Click(object sender, EventArgs e)
         {
@@ -170,6 +203,10 @@ namespace TrafikApp.Componentes
             }
             
         }
+
+        /**
+         * Esta funcion se encarga de añadir la incidencia mediante la API
+         */
 
         private async void anadirIncidencia_button_Click(object sender, EventArgs e)
         {
@@ -234,14 +271,28 @@ namespace TrafikApp.Componentes
 
                 bool incidenciaCreada = await PostJSON.crearIncidencia(incidenciaCrear);
 
-                rellenarTabla();
-                reiniciarCampos();
+                if (incidenciaCreada)
+                {
+                    rellenarTabla();
+                    reiniciarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Error al crear la incidencia.");
+                }
+
+                
             }
             else
             {
                 MessageBox.Show("Rellena todos los campos para añadir la incidencia.");
             }            
         }
+
+
+        /**
+         * Esta funcion se ejecuta cuando se pulsa un celda de la tabla
+         */
 
         private void datosIncidencias_dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -265,6 +316,9 @@ namespace TrafikApp.Componentes
             }
 
         }
+        /**
+         * Esta funcion se ejecuta cuando el texto de la latitud cambia dejando introducir latitudes limitadas
+         */
 
         private void latitud_textBox_TextChanged(object sender, EventArgs e)
         {
@@ -289,6 +343,9 @@ namespace TrafikApp.Componentes
             marcarPosicionEnMapa();
         }
 
+        /**
+       * Esta funcion se ejecuta cuando el texto de la latitud cambia dejando introducir longitudes limitadas
+       */
         private void longitud_textBox_TextChanged(object sender, EventArgs e)
         {
             double numeroValido;
@@ -312,6 +369,9 @@ namespace TrafikApp.Componentes
             marcarPosicionEnMapa();
         }
 
+        /**
+         * Esta funcion se encarga de marcar la posicion en el mapa segun la latitud y longitud insertada por el usuario
+         */
         private async void marcarPosicionEnMapa()
         {
             string latitudIncidencia = latitud_textBox.Text.ToString().Replace(",", ".");
@@ -325,6 +385,9 @@ namespace TrafikApp.Componentes
 
 
         }
+        /**
+         * Esta funcion recive datos de una API para obtener dfatos adicionales sobre una ubicacion exacta
+         */
 
         private static async Task<LocalizarIncidencia> obtenerDatosLocalizacion(string latitud, string longitud)
         {
@@ -351,6 +414,10 @@ namespace TrafikApp.Componentes
                 }
             }
         }
+
+        /**
+         * Esta funcion se encarga de rellenar los campos de la tabla poniendo colores especificos segun el tipo de incidencia
+         */
         private async void rellenarTabla()
         {
             List<Incidencia> incidencias = await GetJSON.recogerIncidencias();
@@ -375,29 +442,22 @@ namespace TrafikApp.Componentes
 
                 row.DefaultCellStyle.BackColor = Color.LightGray;
 
-
-                switch(inci.sourceId)
+                switch (inci.incidenceType)
                 {
-                    case 1:
-                        row.HeaderCell.Style.BackColor = Color.LightPink;
+                    case "EVEN":
+                        row.HeaderCell.Style.BackColor = Color.Blue;
                         break;
-                    case 2:
-                        row.HeaderCell.Style.BackColor = Color.LightYellow;
+                    case "OBRA":
+                        row.HeaderCell.Style.BackColor = Color.Cyan;
                         break;
-                    case 3:
+                    case "ACCIDENTE":
                         row.HeaderCell.Style.BackColor = Color.Red;
                         break;
-                    case 4:
-                        row.HeaderCell.Style.BackColor = Color.LightCoral;
+                    case "CALLE CORTADA":
+                        row.HeaderCell.Style.BackColor = Color.Green;
                         break;
-                    case 5:
-                        row.HeaderCell.Style.BackColor = Color.LightGreen;
-                        break;
-                    case 6:
-                        row.HeaderCell.Style.BackColor = Color.LightBlue;
-                        break;
-                    case 7:
-                        row.HeaderCell.Style.BackColor = Color.LightCyan;
+                    case "OTRO":
+                        row.HeaderCell.Style.BackColor = Color.Black;
                         break;
                     default:
                         row.HeaderCell.Style.BackColor = Color.White;
@@ -405,6 +465,9 @@ namespace TrafikApp.Componentes
                 }
             }
         }
+        /**
+         * Esta funcion recoge infirmacion al script del mapa
+         */
 
         private void Mapa_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
         {
@@ -427,6 +490,10 @@ namespace TrafikApp.Componentes
             }
         }
 
+        /**
+         * Esta funcion se encarga de generar un informe
+         */
+
         private async void generarInforme_button_Click(object sender, EventArgs e)
         {
             List<Incidencia> incidencias = await GetJSON.recogerIncidencias();
@@ -444,6 +511,10 @@ namespace TrafikApp.Componentes
                 Console.WriteLine("Creación de informe cancelado.");
             }
         }
+
+        /**
+         * Esta funcion se encarga de modificar una incidencia segun la ID
+         */
 
         private async void modificarIncidencia_button_Click(object sender, EventArgs e)
         {
@@ -511,10 +582,17 @@ namespace TrafikApp.Componentes
 
                     incidenciaModificar.incidenceId = incidenceIdSeleccionada;
 
-                    bool incidenciaCreada = await PatchJSON.modificarIncidencia(incidenciaModificar);
+                    bool incidenciaModificada = await PatchJSON.modificarIncidencia(incidenciaModificar);
 
-                    rellenarTabla();
-                    reiniciarCampos();
+                    if (incidenciaModificada)
+                    {
+                        rellenarTabla();
+                        reiniciarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al modificar la incidencia.");
+                    }
                 }
             }
             else
@@ -523,6 +601,10 @@ namespace TrafikApp.Componentes
             }
             
         }
+
+        /**
+         * Esta funcion se encarga de elegir el source ID de cada incidencia
+         */
 
         private int buscarSourceId(string cityTown, string province)
         {

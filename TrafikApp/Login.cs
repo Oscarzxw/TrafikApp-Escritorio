@@ -1,11 +1,12 @@
 ﻿
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 using TrafikApp.Model;
 using TrafikApp.Repositorio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TrafikApp
 {
@@ -45,7 +46,6 @@ namespace TrafikApp
                 {
                     email_textbox.Clear();
                     contrasena_textbox.Clear();
-                    mensajeErrorLogin_label.Text = "";
                     this.Show();
                     email_textbox.Focus();
                 }
@@ -53,14 +53,12 @@ namespace TrafikApp
                 {
                     email_textbox.Clear();
                     contrasena_textbox.Clear();
-                    mensajeErrorLogin_label.Text = "";
                     this.Show();
                     email_textbox.Focus();
                 }
             }
             else{
-                mensajeErrorLogin_label.ForeColor = System.Drawing.Color.Red;
-                mensajeErrorLogin_label.Text = "El email o contraseña no son correctos o debes de ser administrador.";
+                MessageBox.Show("El email o contraseña no son correctos o debes de ser administrador.");
             }
         }
 

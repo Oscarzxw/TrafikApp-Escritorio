@@ -34,7 +34,6 @@
             this.email_textbox = new System.Windows.Forms.TextBox();
             this.inicioSesion_button = new System.Windows.Forms.Button();
             this.contrasena_textbox = new System.Windows.Forms.TextBox();
-            this.mensajeErrorLogin_label = new System.Windows.Forms.Label();
             this.alternarContrasena_button = new System.Windows.Forms.Button();
             this.salirApp_button = new System.Windows.Forms.Button();
             this.imagenLogo_pictureBox = new System.Windows.Forms.PictureBox();
@@ -46,7 +45,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(135, 141);
+            this.label2.Location = new System.Drawing.Point(135, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 24);
             this.label2.TabIndex = 11;
@@ -57,7 +56,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(135, 77);
+            this.label1.Location = new System.Drawing.Point(135, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 24);
             this.label1.TabIndex = 10;
@@ -67,7 +66,7 @@
             // 
             this.email_textbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.email_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.email_textbox.Location = new System.Drawing.Point(139, 104);
+            this.email_textbox.Location = new System.Drawing.Point(139, 105);
             this.email_textbox.Name = "email_textbox";
             this.email_textbox.Size = new System.Drawing.Size(241, 29);
             this.email_textbox.TabIndex = 1;
@@ -80,7 +79,7 @@
             this.inicioSesion_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.inicioSesion_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inicioSesion_button.ForeColor = System.Drawing.Color.White;
-            this.inicioSesion_button.Location = new System.Drawing.Point(139, 241);
+            this.inicioSesion_button.Location = new System.Drawing.Point(139, 242);
             this.inicioSesion_button.Name = "inicioSesion_button";
             this.inicioSesion_button.Size = new System.Drawing.Size(241, 42);
             this.inicioSesion_button.TabIndex = 3;
@@ -92,21 +91,11 @@
             // 
             this.contrasena_textbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.contrasena_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contrasena_textbox.Location = new System.Drawing.Point(139, 168);
+            this.contrasena_textbox.Location = new System.Drawing.Point(139, 169);
             this.contrasena_textbox.Name = "contrasena_textbox";
             this.contrasena_textbox.Size = new System.Drawing.Size(241, 29);
             this.contrasena_textbox.TabIndex = 2;
             this.contrasena_textbox.UseSystemPasswordChar = true;
-            // 
-            // mensajeErrorLogin_label
-            // 
-            this.mensajeErrorLogin_label.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mensajeErrorLogin_label.AutoSize = true;
-            this.mensajeErrorLogin_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mensajeErrorLogin_label.Location = new System.Drawing.Point(44, 286);
-            this.mensajeErrorLogin_label.Name = "mensajeErrorLogin_label";
-            this.mensajeErrorLogin_label.Size = new System.Drawing.Size(0, 16);
-            this.mensajeErrorLogin_label.TabIndex = 12;
             // 
             // alternarContrasena_button
             // 
@@ -116,7 +105,7 @@
             this.alternarContrasena_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.alternarContrasena_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.alternarContrasena_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.alternarContrasena_button.Location = new System.Drawing.Point(395, 163);
+            this.alternarContrasena_button.Location = new System.Drawing.Point(395, 164);
             this.alternarContrasena_button.Name = "alternarContrasena_button";
             this.alternarContrasena_button.Size = new System.Drawing.Size(36, 35);
             this.alternarContrasena_button.TabIndex = 13;
@@ -153,7 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(509, 351);
+            this.ClientSize = new System.Drawing.Size(509, 332);
             this.ControlBox = false;
             this.Controls.Add(this.imagenLogo_pictureBox);
             this.Controls.Add(this.label1);
@@ -162,7 +151,6 @@
             this.Controls.Add(this.alternarContrasena_button);
             this.Controls.Add(this.inicioSesion_button);
             this.Controls.Add(this.email_textbox);
-            this.Controls.Add(this.mensajeErrorLogin_label);
             this.Controls.Add(this.label2);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
@@ -183,7 +171,6 @@
         private System.Windows.Forms.TextBox email_textbox;
         private System.Windows.Forms.Button inicioSesion_button;
         private System.Windows.Forms.TextBox contrasena_textbox;
-        private System.Windows.Forms.Label mensajeErrorLogin_label;
         private System.Windows.Forms.Button alternarContrasena_button;
         private System.Windows.Forms.Button salirApp_button;
         private System.Windows.Forms.PictureBox imagenLogo_pictureBox;
