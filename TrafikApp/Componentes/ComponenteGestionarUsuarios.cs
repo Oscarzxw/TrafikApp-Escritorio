@@ -318,24 +318,18 @@ namespace TrafikApp.Componentes
 
         private void alternarContrasena_button_Click(object sender, EventArgs e)
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-            string parentDirectory = Directory.GetParent(baseDirectory).Parent.FullName;
-            string projectDirectory = Directory.GetParent(parentDirectory).Parent.FullName;
-
-            string rutaImagenOjoAbierto = Path.Combine(projectDirectory, "TrafikApp", "Sources", "ojoAbiertoContrasenaImagen.png");
-            string rutaImagenOjoCerrado = Path.Combine(projectDirectory, "TrafikApp", "Sources", "ojoCerradoContrasenaImagen.png");
+            
 
             if (contrasenaMostrada)
             {
                 contrasenaUsuario_textbox.UseSystemPasswordChar = true;
-                alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoCerrado);
+                alternarContrasena_button.BackgroundImage = Properties.Resources.ojoCerradoContrasenaImagen;
                 contrasenaMostrada = false;
             }
             else
             {
                 contrasenaUsuario_textbox.UseSystemPasswordChar = false;
-                alternarContrasena_button.BackgroundImage = Image.FromFile(rutaImagenOjoAbierto);
+                alternarContrasena_button.BackgroundImage = Properties.Resources.ojoAbiertoContrasenaImagen;
                 contrasenaMostrada = true;
             }
         }

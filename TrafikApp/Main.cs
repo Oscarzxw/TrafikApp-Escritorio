@@ -23,23 +23,12 @@ namespace TrafikApp
         {
             InitializeComponent();
 
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-            string parentDirectory = Directory.GetParent(baseDirectory).Parent.FullName;
-            string projectDirectory = Directory.GetParent(parentDirectory).Parent.FullName;
-
-            string rutaImagenCerrarSesion = Path.Combine(projectDirectory, "TrafikApp", "Sources", "CerrarSesionImg.png");
-            string rutaImagenVerPerfil = Path.Combine(projectDirectory, "TrafikApp", "Sources", "usuarioLogoGestionarImg.png");
-
             menuDesplegable = new ContextMenuStrip();
             menuDesplegable.Font = new Font("Arial", 12, FontStyle.Bold);
 
-            Image imagenVerPerfil = Image.FromFile(rutaImagenVerPerfil);
-            Image imagenCerrarSesion = Image.FromFile(rutaImagenCerrarSesion);
-
             
-            ToolStripMenuItem opcionVerPerfil = new ToolStripMenuItem("Perfil", imagenVerPerfil);
-            ToolStripMenuItem opcionCerrarSesion = new ToolStripMenuItem("Cerrar Sesión", imagenCerrarSesion);
+            ToolStripMenuItem opcionVerPerfil = new ToolStripMenuItem("Perfil", Properties.Resources.usuarioLogoGestionarImg);
+            ToolStripMenuItem opcionCerrarSesion = new ToolStripMenuItem("Cerrar Sesión", Properties.Resources.cerrarSesionImg);
 
             opcionVerPerfil.Click += opcionPerfil_Click;
             opcionCerrarSesion.Click += opcionCerrarSesion_Click;

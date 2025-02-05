@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,16 +26,6 @@ namespace TrafikApp.Componentes
         public ComponenteGestionarIncidencias()
         {
             InitializeComponent();
-
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-            string parentDirectory = Directory.GetParent(baseDirectory).Parent.FullName;
-            string projectDirectory = Directory.GetParent(parentDirectory).Parent.FullName;
-
-            string mapFilePath = Path.Combine(projectDirectory, "TrafikApp", "Mapa", "map.html");
-
-            mapa_webView2.Source = new Uri("file:///" + mapFilePath);
-            
 
         }
 
@@ -69,13 +58,18 @@ namespace TrafikApp.Componentes
          */
 
 
-        private void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
+        private async void ComponenteGestionarIncidencias_Load(object sender, EventArgs e)
         {
             tipoIncidencia_comboBox.SelectedIndex = 0;
             tipoIncidencia_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
             crearColumnasTablaIncidencias();
             rellenarTabla();
+
+            await mapa_webView2.EnsureCoreWebView2Async();
+
+            string htmlContent = Properties.Resources.map;
+            mapa_webView2.NavigateToString(htmlContent);
 
             mapa_webView2.CoreWebView2.WebMessageReceived += Mapa_WebMessageReceived;
         }
