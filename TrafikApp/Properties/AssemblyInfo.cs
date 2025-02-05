@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("TrafikApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Aplicación para gestionar usuarios e incidencias.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Educacion")]
+[assembly: AssemblyCompany("TrafikAppSL")]
 [assembly: AssemblyProduct("TrafikApp")]
 [assembly: AssemblyCopyright("Copyright © Educacion 2025")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("TrafikAppSL")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Número de compilación
 //      Revisión
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]

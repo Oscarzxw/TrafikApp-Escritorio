@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafikApp", "TrafikApp\TrafikApp.csproj", "{E9D85F62-DEA8-4886-9E31-92E3A928E249}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TrafikAppSetup", "TrafikAppSetup\TrafikAppSetup.vdproj", "{EF17BA01-5512-4116-9798-5B7BDF9103EA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,8 +15,6 @@ Global
 		{E9D85F62-DEA8-4886-9E31-92E3A928E249}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{E9D85F62-DEA8-4886-9E31-92E3A928E249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9D85F62-DEA8-4886-9E31-92E3A928E249}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF17BA01-5512-4116-9798-5B7BDF9103EA}.Debug|Any CPU.ActiveCfg = Debug
-		{EF17BA01-5512-4116-9798-5B7BDF9103EA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
