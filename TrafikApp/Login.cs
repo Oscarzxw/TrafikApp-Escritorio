@@ -78,6 +78,8 @@ namespace TrafikApp
                 alternarContrasena_button.BackgroundImage = Properties.Resources.ojoAbiertoContrasenaImagen;
                 contrasenaMostrada = true;
             }
+
+            contrasena_textbox.Focus();
         }
     }
 }
